@@ -1,0 +1,152 @@
+package de.fheger.floorplan2ifc.logic;
+
+import com.buildingsmart.tech.ifc.IfcKernel.IfcObjectDefinition;
+import com.buildingsmart.tech.ifc.IfcKernel.IfcProject;
+import com.buildingsmart.tech.ifc.IfcKernel.IfcRelAggregates;
+import com.buildingsmart.tech.ifc.IfcKernel.IfcRoot;
+import de.fheger.floorplan2ifc.gui.ElementNode;
+import de.fheger.floorplan2ifc.gui.ElementPanel;
+import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
+import de.fheger.floorplan2ifc.gui.nodes.ElementNodeWithChilds;
+import de.fheger.floorplan2ifc.gui.nodes.SanitaryTerminalNode;
+import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
+import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
+import de.fheger.floorplan2ifc.logic.services.AddBasicAttributesService;
+import de.fheger.floorplan2ifc.logic.wrapper.*;
+import de.fheger.floorplan2ifc.logic.wrapper.products.*;
+import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.DoorWrapper;
+import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.WindowWrapper;
+import lombok.AccessLevel;
+import lombok.Getter;
+import nl.tue.isbe.ifcspftools.GuidHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends IfcObjectDefinition> {
+    @Getter(AccessLevel.PROTECTED)
+    private final NodeType elementNode;
+
+    @Getter(AccessLevel.PROTECTED)
+    private final IfcType ifcElement;
+
+    private static final ArrayList<Wrapper<?, ?>> allWrappers = new ArrayList<>();
+
+    protected Wrapper(NodeType elementNode, IfcType ifcElement) {
+        this.elementNode = elementNode;
+        this.ifcElement = ifcElement;
+        allWrappers.add(this);
+    }
+
+    public void addRelAggregateToChildren() throws ParseToIfcException {
+        if (!(elementNode instanceof ElementNodeWithChilds<?> elementNodeWithChildren)) {
+            return;
+        }
+
+        ElementNode<?>[] children = elementNodeWithChildren.getElementNodeChildren();
+        List<IfcObjectDefinition> ifcChildren = new ArrayList<>();
+        for (Wrapper<?, ?> currentWrapper : allWrappers) {
+            if (Arrays.stream(children).noneMatch(c -> c == currentWrapper.elementNode)) {
+                continue;
+            }
+            if (isStandardRelationship(currentWrapper.ifcElement)) {
+                ifcChildren.add(currentWrapper.ifcElement);
+            } else {
+                addSpecialRelationship(currentWrapper.ifcElement);
+            }
+
+        }
+
+        IfcRelAggregates relThisChildren = new IfcRelAggregates(
+                GuidHandler.getNewIfcGloballyUniqueId(),
+                this.ifcElement,
+                ifcChildren.toArray(new IfcObjectDefinition[0]));
+        ifcElement.getIsDecomposedBy().add(relThisChildren);
+        for (IfcObjectDefinition ifcChild : ifcChildren) {
+            ifcChild.getDecomposes().add(relThisChildren);
+        }
+    }
+
+
+    protected <SearchedIfcType extends IfcRoot> List<SearchedIfcType> getIfcElements(ElementPanel[] elementPanels, Class<SearchedIfcType> clazz)
+            throws ParseToIfcException {
+        List<SearchedIfcType> ifcElements = new ArrayList<>();
+        for (Wrapper<?, ?> currentWrapper : allWrappers) {
+
+            ElementPanel currentPanel = currentWrapper.getElementNode().getElementPanel();
+            if (Arrays.stream(elementPanels).noneMatch(panel -> panel == currentPanel)) {
+                continue;
+            }
+            if (!clazz.isInstance(currentWrapper.getIfcElement())) {
+                throw new ParseToIfcException("should not happen; elementpanel is associated with another IfcType than given in clazz");
+            }
+            ifcElements.add(clazz.cast(currentWrapper.getIfcElement()));
+        }
+        if (elementPanels.length != ifcElements.size()) {
+            throw new RuntimeException("Not all IfcElements were found during parsing");
+        }
+        return ifcElements;
+    }
+
+    public IfcProject getIfcProjectAndClean()
+            throws ParseToIfcException {
+        for (Wrapper<?, ?> w : allWrappers) {
+            if (w.getIfcElement() instanceof IfcProject ifcProject) {
+                clearWrappers();
+                return ifcProject;
+            }
+        }
+        throw new ParseToIfcException("Internal error; found no IfcProject after parsing");
+    }
+
+    private void clearWrappers() {
+        allWrappers.clear();
+    }
+
+    protected boolean isStandardRelationship(IfcObjectDefinition child) {
+        return true;
+    }
+
+    protected void addSpecialRelationship(IfcObjectDefinition child)
+            throws ParseToIfcException {
+    }
+
+    public void addAttributes() throws ParseToIfcException {
+        AddBasicAttributesService.addBasicAttributes(ifcElement, elementNode.getElementPanel());
+    }
+
+    public abstract void addRelationships() throws ParseToIfcException;
+
+    public static Wrapper<?, ?> getMatchingWrapper(ElementNode<?> elementNode)
+            throws ParseToIfcException {
+        if (elementNode instanceof ProjectNode projectNode) {
+            return new ProjectWrapper(projectNode);
+        }
+        if (elementNode instanceof SiteNode siteNode) {
+            return new SiteWrapper(siteNode);
+        }
+        if (elementNode instanceof BuildingNode buildingNode) {
+            return new BuildingWrapper(buildingNode);
+        }
+        if (elementNode instanceof BuildingStoreyNode buildingStoreyNode) {
+            return new BuildingStoreyWrapper(buildingStoreyNode);
+        }
+        if (elementNode instanceof WallNode wallNode) {
+            return new WallWrapper(wallNode);
+        }
+        if (elementNode instanceof SpaceNode spaceNode) {
+            return new SpaceWrapper(spaceNode);
+        }
+        if (elementNode instanceof DoorNode doorNode) {
+            return new DoorWrapper(doorNode);
+        }
+        if (elementNode instanceof WindowNode windowNode) {
+            return new WindowWrapper(windowNode);
+        }
+        if (elementNode instanceof SanitaryTerminalNode sanitaryTerminalNode) {
+            return new SanitaryTerminalWrapper(sanitaryTerminalNode);
+        }
+        throw new ParseToIfcException("Found not supported Node");
+    }
+}
