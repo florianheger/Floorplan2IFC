@@ -34,6 +34,7 @@ public class Floorplan2IfcGUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Floorplan2IFC");
         primaryStage.setMaximized(true);
+        primaryStage.setOnCloseRequest(e -> stop());
         primaryStage.show();
     }
 

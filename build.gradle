@@ -30,6 +30,7 @@ dependencies {
     implementation 'org.controlsfx:controlsfx:11.0.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.1'
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.14.1'
+    implementation 'org.neo4j.driver:neo4j-java-driver-all:5.5.0'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
