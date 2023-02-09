@@ -8,9 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LogicCommands {
+    private ParseToIfcService parseToIfcService;
 
     @Autowired
-    private ParseToIfcService parseToIfcService;
+    public LogicCommands(ParseToIfcService parseToIfcService) {
+        this.parseToIfcService = parseToIfcService;
+    }
 
     public IfcProject parseToIfcCommand(ProjectNode projectNode)
             throws ParseToIfcException {

@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -23,23 +22,18 @@ public class Floorplan2IfcGUI extends Application {
 
     private ConfigurableApplicationContext applicationContext;
 
-    private Pane elementPane;
-
     @Override
     public void init() {
-        String[] args = getParameters().getRaw().toArray(new String[0]);
-
-        applicationContext = new SpringApplicationBuilder(Floorplan2IfcApplication.class).run(args);
+        applicationContext = new SpringApplicationBuilder(Floorplan2IfcApplication.class).run();
     }
 
     @Override
     public void start(Stage primaryStage) {
-//        applicationContext.publishEvent(new StageReadyEvent(primaryStage));
-
         Pane mainPane = createMainPane();
-        Scene scene = new Scene(mainPane, 700, 450);
+        Scene scene = new Scene(mainPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Floorplan2IFC");
+        primaryStage.setMaximized(true);
         primaryStage.show();
     }
 
@@ -50,6 +44,27 @@ public class Floorplan2IfcGUI extends Application {
     }
 
     private Pane createMainPane() {
+        Pane elementPane = new Pane();
+        ProjectNode projectNode = createTestCase();
+        ElementTree tree = new ElementTree(projectNode, elementPane);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(elementPane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+
+        BorderPane borderPane = new BorderPane();
+
+        menuBar = applicationContext.getBean(MenuBar.class);
+
+        borderPane.setTop(menuBar);
+        borderPane.setLeft(tree);
+        borderPane.setCenter(scrollPane);
+
+        return borderPane;
+    }
+
+    private ProjectNode createTestCase() {
         ProjectNode projectNode = new ProjectNode();
         SiteNode siteNode = new SiteNode();
         projectNode.getChildren().add(siteNode);
@@ -60,28 +75,6 @@ public class Floorplan2IfcGUI extends Application {
         WallNode wallNode = new WallNode();
         buildingStoreyNode.getChildren().add(wallNode);
 
-        elementPane = new Pane();
-        ElementTree tree = new ElementTree(projectNode, elementPane);
-
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(elementPane);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-
-        BorderPane borderPane = new BorderPane();
-        borderPane.setTop(new MenuBar());
-        borderPane.setLeft(tree);
-        borderPane.setCenter(scrollPane);
-
-        return borderPane;
-    }
-
-    public static void main(String[] args) {
-        launch();
-    }
-    static class StageReadyEvent extends ApplicationEvent {
-        public StageReadyEvent(Stage stage) {
-            super(stage);
-        }
+        return projectNode;
     }
 }

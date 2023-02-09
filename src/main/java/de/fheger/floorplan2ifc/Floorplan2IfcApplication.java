@@ -10,5 +10,4 @@ public class Floorplan2IfcApplication {
     public static void main(String[] args) {
         Application.launch(Floorplan2IfcGUI.class, args);
     }
-
 }
