@@ -2,6 +2,7 @@ package de.fheger.floorplan2ifc.gui.menubar;
 
 import com.buildingsmart.tech.ifc.IfcKernel.IfcProject;
 import de.fheger.floorplan2ifc.data.DataCommands;
+import de.fheger.floorplan2ifc.data.SaveToDBException;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.LogicCommands;
 import de.fheger.floorplan2ifc.logic.ParseToIfcException;
@@ -16,8 +17,8 @@ import javafx.scene.control.MenuItem;
 @Component
 public class FileMenu extends Menu {
 
-    private LogicCommands logicCommands;
-    private DataCommands dataCommands;
+    private final LogicCommands logicCommands;
+    private final DataCommands dataCommands;
 
     @Autowired
     public FileMenu(LogicCommands logicCommands, DataCommands dataCommands) {
@@ -45,6 +46,8 @@ public class FileMenu extends Menu {
             dataCommands.saveToDatabase(ifcProject);
         } catch (ParseToIfcException e) {
             showAlert(Alert.AlertType.ERROR, "Error during parsing: ", e.getMessage());
+        } catch (SaveToDBException e) {
+            showAlert(Alert.AlertType.ERROR, "Error during saving to database: ", e.getMessage());
         }
     }
 

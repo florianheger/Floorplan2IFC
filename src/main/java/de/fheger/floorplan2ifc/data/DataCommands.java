@@ -14,7 +14,7 @@ public class DataCommands {
         this.saveToDatabaseService = saveToDatabaseService;
     }
 
-    public void saveToDatabase(IfcProject ifcProject) {
-
+    public void saveToDatabase(IfcProject ifcProject) throws SaveToDBException {
+        saveToDatabaseService.saveToDatabase(ifcProject);
     }
 }

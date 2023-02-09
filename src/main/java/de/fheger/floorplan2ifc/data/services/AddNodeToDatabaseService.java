@@ -26,8 +26,8 @@ public class AddNodeToDatabaseService {
                 """,
                 Map.of("type", ifcRoot.getClass().getSimpleName(),
                         "global_id", ifcRoot.getGlobalId(),
-                        "name", ifcRoot.getGlobalId(),
-                        "description", ifcRoot.getDescription())
+                        "name", ifcRoot.getName().getValue(),
+                        "description", ifcRoot.getDescription().getValue())
         );
         neo4J.executeQuery(query);
     }

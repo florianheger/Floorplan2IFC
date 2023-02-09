@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import nl.tue.isbe.ifcspftools.GuidHandler;
 
 public abstract class ElementPanel extends BorderPane {
 
@@ -59,7 +60,7 @@ public abstract class ElementPanel extends BorderPane {
         gridPane.setPadding(new Insets(25, 0, 25, 0));
 
         nameField.setText(defaultName);
-//        globalIdField.setText(GuidHandler.getNewIfcGloballyUniqueId());
+        globalIdField.setText(GuidHandler.getNewIfcGloballyUniqueId());
 
         int rowIndex = 0;
         gridPane.add(UiFactory.createH2Headline("Standard Values"), 0, rowIndex, 2, 1);
