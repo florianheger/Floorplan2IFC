@@ -27,7 +27,7 @@ public class FileMenu extends Menu {
         MenuItem newFile = new MenuItem("New File");
         newFile.setOnAction(e -> onNewFile());
 
-        MenuItem parse = new MenuItem("Parse To Ifc");
+        MenuItem parse = new MenuItem("Check Consistency");
         parse.setOnAction(e -> onParseToIfc());
 
         MenuItem save = new MenuItem("Save to Graph Database");
@@ -47,16 +47,16 @@ public class FileMenu extends Menu {
     }
 
     private void onSaveToDatabase() {
-//        try {
-//            IfcProject ifcProject = logicCommands.parseToIfcCommand(ProjectNode.getCurrentProject());
-//            dataCommands.saveToDatabase(ifcProject);
-//            showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database", "Saving to Database succeeded without errors.");
-//        } catch (ParseToIfcException e) {
-//            showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());
-//        } catch (SaveToDBException e) {
-//            showAlert(Alert.AlertType.ERROR, "Error during saving to database", e.getMessage());
-//            throw new RuntimeException(e);
-//        }
+        try {
+            IfcProject ifcProject = logicCommands.parseToIfcCommand(ProjectNode.getCurrentProject());
+            logicCommands.saveToGraphDatabase(ifcProject);
+            showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database", "Saving to Database succeeded without errors.");
+        } catch (ParseToIfcException e) {
+            showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());
+        } catch (Exception e) { // TODO: change to specific Exception like SaveToDBException or Neo4j Exc
+            showAlert(Alert.AlertType.ERROR, "Error during saving to database", e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 
     private void onNewFile() {
