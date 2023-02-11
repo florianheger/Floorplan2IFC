@@ -1,16 +1,17 @@
 package de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper;
 
 
-import com.buildingsmart.tech.ifc.IfcKernel.IfcRelNests;
-import com.buildingsmart.tech.ifc.IfcProductExtension.IfcSpace;
-import com.buildingsmart.tech.ifc.IfcSharedBldgElements.IfcDoor;
 import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
 import de.fheger.floorplan2ifc.gui.panels.SpacePanel;
-import de.fheger.floorplan2ifc.logic.ParseToIfcException;
+import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.wrapper.products.DoorOrWindowWrapper;
-import nl.tue.isbe.ifcspftools.GuidHandler;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
+import de.fheger.floorplan2ifc.models.relationships.IfcRelNests;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DoorWrapper extends DoorOrWindowWrapper<DoorNode, IfcDoor> {
 
@@ -27,8 +28,8 @@ public class DoorWrapper extends DoorOrWindowWrapper<DoorNode, IfcDoor> {
         if (connectedSpacePanels.length != 2) {
             throw new ParseToIfcException("The Door " + getIfcElement().getName() + " connects to 1 or more than 2 spaces.");
         }
-        List<IfcSpace> spaces = getIfcElements(connectedSpacePanels, IfcSpace.class);
-        IfcRelNests relDoorSpaces = new IfcRelNests(GuidHandler.getNewIfcGloballyUniqueId(), getIfcElement(), spaces.toArray(new IfcSpace[0]));
+        Set<IfcSpace> spaces = new HashSet<>(getIfcElements(connectedSpacePanels, IfcSpace.class));
+        IfcRelNests relDoorSpaces = new IfcRelNests(getIfcElement(), new HashSet<>(spaces));
         getIfcElement().getNests().add(relDoorSpaces);
         spaces.forEach(s -> s.getIsNestedBy().add(relDoorSpaces));
     }

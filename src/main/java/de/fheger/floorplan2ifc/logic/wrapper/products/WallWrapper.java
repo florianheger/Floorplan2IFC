@@ -1,16 +1,17 @@
 package de.fheger.floorplan2ifc.logic.wrapper.products;
 
-import com.buildingsmart.tech.ifc.IfcKernel.IfcObjectDefinition;
-import com.buildingsmart.tech.ifc.IfcKernel.IfcRelAggregates;
-import com.buildingsmart.tech.ifc.IfcProductExtension.*;
-import com.buildingsmart.tech.ifc.IfcSharedBldgElements.IfcDoor;
-import com.buildingsmart.tech.ifc.IfcSharedBldgElements.IfcWall;
-import com.buildingsmart.tech.ifc.IfcSharedBldgElements.IfcWindow;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.WallNode;
-import de.fheger.floorplan2ifc.logic.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.Wrapper;
+import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.wrapper.ProductWrapper;
-import nl.tue.isbe.ifcspftools.GuidHandler;
+import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.IfcElement;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWindow;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.featureelement.featureelementsubtraction.IfcOpeningElement;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.relconnects.IfcRelFillsElement;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelVoidsElement;
+import de.fheger.floorplan2ifc.models.enums.IfcOpeningElementTypeEnum;
 
 public class WallWrapper extends ProductWrapper<WallNode, IfcWall> {
     public WallWrapper(WallNode elementNode) {
@@ -21,11 +22,11 @@ public class WallWrapper extends ProductWrapper<WallNode, IfcWall> {
         IfcOpeningElement ifcOpeningElement = new IfcOpeningElement();
         ifcOpeningElement.setPredefinedType(IfcOpeningElementTypeEnum.OPENING);
 
-        IfcRelVoidsElement relWallOpening = new IfcRelVoidsElement(GuidHandler.getNewIfcGloballyUniqueId(), getIfcElement(), ifcOpeningElement);
+        IfcRelVoidsElement relWallOpening = new IfcRelVoidsElement(getIfcElement(), ifcOpeningElement);
         getIfcElement().getHasOpenings().add(relWallOpening);
         ifcOpeningElement.getHasOpenings().add(relWallOpening);
 
-        IfcRelFillsElement relOpeningDoorOrWindow = new IfcRelFillsElement(GuidHandler.getNewIfcGloballyUniqueId(), ifcOpeningElement, doorOrWindow);
+        IfcRelFillsElement relOpeningDoorOrWindow = new IfcRelFillsElement(ifcOpeningElement, doorOrWindow);
         ifcOpeningElement.getHasFillings().add(relOpeningDoorOrWindow);
         doorOrWindow.getFillsVoids().add(relOpeningDoorOrWindow);
     }

@@ -16,10 +16,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Floorplan2IfcGUI extends Application {
-
-    @Autowired
-    private MenuBar menuBar;
-
     private ConfigurableApplicationContext applicationContext;
 
     @Override
@@ -56,7 +52,7 @@ public class Floorplan2IfcGUI extends Application {
 
         BorderPane borderPane = new BorderPane();
 
-        menuBar = applicationContext.getBean(MenuBar.class);
+        MenuBar menuBar = applicationContext.getBean(MenuBar.class);
 
         borderPane.setTop(menuBar);
         borderPane.setLeft(tree);

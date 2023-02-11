@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.1'
     implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.14.1'
     implementation 'org.neo4j.driver:neo4j-java-driver-all:5.5.0'
+    implementation group: 'org.springframework.data', name: 'spring-data-neo4j', version: '7.0.1'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

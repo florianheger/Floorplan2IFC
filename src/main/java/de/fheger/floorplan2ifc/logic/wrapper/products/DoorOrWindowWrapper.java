@@ -1,21 +1,21 @@
 package de.fheger.floorplan2ifc.logic.wrapper.products;
 
-import com.buildingsmart.tech.ifc.IfcKernel.IfcObjectDefinition;
-import com.buildingsmart.tech.ifc.IfcKernel.IfcRelDefinesByProperties;
-import com.buildingsmart.tech.ifc.IfcMeasureResource.IfcLabel;
-import com.buildingsmart.tech.ifc.IfcMeasureResource.IfcLengthMeasure;
-import com.buildingsmart.tech.ifc.IfcProductExtension.IfcElement;
-import com.buildingsmart.tech.ifc.IfcProductExtension.IfcElementQuantity;
-import com.buildingsmart.tech.ifc.IfcProductExtension.IfcOpeningElement;
-import com.buildingsmart.tech.ifc.IfcProductExtension.IfcRelFillsElement;
-import com.buildingsmart.tech.ifc.IfcQuantityResource.IfcPhysicalQuantity;
-import com.buildingsmart.tech.ifc.IfcQuantityResource.IfcQuantityLength;
+
 import de.fheger.floorplan2ifc.gui.ElementNode;
-import de.fheger.floorplan2ifc.logic.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.Wrapper;
+import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.wrapper.ProductWrapper;
+import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.IfcElement;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.featureelement.featureelementsubtraction.IfcOpeningElement;
+import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.relconnects.IfcRelFillsElement;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
+import de.fheger.floorplan2ifc.models.quantities.IfcPhysicalQuantity;
+import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityLength;
 import nl.tue.isbe.ifcspftools.GuidHandler;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public abstract class DoorOrWindowWrapper<NodeType extends ElementNode<?>, IfcType extends IfcElement> extends ProductWrapper<NodeType, IfcType> {
@@ -30,13 +30,10 @@ public abstract class DoorOrWindowWrapper<NodeType extends ElementNode<?>, IfcTy
         IfcOpeningElement relatedOpeningElement = getRelatedOpeningElement();
         int length = getElementLength();
 
-        IfcQuantityLength quantityLength = new IfcQuantityLength();
-        quantityLength.setName(new IfcLabel("Width"));
-        quantityLength.setLengthValue(new IfcLengthMeasure((double)length));
-        quantityLength.setFormula(new IfcLabel("cm"));
-        IfcElementQuantity elementQuantity = new IfcElementQuantity(GuidHandler.getNewIfcGloballyUniqueId(), new IfcPhysicalQuantity[]{quantityLength});
+        IfcQuantityLength quantityLength = new IfcQuantityLength("Width", length, "cm"); // TODO: change formula
+        IfcElementQuantity elementQuantity = new IfcElementQuantity(new HashSet<>(Collections.singleton(quantityLength)));
 
-        IfcRelDefinesByProperties tmp = new IfcRelDefinesByProperties("", new IfcObjectDefinition[]{relatedOpeningElement}, elementQuantity);
+        IfcRelDefinesByProperties tmp = new IfcRelDefinesByProperties(new HashSet<IfcObjectDefinition>(Collections.singleton(relatedOpeningElement)), elementQuantity);
         relatedOpeningElement.getIsDefinedBy().add(tmp);
     }
 

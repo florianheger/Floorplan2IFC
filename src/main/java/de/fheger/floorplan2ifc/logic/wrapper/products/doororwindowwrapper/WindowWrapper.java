@@ -1,8 +1,9 @@
 package de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper;
 
-import com.buildingsmart.tech.ifc.IfcSharedBldgElements.IfcWall;
+
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
 import de.fheger.floorplan2ifc.logic.wrapper.products.DoorOrWindowWrapper;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
 
 public class WindowWrapper extends DoorOrWindowWrapper<WindowNode, IfcWall> {
     public WindowWrapper(WindowNode elementNode) {

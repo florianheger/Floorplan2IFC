@@ -1,11 +1,9 @@
 package de.fheger.floorplan2ifc.logic.wrapper;
 
-import com.buildingsmart.tech.ifc.IfcKernel.IfcObjectDefinition;
-import com.buildingsmart.tech.ifc.IfcKernel.IfcProduct;
 import de.fheger.floorplan2ifc.gui.ElementNode;
-import de.fheger.floorplan2ifc.logic.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.Wrapper;
+import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.AddBasicAttributesService;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 
 public class ProductWrapper<NodeType extends ElementNode<?>, IfcType extends IfcProduct> extends Wrapper<NodeType, IfcType> {
     protected ProductWrapper(NodeType elementNode, IfcType ifcElement) {
