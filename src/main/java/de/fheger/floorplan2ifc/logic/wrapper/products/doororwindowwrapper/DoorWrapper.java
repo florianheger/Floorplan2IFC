@@ -7,10 +7,9 @@ import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.wrapper.products.DoorOrWindowWrapper;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
-import de.fheger.floorplan2ifc.models.relationships.IfcRelNests;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelNests;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class DoorWrapper extends DoorOrWindowWrapper<DoorNode, IfcDoor> {

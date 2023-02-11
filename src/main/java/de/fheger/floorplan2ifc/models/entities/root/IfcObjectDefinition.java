@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.models.entities.root;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
-import de.fheger.floorplan2ifc.models.relationships.IfcRelAggregates;
-import de.fheger.floorplan2ifc.models.relationships.IfcRelNests;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelAggregates;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelNests;
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.Relationship;
 

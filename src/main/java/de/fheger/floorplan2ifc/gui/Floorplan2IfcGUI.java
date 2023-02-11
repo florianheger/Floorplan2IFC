@@ -1,6 +1,7 @@
 package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.Floorplan2IfcApplication;
+import de.fheger.floorplan2ifc.MainTest;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -32,6 +33,8 @@ public class Floorplan2IfcGUI extends Application {
         primaryStage.setMaximized(true);
         primaryStage.setOnCloseRequest(e -> stop());
         primaryStage.show();
+
+        MainTest test = applicationContext.getBean(MainTest.class);
     }
 
     @Override

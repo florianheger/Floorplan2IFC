@@ -2,7 +2,6 @@ package de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.pro
 
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.IfcFeatureElement;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelVoidsElement;
-import de.fheger.floorplan2ifc.models.relationships.IfcRelNests;
 import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.Relationship;
 

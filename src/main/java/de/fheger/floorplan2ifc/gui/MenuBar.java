@@ -9,6 +9,6 @@ public class MenuBar extends javafx.scene.control.MenuBar {
     @Autowired
     public MenuBar(FileMenu fileMenu) {
         super();
-        getMenus().add(fileMenu);
+        super.getMenus().add(fileMenu);
     }
 }

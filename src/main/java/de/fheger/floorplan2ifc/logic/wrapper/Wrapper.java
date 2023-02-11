@@ -15,7 +15,7 @@ import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.Window
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
-import de.fheger.floorplan2ifc.models.relationships.IfcRelAggregates;
+import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelAggregates;
 import lombok.AccessLevel;
 import lombok.Getter;
 
