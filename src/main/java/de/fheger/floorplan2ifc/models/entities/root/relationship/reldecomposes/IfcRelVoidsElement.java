@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcRelVoidsElement extends IfcRelDecomposes {
     @Relationship(type = "RelatingBuildingElement")

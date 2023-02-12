@@ -6,6 +6,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.Set;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class IfcCartesianPoint extends IfcPoint {
     @Relationship(type = "Coordinates")
     private final Set<IfcLengthMeasure> coordinates;

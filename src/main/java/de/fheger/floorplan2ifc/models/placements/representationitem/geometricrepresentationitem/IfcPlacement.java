@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+@SuppressWarnings("unused")
 public abstract class IfcPlacement extends IfcGeometricRepresentationItem {
     @Relationship(type = "Location")
     @Setter(AccessLevel.PROTECTED)

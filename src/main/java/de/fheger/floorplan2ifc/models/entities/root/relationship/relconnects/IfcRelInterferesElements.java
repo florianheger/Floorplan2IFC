@@ -4,6 +4,7 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.relationship.IfcRelConnects;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class IfcRelInterferesElements extends IfcRelConnects {
     @Relationship(type = "RelatingElement")
     private IfcElement relatingElement;

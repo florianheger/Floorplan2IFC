@@ -9,6 +9,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 @Node
 public class IfcElementQuantity extends IfcQuantitySet {
     @Relationship(type = "Quantities")

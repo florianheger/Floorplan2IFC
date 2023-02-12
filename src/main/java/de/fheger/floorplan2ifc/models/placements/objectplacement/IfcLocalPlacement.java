@@ -5,6 +5,7 @@ import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrep
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcLocalPlacement extends IfcObjectPlacement {
     @Relationship(type = "RelativePlacement")

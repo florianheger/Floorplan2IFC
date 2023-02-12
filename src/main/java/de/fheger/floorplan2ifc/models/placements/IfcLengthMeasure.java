@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 
 import java.util.Random;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcLengthMeasure {
     @Id

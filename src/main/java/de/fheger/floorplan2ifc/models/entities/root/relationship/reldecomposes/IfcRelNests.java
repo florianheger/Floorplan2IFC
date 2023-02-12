@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcRelNests extends IfcRelDecomposes {
     @Relationship(type = "RelatingObject")

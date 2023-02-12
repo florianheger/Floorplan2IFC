@@ -5,6 +5,7 @@ import de.fheger.floorplan2ifc.models.enums.IfcSanitaryTerminalTypeEnum;
 import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Node;
 
+@SuppressWarnings("unused")
 @Node
 public class IfcSanitaryTerminal extends IfcFlowTerminal {
     @Setter

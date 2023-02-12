@@ -5,6 +5,7 @@ import lombok.Setter;
 import nl.tue.isbe.ifcspftools.GuidHandler;
 import org.springframework.data.neo4j.core.schema.Id;
 
+@SuppressWarnings("unused")
 public abstract class IfcRoot {
     @Id
     @Getter

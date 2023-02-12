@@ -10,6 +10,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcRelDefinesByProperties extends IfcRelDefines {
     @Relationship(type = "RelatedObjects")

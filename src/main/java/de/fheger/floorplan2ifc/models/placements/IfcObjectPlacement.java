@@ -6,6 +6,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public abstract class IfcObjectPlacement {
     @Id
     private int id = new Random().nextInt(Integer.MAX_VALUE);

@@ -8,6 +8,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.Set;
 
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Node
 public class IfcRelAggregates extends IfcRelDecomposes {
     @Relationship(type = "RelatingObject")
