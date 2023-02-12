@@ -36,12 +36,12 @@ public class WallWrapper extends ProductWrapper<WallNode, IfcWall> {
     @Override
     public void addAttributes() throws ParseToIfcException {
         super.addAttributes();
-        AddWallAttributesService.addAttributes(getIfcElement(), getElementNode().getElementPanel());
+//        AddWallAttributesService.addAttributes(getIfcElement(), getElementNode().getElementPanel());
     }
 
     @Override
     public void addRelationships() throws ParseToIfcException {
-        AddWallRelationshipsService.addRelationships(getIfcElement(), getElementNode().getElementPanel());
+//        AddWallRelationshipsService.addRelationships(getIfcElement(), getElementNode().getElementPanel());
     }
 
     @Override

@@ -8,7 +8,7 @@ import de.fheger.floorplan2ifc.gui.nodes.SanitaryTerminalNode;
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.services.AddRootAttributesService;
+import de.fheger.floorplan2ifc.logic.services.CreateIfcEntityWithRootAttributesService;
 import de.fheger.floorplan2ifc.logic.wrapper.products.*;
 import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.DoorWrapper;
 import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.WindowWrapper;
@@ -54,10 +54,10 @@ public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends I
     }
 
     private List<IfcObjectDefinition> getChildren(ElementNodeWithChilds<?> elementNodeWithChildren) throws ParseToIfcException {
-        ElementNode<?>[] children = elementNodeWithChildren.getElementNodeChildren();
+        List<ElementNode<?>> children = elementNodeWithChildren.getElementNodeChildren();
         List<IfcObjectDefinition> ifcChildren = new ArrayList<>();
         for (Wrapper<?, ?> currentWrapper : allWrappers) {
-            if (Arrays.stream(children).noneMatch(c -> c == currentWrapper.elementNode)) {
+            if (children.stream().noneMatch(c -> c == currentWrapper.elementNode)) {
                 continue;
             }
             if (isStandardRelationship(currentWrapper.ifcElement)) {
@@ -115,7 +115,7 @@ public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends I
     }
 
     public void addAttributes() throws ParseToIfcException {
-        AddRootAttributesService.addRootAttributes(ifcElement, elementNode.getElementPanel());
+//        CreateIfcEntityWithRootAttributesService.addRootAttributes(ifcElement, elementNode.getElementPanel());
     }
 
     public abstract void addRelationships() throws ParseToIfcException;

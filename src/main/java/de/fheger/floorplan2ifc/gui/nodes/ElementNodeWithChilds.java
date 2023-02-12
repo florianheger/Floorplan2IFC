@@ -4,6 +4,9 @@ import de.fheger.floorplan2ifc.gui.ElementNode;
 import de.fheger.floorplan2ifc.gui.ElementPanel;
 import javafx.scene.control.ContextMenu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class ElementNodeWithChilds<PanelType extends ElementPanel> extends ElementNode<PanelType> {
 
     protected ContextMenu menu = new ContextMenu();
@@ -19,13 +22,13 @@ public abstract class ElementNodeWithChilds<PanelType extends ElementPanel> exte
         return menu;
     }
 
-    public ElementNode<?>[] getElementNodeChildren() {
-        ElementNode<?>[] children = new ElementNode<?>[getChildren().size()];
-        for (int i = 0; i < children.length; i++) {
+    public List<ElementNode<?>> getElementNodeChildren() {
+        List<ElementNode<?>> children = new ArrayList<>();
+        for (int i = 0; i < getChildren().size(); i++) {
             if (!(getChildren().get(i) instanceof ElementNode<?> child)) {
                 throw new RuntimeException("unsopported item in tree");
             }
-            children[i] = child;
+            children.add(child);
         }
         return children;
     }

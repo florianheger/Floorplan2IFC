@@ -2,35 +2,37 @@ package de.fheger.floorplan2ifc.logic.services;
 
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.wrapper.Wrapper;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcService;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcSpaceService;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcWallService;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
 public class ParseToIfcService {
 
-    private final CreateWrappersService createWrappersService;
+    private final CreateIfcEntitiesService createIfcEntitiesService;
+    private final List<IfcService<?, ?>> ifcServices = new ArrayList<>();
 
-    @Autowired
-    public ParseToIfcService(CreateWrappersService createWrappersService) {
-        this.createWrappersService = createWrappersService;
+    public ParseToIfcService(CreateIfcEntitiesService createIfcEntitiesService,
+                             IfcWallService ifcWallService,
+                             IfcSpaceService ifcSpaceService) {
+        this.createIfcEntitiesService = createIfcEntitiesService;
+        ifcServices.add(ifcWallService);
+        ifcServices.add(ifcSpaceService);
     }
 
     public IfcProject parseProject(ProjectNode projectNode)
             throws ParseToIfcException {
-        Wrapper<?, ?>[] wrappers = createWrappersService.createWrappers(projectNode);
+        IfcProject ifcProject = createIfcEntitiesService.createIfcEntitiesService(projectNode);
 
-        for (Wrapper<?, ?> wrapper : wrappers) {
-            wrapper.addRelAggregatesToChildren();
-        }
-        for (Wrapper<?, ?> wrapper : wrappers) {
-            wrapper.addAttributes();
-        }
-        for (Wrapper<?, ?> wrapper : wrappers) {
-            wrapper.addRelationships();
+        for (IfcService<?, ?> ifcService : ifcServices) {
+            ifcService.addAttributesAndRelationships(ifcProject, projectNode);
         }
 
-        return Wrapper.getMatchingWrapper(projectNode).getIfcProjectAndClean();
+        return ifcProject;
     }
 }

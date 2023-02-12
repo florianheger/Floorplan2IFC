@@ -4,12 +4,14 @@ import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelAggregates;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FindIfcEntityService {
-    public static <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntity(
+    public <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntity(
             IfcObjectDefinition ifcObjectDefinition, String searchedGlobalId, Class<SearchedIfcType> clazz)
             throws ParseToIfcException {
         IfcProject ifcProject = GetIfcProjectService.getIfcProject(ifcObjectDefinition);
@@ -20,7 +22,7 @@ public class FindIfcEntityService {
         return result;
     }
 
-    private static <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntityRecursive(
+    private <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntityRecursive(
             IfcObjectDefinition ifcObject, String searchedGlobalId, Class<SearchedIfcType> clazz)
             throws ParseToIfcException {
         if (ifcObject.getGlobalId().equals(searchedGlobalId)) {

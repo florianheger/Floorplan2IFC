@@ -1,19 +1,32 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.relationships;
 
+import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.WallNode;
 import de.fheger.floorplan2ifc.gui.panels.WallPanel;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.relconnects.IfcRelInterferesElements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class AddWallRelationshipsService {
-    public static void addRelationships(IfcWall ifcWall, WallPanel wallPanel)
+@Service
+public class AddWallRelationshipsService  implements AddRelationships<IfcWall, WallNode> {
+
+    private final FindIfcEntityService findIfcEntityService;
+
+    @Autowired
+    public AddWallRelationshipsService(FindIfcEntityService findIfcEntityService) {
+        this.findIfcEntityService = findIfcEntityService;
+    }
+
+    @Override
+    public void addRelationships(IfcWall ifcWall, WallNode wallNode)
             throws ParseToIfcException {
-        List<WallPanel> interferenceWalls = wallPanel.getInterfernceWalls();
+        List<WallPanel> interferenceWalls = wallNode.getElementPanel().getInterfernceWalls();
         for (WallPanel interferenceWall : interferenceWalls) {
-            IfcWall interferenceIfcWall = FindIfcEntityService.findIfcEntity(ifcWall, interferenceWall.getGlobalId(), IfcWall.class);
+            IfcWall interferenceIfcWall = findIfcEntityService.findIfcEntity(ifcWall, interferenceWall.getGlobalId(), IfcWall.class);
             IfcRelInterferesElements relInterference = new IfcRelInterferesElements(ifcWall, interferenceIfcWall);
             ifcWall.getInterferesElements().add(relInterference);
             interferenceIfcWall.getIsInterferedByElements().add(relInterference);
