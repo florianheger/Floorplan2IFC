@@ -6,6 +6,7 @@ import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWindow;
@@ -14,15 +15,28 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSite;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.facility.IfcBuilding;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateIfcEntityWithRootAttributesService {
 
+    private final AddPlacementService addPlacementService;
+
+    @Autowired
+    public CreateIfcEntityWithRootAttributesService(AddPlacementService addPlacementService) {
+        this.addPlacementService = addPlacementService;
+    }
+
     public IfcObjectDefinition createIfcEntityWithRootAttributes(ElementPanel elementPanel)
             throws ParseToIfcException {
         IfcObjectDefinition ifcEntity = createIfcEntity(elementPanel);
         addRootAttributes(ifcEntity, elementPanel);
+
+        if (ifcEntity instanceof IfcProject) {
+            return ifcEntity;
+        }
+        addPlacementService.addPlacement((IfcProduct) ifcEntity, elementPanel);
         return ifcEntity;
     }
 

@@ -8,12 +8,14 @@ import de.fheger.floorplan2ifc.models.placements.objectplacement.IfcLocalPlaceme
 import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrepresentationitem.placement.IfcAxis2Placement;
 import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrepresentationitem.placement.IfcAxis2Placement2D;
 import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrepresentationitem.point.IfcCartesianPoint;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
+@Service
 public class AddPlacementService {
-    public static void addPlacement(IfcProduct ifcEntity, ElementPanel elementPanel) {
+    public void addPlacement(IfcProduct ifcEntity, ElementPanel elementPanel) {
         double posX = elementPanel.getPositionX();
         double posY = elementPanel.getPositionY();
         IfcLengthMeasure lengthMeasureX = new IfcLengthMeasure(posX);
