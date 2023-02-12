@@ -13,7 +13,7 @@ public class ProductWrapper<NodeType extends ElementNode<?>, IfcType extends Ifc
     }
 
     private void addPlacement() {
-        AddPlacementService.addPlacement(getIfcElement(), getElementNode().getElementPanel());
+//        AddPlacementService.addPlacement(getIfcElement(), getElementNode().getElementPanel());
     }
 
     @Override

@@ -3,8 +3,11 @@ package de.fheger.floorplan2ifc.logic.services.ifcservices.attributes;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.WallNode;
 import de.fheger.floorplan2ifc.gui.panels.WallPanel;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
+import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.IfcPropertySet;
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
+import de.fheger.floorplan2ifc.models.properties.propertyabstraction.property.simpleproperty.IfcPropertySingleValue;
+import de.fheger.floorplan2ifc.models.quantities.IfcBoolean;
 import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityLength;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +25,15 @@ public class AddWallAttributesService implements AddAttributes<IfcWall, WallNode
     }
 
     private void adPropertySets(IfcWall ifcWall, WallPanel wallPanel) {
-//        boolean isExternal = wallPanel.isExternal();
-//        boolean isBearing = wallPanel.isBearing();
-//
-//        IfcPropertySet wallCommon = new IfcPropertySet(hasProperties);
-//        IfcRelDefinesByProperties relWallProperties = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcWall)), wallCommon);
-//        ifcWall.getIsDefinedBy().add(relWallProperties);
-
-        // wie funktioniert das weiter? In Property Set sind IfcPropertySingleValue, darin ist 1 Single Value wo drin Boolean gespeichert ist, aber wie?
+        boolean isExternal = wallPanel.isExternal();
+        boolean isBearing = wallPanel.isBearing();
+        IfcBoolean isExternalB = new IfcBoolean(isExternal);
+        IfcBoolean isBearingB = new IfcBoolean(isBearing);
+        IfcPropertySingleValue isExternalPSV = new IfcPropertySingleValue(isExternalB);
+        IfcPropertySingleValue isBearingPSV = new IfcPropertySingleValue(isBearingB);
+        IfcPropertySet wallCommon = new IfcPropertySet(new HashSet<>(Arrays.asList(isExternalPSV, isBearingPSV)));
+        IfcRelDefinesByProperties relWallProperties = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcWall)), wallCommon);
+        ifcWall.getIsDefinedBy().add(relWallProperties);
     }
 
     private void addQuantities(IfcWall ifcWall, WallPanel wallPanel) {
