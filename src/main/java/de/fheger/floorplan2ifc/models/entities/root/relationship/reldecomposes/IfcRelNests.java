@@ -5,10 +5,9 @@ import de.fheger.floorplan2ifc.models.entities.root.relationship.IfcRelDecompose
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import java.util.HashSet;
 import java.util.Set;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"unused"})
 @Node
 public class IfcRelNests extends IfcRelDecomposes {
     @Relationship(type = "RelatingObject")

@@ -9,11 +9,8 @@ import java.util.List;
 
 public class ElementMultiSelect<PanelType extends ElementPanel> extends CheckComboBox<PanelType> {
 
-    private final ObservableList<PanelType> panels;
-
     public ElementMultiSelect(ObservableList<PanelType> observableList) {
         super();
-        panels = observableList;
         observableList.forEach(p -> getItems().add(p));
         observableList.addListener(this::updateItems);
     }

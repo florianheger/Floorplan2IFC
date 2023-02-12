@@ -6,7 +6,7 @@ import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
 public class SanitaryTerminalPanel extends ElementPanel {
 
-    private MultiSelect typeSelect = new MultiSelect();
+    private final MultiSelect typeSelect = new MultiSelect();
 
     public String getSelectedType() {
         return typeSelect.getSelectedElements().get(0); // TODO Fehler?

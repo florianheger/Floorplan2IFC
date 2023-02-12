@@ -6,7 +6,7 @@ import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 
 public class WindowPanel extends ElementPanel {
 
-    private NumberField length = UiFactory.createStandardNumberField();
+    private final NumberField length = UiFactory.createStandardNumberField();
 
     public int getLength() {
         return length.getInt();

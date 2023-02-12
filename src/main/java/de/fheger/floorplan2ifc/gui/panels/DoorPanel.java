@@ -9,8 +9,8 @@ import java.util.List;
 
 public class DoorPanel extends ElementPanel {
 
-    private NumberField length = UiFactory.createStandardNumberField();
-    private ElementMultiSelect<SpacePanel> connectedSpaces = new ElementMultiSelect<>(SpacePanel.getSpaces());
+    private final NumberField length = UiFactory.createStandardNumberField();
+    private final ElementMultiSelect<SpacePanel> connectedSpaces = new ElementMultiSelect<>(SpacePanel.getSpaces());
 
     public int getLength() {
         return length.getLength();

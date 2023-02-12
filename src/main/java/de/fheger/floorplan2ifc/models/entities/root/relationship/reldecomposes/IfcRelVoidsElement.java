@@ -3,18 +3,17 @@ package de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.IfcElement;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.featureelement.IfcFeatureElementSubtraction;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.IfcRelDecomposes;
-import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-@SuppressWarnings({"FieldCanBeLocal", "unused"})
+@SuppressWarnings({"unused"})
 @Node
 public class IfcRelVoidsElement extends IfcRelDecomposes {
     @Relationship(type = "RelatingBuildingElement")
-    private IfcElement relatingBuildingElement;
+    private final IfcElement relatingBuildingElement;
 
     @Relationship(type = "RelatedOpeningElement")
-    private IfcFeatureElementSubtraction relatedOpeningElement;
+    private final IfcFeatureElementSubtraction relatedOpeningElement;
 
     public IfcRelVoidsElement(IfcElement relatingBuildingElement, IfcFeatureElementSubtraction relatedOpeningElement) {
         this.relatingBuildingElement = relatingBuildingElement;

@@ -7,16 +7,22 @@ import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public class SpacePanel extends ElementPanel {
 
-    private static ObservableList<SpacePanel> spaces = FXCollections.observableArrayList();
+    private static final ObservableList<SpacePanel> spaces = FXCollections.observableArrayList();
     public static ObservableList<SpacePanel> getSpaces() { return spaces; }
 
-    private NumberField floorArea = UiFactory.createStandardNumberField();
-    private ElementMultiSelect<WallPanel> boundedWalls = new ElementMultiSelect<>(WallPanel.getWalls());
+    private final NumberField floorArea = UiFactory.createStandardNumberField();
+    private final ElementMultiSelect<WallPanel> boundedWalls = new ElementMultiSelect<>(WallPanel.getWalls());
 
     public int getFloorArea() {
         return floorArea.getInt();
+    }
+
+    public List<WallPanel> getBoundedWalls() {
+        return boundedWalls.getSelectedPanels();
     }
 
     public SpacePanel() {

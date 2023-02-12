@@ -12,14 +12,14 @@ import java.util.List;
 
 public class WallPanel extends ElementPanel {
 
-    private static ObservableList<WallPanel> walls = FXCollections.observableArrayList();
+    private static final ObservableList<WallPanel> walls = FXCollections.observableArrayList();
     public static ObservableList<WallPanel> getWalls() { return walls; }
 
-    private NumberField length = UiFactory.createStandardNumberField();
-    private NumberField width = UiFactory.createStandardNumberField();
-    private BoolSelect isExternal = UiFactory.createStandardBoolSelect();
-    private BoolSelect isBearing = UiFactory.createStandardBoolSelect();
-    private ElementMultiSelect<WallPanel> interferences = new ElementMultiSelect<>(walls);
+    private final NumberField length = UiFactory.createStandardNumberField();
+    private final NumberField width = UiFactory.createStandardNumberField();
+    private final BoolSelect isExternal = UiFactory.createStandardBoolSelect();
+    private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
+    private final ElementMultiSelect<WallPanel> interferences = new ElementMultiSelect<>(walls);
 
     public int getWallLength() {
         return length.getInt();

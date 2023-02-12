@@ -10,10 +10,10 @@ public class BoolSelect extends GridPane {
 
     private final RadioButton rbTrue = new RadioButton("true");
     private final RadioButton rbFalse = new RadioButton("false");
-    private final ToggleGroup toggleGroup = new ToggleGroup();
 
     public BoolSelect() {
         super();
+        ToggleGroup toggleGroup = new ToggleGroup();
         rbTrue.setToggleGroup(toggleGroup);
         rbFalse.setToggleGroup(toggleGroup);
         rbFalse.setSelected(true);
