@@ -89,16 +89,12 @@ public abstract class ElementPanel extends BorderPane {
                 rowIndex + rowsInElementPanel);
     }
 
-    protected void addNode(Node node, int columnIndex, int rowIndex, int colspan, int rowspan) {
-        gridPane.add(
-                node,
-                columnIndex,
-                rowIndex + rowsInElementPanel,
-                colspan,
-                rowspan);
-    }
-
     public String getNameOrDefault() {
         return defaultName + " " + id; // noch aktuellen Namen anpassen
+    }
+
+    @Override
+    public String toString() {
+        return getNameOrDefault();
     }
 }

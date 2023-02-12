@@ -1,38 +1,40 @@
 package de.fheger.floorplan2ifc.gui.inputs;
 
+import de.fheger.floorplan2ifc.gui.ElementPanel;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import org.controlsfx.control.CheckComboBox;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ElementMultiSelect<PanelType extends de.fheger.floorplan2ifc.gui.ElementPanel> extends MultiSelect {
+public class ElementMultiSelect<PanelType extends ElementPanel> extends CheckComboBox<PanelType> {
+
+    private final ObservableList<PanelType> panels;
 
     public ElementMultiSelect(ObservableList<PanelType> observableList) {
         super();
-        observableList.forEach(p -> getItems().add(p.getNameOrDefault()));
-        observableList.addListener((ListChangeListener<de.fheger.floorplan2ifc.gui.ElementPanel>) this::updateItems);
+        panels = observableList;
+        observableList.forEach(p -> getItems().add(p));
+        observableList.addListener(this::updateItems);
     }
 
-    private void updateItems(ListChangeListener.Change<? extends de.fheger.floorplan2ifc.gui.ElementPanel> change) {
+    private void updateItems(ListChangeListener.Change<? extends PanelType> change) {
         change.next();
         if (change.getRemovedSize() > 0) {
-            for (de.fheger.floorplan2ifc.gui.ElementPanel removed :
+            for (PanelType removed :
                     change.getRemoved()) {
-                getItems().remove(removed.getNameOrDefault());
+                getItems().remove(removed);
             }
         }
         if (change.getAddedSize() > 0) {
-            for (de.fheger.floorplan2ifc.gui.ElementPanel added :
+            for (PanelType added :
                     change.getAddedSubList()) {
-                getItems().add(added.getNameOrDefault());
+                getItems().add(added);
             }
         }
     }
 
     public List<PanelType> getSelectedPanels() {
-        List<PanelType> selectedElements = new ArrayList<>();
-        // TODO finish
-        return selectedElements;
+        return getCheckModel().getCheckedItems();
     }
 }

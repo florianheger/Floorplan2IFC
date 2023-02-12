@@ -1,15 +1,18 @@
 package de.fheger.floorplan2ifc.models.quantities;
 
-import lombok.AccessLevel;
-import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Id;
+import org.springframework.data.neo4j.core.schema.Node;
 
 import java.util.Random;
 
-public abstract class IfcPhysicalQuantity {
+@Node
+public class IfcBoolean {
     @Id
     private int id = new Random().nextInt(Integer.MAX_VALUE);
 
-    @Setter(AccessLevel.PROTECTED)
-    private String name;
+    private boolean value;
+
+    public IfcBoolean(boolean value) {
+        this.value = value;
+    }
 }

@@ -8,7 +8,7 @@ import de.fheger.floorplan2ifc.gui.nodes.SanitaryTerminalNode;
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.services.AddBasicAttributesService;
+import de.fheger.floorplan2ifc.logic.services.AddRootAttributesService;
 import de.fheger.floorplan2ifc.logic.wrapper.products.*;
 import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.DoorWrapper;
 import de.fheger.floorplan2ifc.logic.wrapper.products.doororwindowwrapper.WindowWrapper;
@@ -39,11 +39,21 @@ public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends I
         allWrappers.add(this);
     }
 
-    public void addRelAggregateToChildren() throws ParseToIfcException {
+    public void addRelAggregatesToChildren() throws ParseToIfcException {
         if (!(elementNode instanceof ElementNodeWithChilds<?> elementNodeWithChildren)) {
             return;
         }
 
+        List<IfcObjectDefinition> ifcChildren = getChildren(elementNodeWithChildren);
+
+        IfcRelAggregates relThisChildren = new IfcRelAggregates(this.ifcElement, new HashSet<>(ifcChildren));
+        ifcElement.getIsDecomposedBy().add(relThisChildren);
+        for (IfcObjectDefinition ifcChild : ifcChildren) {
+            ifcChild.getDecomposes().add(relThisChildren);
+        }
+    }
+
+    private List<IfcObjectDefinition> getChildren(ElementNodeWithChilds<?> elementNodeWithChildren) throws ParseToIfcException {
         ElementNode<?>[] children = elementNodeWithChildren.getElementNodeChildren();
         List<IfcObjectDefinition> ifcChildren = new ArrayList<>();
         for (Wrapper<?, ?> currentWrapper : allWrappers) {
@@ -57,12 +67,7 @@ public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends I
             }
 
         }
-
-        IfcRelAggregates relThisChildren = new IfcRelAggregates(this.ifcElement, new HashSet<>(List.of(new IfcObjectDefinition[0])));
-        ifcElement.getIsDecomposedBy().add(relThisChildren);
-        for (IfcObjectDefinition ifcChild : ifcChildren) {
-            ifcChild.getDecomposes().add(relThisChildren);
-        }
+        return ifcChildren;
     }
 
 
@@ -110,7 +115,7 @@ public abstract class Wrapper<NodeType extends ElementNode<?>, IfcType extends I
     }
 
     public void addAttributes() throws ParseToIfcException {
-        AddBasicAttributesService.addBasicAttributes(ifcElement, elementNode.getElementPanel());
+        AddRootAttributesService.addRootAttributes(ifcElement, elementNode.getElementPanel());
     }
 
     public abstract void addRelationships() throws ParseToIfcException;

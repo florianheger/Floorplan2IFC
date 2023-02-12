@@ -69,6 +69,7 @@ public class FileMenu extends Menu {
             showAlert(Alert.AlertType.INFORMATION, "Parsing succeeded", "Parsing succeeded without errors. IfcProject " + ifcProject.getName() + " can be saved into the graph database.");
         } catch (ParseToIfcException e) {
             showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());
+            e.printStackTrace();
         }
     }
 

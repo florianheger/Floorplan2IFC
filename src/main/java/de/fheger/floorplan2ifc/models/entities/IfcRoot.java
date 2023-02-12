@@ -7,6 +7,7 @@ import org.springframework.data.neo4j.core.schema.Id;
 
 public abstract class IfcRoot {
     @Id
+    @Getter
     @Setter
     private String globalId = GuidHandler.getNewIfcGloballyUniqueId();
 

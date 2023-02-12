@@ -21,7 +21,7 @@ public class WallPanel extends ElementPanel {
     private BoolSelect isBearing = UiFactory.createStandardBoolSelect();
     private ElementMultiSelect<WallPanel> interferences = new ElementMultiSelect<>(walls);
 
-    public int getLength() {
+    public int getWallLength() {
         return length.getInt();
     }
     public int getWallWidth() {

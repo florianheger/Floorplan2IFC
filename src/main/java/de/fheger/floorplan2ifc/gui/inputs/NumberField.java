@@ -12,6 +12,9 @@ public class NumberField extends TextField {
     }
 
     public int getInt() {
+        if (getText().equals("")) {
+            return 0;
+        }
         try {
             return Integer.parseInt(getText());
         } catch (NumberFormatException e) {

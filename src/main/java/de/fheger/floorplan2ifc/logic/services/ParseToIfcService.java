@@ -10,20 +10,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParseToIfcService {
 
-    private CreateWrappersService createWrappersService;
+    private final CreateWrappersService createWrappersService;
 
     @Autowired
     public ParseToIfcService(CreateWrappersService createWrappersService) {
         this.createWrappersService = createWrappersService;
     }
 
-
     public IfcProject parseProject(ProjectNode projectNode)
             throws ParseToIfcException {
         Wrapper<?, ?>[] wrappers = createWrappersService.createWrappers(projectNode);
 
         for (Wrapper<?, ?> wrapper : wrappers) {
-            wrapper.addRelAggregateToChildren();
+            wrapper.addRelAggregatesToChildren();
         }
         for (Wrapper<?, ?> wrapper : wrappers) {
             wrapper.addAttributes();

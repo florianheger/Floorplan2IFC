@@ -2,6 +2,8 @@ package de.fheger.floorplan2ifc.logic.wrapper.products;
 
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.WallNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.AddWallAttributesService;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.AddWallRelationshipsService;
 import de.fheger.floorplan2ifc.logic.wrapper.ProductWrapper;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.IfcElement;
@@ -24,7 +26,7 @@ public class WallWrapper extends ProductWrapper<WallNode, IfcWall> {
 
         IfcRelVoidsElement relWallOpening = new IfcRelVoidsElement(getIfcElement(), ifcOpeningElement);
         getIfcElement().getHasOpenings().add(relWallOpening);
-        ifcOpeningElement.getHasOpenings().add(relWallOpening);
+        ifcOpeningElement.getVoidsElements().add(relWallOpening);
 
         IfcRelFillsElement relOpeningDoorOrWindow = new IfcRelFillsElement(ifcOpeningElement, doorOrWindow);
         ifcOpeningElement.getHasFillings().add(relOpeningDoorOrWindow);
@@ -34,13 +36,12 @@ public class WallWrapper extends ProductWrapper<WallNode, IfcWall> {
     @Override
     public void addAttributes() throws ParseToIfcException {
         super.addAttributes();
-
-        getElementNode().getElementPanel().getInterfernceWalls();
+        AddWallAttributesService.addAttributes(getIfcElement(), getElementNode().getElementPanel());
     }
 
     @Override
-    public void addRelationships() {
-
+    public void addRelationships() throws ParseToIfcException {
+        AddWallRelationshipsService.addRelationships(getIfcElement(), getElementNode().getElementPanel());
     }
 
     @Override
