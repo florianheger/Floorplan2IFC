@@ -13,7 +13,7 @@ public class WindowWrapper extends DoorOrWindowWrapper<WindowNode, IfcWindow> {
 
     @Override
     public int getElementLength() {
-        return getElementNode().getElementPanel().getLength();
+        return getElementNode().getElementPanel().getWindowLength();
     }
 
     @Override

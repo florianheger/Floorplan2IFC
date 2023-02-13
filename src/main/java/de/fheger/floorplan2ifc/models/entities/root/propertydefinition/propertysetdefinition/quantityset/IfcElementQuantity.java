@@ -2,11 +2,9 @@ package de.fheger.floorplan2ifc.models.entities.root.propertydefinition.property
 
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.IfcQuantitySet;
 import de.fheger.floorplan2ifc.models.quantities.IfcPhysicalQuantity;
-import lombok.Getter;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @SuppressWarnings("unused")

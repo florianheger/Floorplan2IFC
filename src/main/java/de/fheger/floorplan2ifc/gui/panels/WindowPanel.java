@@ -8,7 +8,7 @@ public class WindowPanel extends ElementPanel {
 
     private final NumberField length = UiFactory.createStandardNumberField();
 
-    public int getLength() {
+    public int getWindowLength() {
         return length.getInt();
     }
 

@@ -44,5 +44,6 @@ public class AddWallAttributesService implements AddAttributes<IfcWall, WallNode
         IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Arrays.asList(qLength, qWidth)));
         IfcRelDefinesByProperties relWallQuantities = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcWall)), wallBasedQuantities);
         ifcWall.getIsDefinedBy().add(relWallQuantities);
+        wallBasedQuantities.setDefinesOccurrence(relWallQuantities);
     }
 }

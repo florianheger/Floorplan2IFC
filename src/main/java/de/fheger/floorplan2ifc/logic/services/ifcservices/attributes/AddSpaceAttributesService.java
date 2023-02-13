@@ -6,15 +6,13 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
 import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityArea;
-import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityLength;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
 @Service
-public class AddSpaceAttributesService implements AddAttributes<IfcSpace, SpaceNode>{
+public class AddSpaceAttributesService implements AddAttributes<IfcSpace, SpaceNode> {
     @Override
     public void addAttributes(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
         double floorArea = entityNode.getElementPanel().getFloorArea();
@@ -22,5 +20,6 @@ public class AddSpaceAttributesService implements AddAttributes<IfcSpace, SpaceN
         IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Collections.singleton(floorAreaQ)));
         IfcRelDefinesByProperties relWallQuantities = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcEntity)), wallBasedQuantities);
         ifcEntity.getIsDefinedBy().add(relWallQuantities);
+        wallBasedQuantities.setDefinesOccurrence(relWallQuantities);
     }
 }

@@ -12,7 +12,7 @@ public class DoorPanel extends ElementPanel {
     private final NumberField length = UiFactory.createStandardNumberField();
     private final ElementMultiSelect<SpacePanel> connectedSpaces = new ElementMultiSelect<>(SpacePanel.getSpaces());
 
-    public int getLength() {
+    public int getDoorWidth() {
         return length.getLength();
     }
     public List<SpacePanel> getConnectedSpaces() {

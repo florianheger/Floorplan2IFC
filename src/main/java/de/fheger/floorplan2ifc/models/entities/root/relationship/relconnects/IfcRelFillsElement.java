@@ -15,6 +15,7 @@ public class IfcRelFillsElement extends IfcRelConnects {
     private final IfcOpeningElement relatingOpeningElement;
 
     @Relationship(type = "RelatedBuildingElement")
+    @Getter
     private final IfcElement relatedBuildingElement;
 
     public IfcRelFillsElement(IfcOpeningElement relatingOpeningElement, IfcElement relatedBuildingElement) {

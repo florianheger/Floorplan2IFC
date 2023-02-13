@@ -9,7 +9,7 @@ public class SanitaryTerminalPanel extends ElementPanel {
     private final MultiSelect typeSelect = new MultiSelect();
 
     public String getSelectedType() {
-        return typeSelect.getSelectedElements().get(0); // TODO Fehler?
+        return typeSelect.getSelectedElements().get(0);
     }
 
     public SanitaryTerminalPanel() {

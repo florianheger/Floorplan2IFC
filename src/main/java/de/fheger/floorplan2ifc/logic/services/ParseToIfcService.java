@@ -2,9 +2,7 @@ package de.fheger.floorplan2ifc.logic.services;
 
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcService;
-import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcSpaceService;
-import de.fheger.floorplan2ifc.logic.services.ifcservices.IfcWallService;
+import de.fheger.floorplan2ifc.logic.services.ifcservices.*;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +17,16 @@ public class ParseToIfcService {
 
     public ParseToIfcService(CreateIfcEntitiesService createIfcEntitiesService,
                              IfcWallService ifcWallService,
-                             IfcSpaceService ifcSpaceService) {
+                             IfcSpaceService ifcSpaceService,
+                             IfcSanitaryTerminalService ifcSanitaryTerminalService,
+                             IfcDoorService ifcDoorService,
+                             IfcWindowService ifcWindowService) {
         this.createIfcEntitiesService = createIfcEntitiesService;
         ifcServices.add(ifcWallService);
         ifcServices.add(ifcSpaceService);
+        ifcServices.add(ifcSanitaryTerminalService);
+        ifcServices.add(ifcDoorService);
+        ifcServices.add(ifcWindowService);
     }
 
     public IfcProject parseProject(ProjectNode projectNode)

@@ -13,12 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddSpaceRelationshipService implements AddRelationships<IfcSpace, SpaceNode> {
+public class AddSpaceRelationshipsService implements AddRelationships<IfcSpace, SpaceNode> {
 
     private final FindIfcEntityService findIfcEntityService;
 
     @Autowired
-    public AddSpaceRelationshipService(FindIfcEntityService findIfcEntityService) {
+    public AddSpaceRelationshipsService(FindIfcEntityService findIfcEntityService) {
         this.findIfcEntityService = findIfcEntityService;
     }
 
