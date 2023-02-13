@@ -1,16 +1,14 @@
 package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.Floorplan2IfcApplication;
-import de.fheger.floorplan2ifc.MainTest;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
@@ -30,11 +28,10 @@ public class Floorplan2IfcGUI extends Application {
         Scene scene = new Scene(mainPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Floorplan2IFC");
+        primaryStage.setMinWidth(800);
         primaryStage.setMaximized(true);
         primaryStage.setOnCloseRequest(e -> stop());
         primaryStage.show();
-
-        MainTest test = applicationContext.getBean(MainTest.class);
     }
 
     @Override
