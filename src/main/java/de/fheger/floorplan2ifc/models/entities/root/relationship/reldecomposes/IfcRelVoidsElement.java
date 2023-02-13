@@ -11,6 +11,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 @Node
 public class IfcRelVoidsElement extends IfcRelDecomposes {
     @Relationship(type = "RelatingBuildingElement")
+    @Getter
     private final IfcElement relatingBuildingElement;
 
     @Relationship(type = "RelatedOpeningElement")
