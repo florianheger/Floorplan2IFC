@@ -26,7 +26,7 @@ public class AddDoorRelationshipsService implements AddRelationships<IfcDoor, Do
     public void addRelationships(IfcDoor ifcEntity, DoorNode entityNode) throws ParseToIfcException {
         List<SpacePanel> connectedSpaces = entityNode.getElementPanel().getConnectedSpaces();
         if (connectedSpaces.size() == 0 || connectedSpaces.size() > 2) {
-            throw new ParseToIfcException(ifcEntity.getName() + " connects 0 or more than 2 spaces.");
+            throw new ParseToIfcException(ifcEntity.getName() + " connects " + connectedSpaces.size() + " spaces. Should be 1 for external and 2 for internal doors.");
         }
         for (SpacePanel connectedSpace : connectedSpaces) {
             IfcSpace connectedIfcSpaces = findIfcEntityService.findIfcEntity(ifcEntity, connectedSpace.getGlobalId(), IfcSpace.class);

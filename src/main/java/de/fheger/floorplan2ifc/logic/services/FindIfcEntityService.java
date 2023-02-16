@@ -30,7 +30,7 @@ public class FindIfcEntityService {
         IfcProject ifcProject = getIfcProjectService.getIfcProject(ifcObjectDefinition);
         SearchedIfcType result = findIfcEntityRecursive(ifcProject, searchedGlobalId, clazz);
         if (result == null) {
-            throw new ParseToIfcException("Internal Error: IfcEntity " + clazz.getSimpleName() + " with GlobalId " + searchedGlobalId + "not found.");
+            throw new ParseToIfcException("Internal Error: IfcEntity " + clazz.getSimpleName() + " with GlobalId " + searchedGlobalId + " not found.");
         }
         return result;
     }
@@ -61,21 +61,25 @@ public class FindIfcEntityService {
 
     private <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntityInWall(IfcWall ifcWall, String searchedGlobalId, Class<SearchedIfcType> clazz)
             throws ParseToIfcException {
-        List<IfcRelVoidsElement> relVoidsElement = ifcWall.getHasOpenings().stream().toList();
-        if (relVoidsElement.size() == 0) {
+        List<IfcRelVoidsElement> relVoidsElements = ifcWall.getHasOpenings().stream().toList();
+        if (relVoidsElements.size() == 0) {
             return null;
         }
-        IfcOpeningElement openingElement = (IfcOpeningElement) relVoidsElement.get(0).getRelatedOpeningElement();
-        IfcObjectDefinition windowOrDoor = openingElement.getHasFillings().stream().toList().get(0).getRelatedBuildingElement();
+        for (IfcRelVoidsElement relVoidsElement : relVoidsElements) {
+            if (!(relVoidsElement.getRelatedOpeningElement() instanceof IfcOpeningElement openingElement)) {
+                throw new ParseToIfcException("Internal Error");
+            }
+            IfcObjectDefinition windowOrDoor = openingElement.getHasFillings().stream().toList().get(0).getRelatedBuildingElement();
 
-        for (IfcObjectDefinition ifcEntity : Arrays.asList(openingElement, windowOrDoor)) {
-            if (!ifcEntity.getGlobalId().equals(searchedGlobalId)) {
-                continue;
+            for (IfcObjectDefinition ifcEntity : Arrays.asList(openingElement, windowOrDoor)) {
+                if (!ifcEntity.getGlobalId().equals(searchedGlobalId)) {
+                    continue;
+                }
+                if (!clazz.isInstance(ifcEntity)) {
+                    throw new ParseToIfcException("Internal Error: GlobalId " + searchedGlobalId + " is not unique.");
+                }
+                return clazz.cast(ifcEntity);
             }
-            if (!clazz.isInstance(ifcEntity)) {
-                throw new ParseToIfcException("Internal Error: GlobalId " + searchedGlobalId + " is not unique.");
-            }
-            return clazz.cast(ifcEntity);
         }
         return null;
     }
