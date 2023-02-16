@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.logic.IfcProjectRepository;
+import de.fheger.floorplan2ifc.models.IfcProjectRepository;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import org.springframework.stereotype.Component;
 

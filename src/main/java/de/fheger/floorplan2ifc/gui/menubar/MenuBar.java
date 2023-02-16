@@ -1,6 +1,5 @@
-package de.fheger.floorplan2ifc.gui;
+package de.fheger.floorplan2ifc.gui.menubar;
 
-import de.fheger.floorplan2ifc.gui.menubar.FileMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

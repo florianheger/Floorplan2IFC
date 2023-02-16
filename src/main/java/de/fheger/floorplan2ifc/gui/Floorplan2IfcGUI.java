@@ -1,6 +1,7 @@
 package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.Floorplan2IfcApplication;
+import de.fheger.floorplan2ifc.gui.menubar.MenuBar;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
 import javafx.application.Application;
 import javafx.application.Platform;

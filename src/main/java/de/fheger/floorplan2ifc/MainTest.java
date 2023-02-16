@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc;
 
-import de.fheger.floorplan2ifc.logic.IfcProjectRepository;
+import de.fheger.floorplan2ifc.models.IfcProjectRepository;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSite;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelAggregates;
