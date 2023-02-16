@@ -1,5 +1,6 @@
 package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
 
+import de.fheger.floorplan2ifc.gui.nodes.ChimneyNode;
 import de.fheger.floorplan2ifc.gui.nodes.ElementNodeWithChilds;
 import de.fheger.floorplan2ifc.gui.nodes.SanitaryTerminalNode;
 import de.fheger.floorplan2ifc.gui.panels.SpacePanel;
@@ -12,8 +13,12 @@ public class SpaceNode extends ElementNodeWithChilds<SpacePanel> {
 
     @Override
     public void addItemsToMenu() {
-        MenuItem item = new MenuItem("Add SanitaryTerminal");
-        item.setOnAction(e -> getChildren().add(new SanitaryTerminalNode()));
-        menu.getItems().add(item);
+        MenuItem sanitaryTerminal = new MenuItem("Add SanitaryTerminal");
+        sanitaryTerminal.setOnAction(e -> getChildren().add(new SanitaryTerminalNode()));
+        menu.getItems().add(sanitaryTerminal);
+
+        MenuItem chimney = new MenuItem("Add Chimney");
+        chimney.setOnAction(e -> getChildren().add(new ChimneyNode()));
+        menu.getItems().add(chimney);
     }
 }
