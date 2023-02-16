@@ -7,6 +7,7 @@ import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcChimney;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWindow;
@@ -87,6 +88,9 @@ public class CreateIfcEntityWithRootAttributesService {
         }
         if (elementPanel instanceof SanitaryTerminalPanel) {
             return new IfcSanitaryTerminal();
+        }
+        if (elementPanel instanceof ChimneyPanel) {
+            return new IfcChimney();
         }
         throw new ParseToIfcException("Node " + elementPanel.getClass().getSimpleName() + " has no matching IFC Type.");
     }
