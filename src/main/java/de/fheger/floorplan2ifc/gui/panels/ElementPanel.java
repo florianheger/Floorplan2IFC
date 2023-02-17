@@ -1,5 +1,6 @@
-package de.fheger.floorplan2ifc.gui;
+package de.fheger.floorplan2ifc.gui.panels;
 
+import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.TwoNumberField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.ElementNode;
-import de.fheger.floorplan2ifc.gui.nodes.ElementNodeWithChilds;
+import de.fheger.floorplan2ifc.gui.nodes.ElementNode;
+import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ElementNodeWithChilds;
 import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
@@ -39,6 +39,7 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
         this.addAttributes = addAttributes;
     }
 
+    @SuppressWarnings("unused")
     protected IfcService(Class<IfcType> clazzIfc, Class<NodeType> clazzNode, FindIfcEntityService findIfcEntityService,
                          AddRelationships<IfcType, NodeType> addRelationships) {
         this.clazzIfc = clazzIfc;

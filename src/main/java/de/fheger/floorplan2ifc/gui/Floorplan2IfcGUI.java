@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -29,6 +30,7 @@ public class Floorplan2IfcGUI extends Application {
         Scene scene = new Scene(mainPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Floorplan2IFC");
+        primaryStage.getIcons().add(new Image("/icon_floorplan.jpg"));
         primaryStage.setMinWidth(800);
         primaryStage.setMaximized(true);
         primaryStage.setOnCloseRequest(e -> stop());

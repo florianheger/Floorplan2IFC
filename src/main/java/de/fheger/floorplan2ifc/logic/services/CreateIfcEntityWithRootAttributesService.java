@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.ElementPanel;
+import de.fheger.floorplan2ifc.gui.panels.ElementPanel;
 import de.fheger.floorplan2ifc.gui.panels.*;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;

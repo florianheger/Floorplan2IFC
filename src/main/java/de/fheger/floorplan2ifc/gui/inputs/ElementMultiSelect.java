@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.gui.inputs;
 
-import de.fheger.floorplan2ifc.gui.ElementPanel;
+import de.fheger.floorplan2ifc.gui.panels.ElementPanel;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.controlsfx.control.CheckComboBox;

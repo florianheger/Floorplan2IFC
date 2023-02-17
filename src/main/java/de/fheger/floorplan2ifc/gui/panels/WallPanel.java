@@ -1,7 +1,6 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.ElementPanel;
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
 import de.fheger.floorplan2ifc.gui.inputs.ElementMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;

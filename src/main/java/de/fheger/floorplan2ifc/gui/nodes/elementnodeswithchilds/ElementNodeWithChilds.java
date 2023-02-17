@@ -1,7 +1,7 @@
-package de.fheger.floorplan2ifc.gui.nodes;
+package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
 
-import de.fheger.floorplan2ifc.gui.ElementNode;
-import de.fheger.floorplan2ifc.gui.ElementPanel;
+import de.fheger.floorplan2ifc.gui.nodes.ElementNode;
+import de.fheger.floorplan2ifc.gui.panels.ElementPanel;
 import javafx.scene.control.ContextMenu;
 
 import java.util.ArrayList;

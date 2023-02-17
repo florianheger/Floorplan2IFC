@@ -1,7 +1,6 @@
 package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
-import de.fheger.floorplan2ifc.gui.nodes.ElementNodeWithChilds;
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
 import de.fheger.floorplan2ifc.gui.panels.WallPanel;
 import javafx.scene.control.MenuItem;
