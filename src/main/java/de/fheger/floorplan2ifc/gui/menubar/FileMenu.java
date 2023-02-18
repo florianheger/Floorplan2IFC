@@ -48,7 +48,7 @@ public class FileMenu extends Menu {
 
     private void onSaveToDatabase() {
         try {
-            IfcProject ifcProject = logicCommands.parseToIfcCommand(ProjectNode.getCurrentProject());
+            IfcProject ifcProject = logicCommands.parseToIfc(ProjectNode.getCurrentProject());
             logicCommands.saveToGraphDatabase(ifcProject);
             showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database", "Saving to Database succeeded without errors.");
         } catch (ParseToIfcException e) {
@@ -65,7 +65,7 @@ public class FileMenu extends Menu {
 
     private void onParseToIfc() {
         try {
-            IfcProject ifcProject = logicCommands.parseToIfcCommand(ProjectNode.getCurrentProject());
+            IfcProject ifcProject = logicCommands.parseToIfc(ProjectNode.getCurrentProject());
             showAlert(Alert.AlertType.INFORMATION, "Parsing succeeded", "Parsing succeeded without errors. IfcProject " + ifcProject.getName() + " can be saved into the graph database.");
         } catch (ParseToIfcException e) {
             showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());

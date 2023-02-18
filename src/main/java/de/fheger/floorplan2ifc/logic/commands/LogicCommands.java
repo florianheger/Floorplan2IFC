@@ -20,7 +20,7 @@ public class LogicCommands {
         this.saveToGraphDatabaseService = saveToGraphDatabaseService;
     }
 
-    public IfcProject parseToIfcCommand(ProjectNode projectNode)
+    public IfcProject parseToIfc(ProjectNode projectNode)
             throws ParseToIfcException {
         if (projectNode == null) {
             throw new ParseToIfcException("No current Project.");
