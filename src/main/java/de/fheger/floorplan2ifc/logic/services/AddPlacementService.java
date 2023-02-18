@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.panels.ElementPanel;
+import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 import de.fheger.floorplan2ifc.models.placements.IfcLengthMeasure;
 import de.fheger.floorplan2ifc.models.placements.IfcObjectPlacement;
@@ -15,9 +15,9 @@ import java.util.HashSet;
 
 @Service
 public class AddPlacementService {
-    public void addPlacement(IfcProduct ifcEntity, ElementPanel elementPanel) {
-        double posX = elementPanel.getPositionX();
-        double posY = elementPanel.getPositionY();
+    public void addPlacement(IfcProduct ifcEntity, EntityPanel entityPanel) {
+        double posX = entityPanel.getPositionX();
+        double posY = entityPanel.getPositionY();
         IfcLengthMeasure lengthMeasureX = new IfcLengthMeasure(posX);
         IfcLengthMeasure lengthMeasureY = new IfcLengthMeasure(posY);
         IfcCartesianPoint cartesianPoint = new IfcCartesianPoint(new HashSet<>(Arrays.asList(lengthMeasureX, lengthMeasureY)));

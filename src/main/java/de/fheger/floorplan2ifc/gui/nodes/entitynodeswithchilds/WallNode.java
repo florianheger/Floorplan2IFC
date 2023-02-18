@@ -1,11 +1,11 @@
-package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
 import de.fheger.floorplan2ifc.gui.panels.WallPanel;
 import javafx.scene.control.MenuItem;
 
-public class WallNode extends ElementNodeWithChilds<WallPanel> {
+public class WallNode extends EntityNodeWithChildren<WallPanel> {
 
 
     public WallNode() {

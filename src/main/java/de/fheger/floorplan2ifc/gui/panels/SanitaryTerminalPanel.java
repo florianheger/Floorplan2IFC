@@ -3,12 +3,12 @@ package de.fheger.floorplan2ifc.gui.panels;
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
-public class SanitaryTerminalPanel extends ElementPanel {
+public class SanitaryTerminalPanel extends EntityPanel {
 
     private final MultiSelect typeSelect = new MultiSelect();
 
     public String getSelectedType() {
-        return typeSelect.getSelectedElements().get(0);
+        return typeSelect.getSelectedEntities().get(0);
     }
 
     public SanitaryTerminalPanel() {

@@ -1,11 +1,11 @@
-package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.nodes.ChimneyNode;
 import de.fheger.floorplan2ifc.gui.nodes.SanitaryTerminalNode;
 import de.fheger.floorplan2ifc.gui.panels.SpacePanel;
 import javafx.scene.control.MenuItem;
 
-public class SpaceNode extends ElementNodeWithChilds<SpacePanel> {
+public class SpaceNode extends EntityNodeWithChildren<SpacePanel> {
     public SpaceNode() {
         super(new SpacePanel());
     }

@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nl.tue.isbe.ifcspftools.GuidHandler;
 
-public abstract class ElementPanel extends BorderPane {
+public abstract class EntityPanel extends BorderPane {
 
     private static int nextId;
     private final int id;
@@ -20,7 +20,7 @@ public abstract class ElementPanel extends BorderPane {
     private final String defaultName;
     private final GridPane gridPane;
 
-    private final int rowsInElementPanel;
+    private final int rowsInEntityPanel;
 
     private final TextField nameField = UiFactory.createStandardTextField();
     private final TextField globalIdField = UiFactory.createStandardTextField();
@@ -43,7 +43,7 @@ public abstract class ElementPanel extends BorderPane {
         return positionField.getValue2();
     }
 
-    public ElementPanel(String defaultName) {
+    public EntityPanel(String defaultName) {
         super(new ScrollPane());
         id = nextId++;
 
@@ -80,14 +80,14 @@ public abstract class ElementPanel extends BorderPane {
 
         gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowIndex, 2, 1);
 
-        rowsInElementPanel = gridPane.getRowCount();
+        rowsInEntityPanel = gridPane.getRowCount();
     }
 
     protected void addNode(Node node, int columnIndex, int rowIndex) {
         gridPane.add(
                 node,
                 columnIndex,
-                rowIndex + rowsInElementPanel);
+                rowIndex + rowsInEntityPanel);
     }
 
     public String getNameOrDefault() {

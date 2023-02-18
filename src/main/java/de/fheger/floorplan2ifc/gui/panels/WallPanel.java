@@ -2,14 +2,14 @@ package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
-import de.fheger.floorplan2ifc.gui.inputs.ElementMultiSelect;
+import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class WallPanel extends ElementPanel {
+public class WallPanel extends EntityPanel {
 
     private static final ObservableList<WallPanel> walls = FXCollections.observableArrayList();
     public static ObservableList<WallPanel> getWalls() { return walls; }
@@ -18,7 +18,7 @@ public class WallPanel extends ElementPanel {
     private final NumberField width = UiFactory.createStandardNumberField();
     private final BoolSelect isExternal = UiFactory.createStandardBoolSelect();
     private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
-    private final ElementMultiSelect<WallPanel> interferences = new ElementMultiSelect<>(walls);
+    private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(walls);
 
     public int getWallLength() {
         return length.getInt();

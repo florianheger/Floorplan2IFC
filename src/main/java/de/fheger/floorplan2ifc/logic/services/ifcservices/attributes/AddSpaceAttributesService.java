@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.attributes;
 
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.SpaceNode;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 public class AddSpaceAttributesService implements AddAttributes<IfcSpace, SpaceNode> {
     @Override
     public void addAttributes(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
-        double floorArea = entityNode.getElementPanel().getFloorArea();
+        double floorArea = entityNode.getEntityPanel().getFloorArea();
         IfcQuantityArea floorAreaQ = new IfcQuantityArea("NetFloorArea", floorArea, "mm^2");
         IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Collections.singleton(floorAreaQ)));
         IfcRelDefinesByProperties relWallQuantities = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcEntity)), wallBasedQuantities);

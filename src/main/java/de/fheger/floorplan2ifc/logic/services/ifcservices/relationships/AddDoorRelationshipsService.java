@@ -24,7 +24,7 @@ public class AddDoorRelationshipsService implements AddRelationships<IfcDoor, Do
 
     @Override
     public void addRelationships(IfcDoor ifcEntity, DoorNode entityNode) throws ParseToIfcException {
-        List<SpacePanel> connectedSpaces = entityNode.getElementPanel().getConnectedSpaces();
+        List<SpacePanel> connectedSpaces = entityNode.getEntityPanel().getConnectedSpaces();
         if (connectedSpaces.size() == 0 || connectedSpaces.size() > 2) {
             throw new ParseToIfcException(ifcEntity.getName() + " connects " + connectedSpaces.size() + " spaces. Should be 1 for external and 2 for internal doors.");
         }

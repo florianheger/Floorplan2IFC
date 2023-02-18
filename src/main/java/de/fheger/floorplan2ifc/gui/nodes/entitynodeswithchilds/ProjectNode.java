@@ -1,9 +1,9 @@
-package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.panels.ProjectPanel;
 import javafx.scene.control.MenuItem;
 
-public class ProjectNode extends ElementNodeWithChilds<ProjectPanel> {
+public class ProjectNode extends EntityNodeWithChildren<ProjectPanel> {
 
     private static ProjectNode currentProject;
 

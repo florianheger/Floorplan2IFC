@@ -1,15 +1,15 @@
 package de.fheger.floorplan2ifc.gui.inputs;
 
-import de.fheger.floorplan2ifc.gui.panels.ElementPanel;
+import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.controlsfx.control.CheckComboBox;
 
 import java.util.List;
 
-public class ElementMultiSelect<PanelType extends ElementPanel> extends CheckComboBox<PanelType> {
+public class EntityMultiSelect<PanelType extends EntityPanel> extends CheckComboBox<PanelType> {
 
-    public ElementMultiSelect(ObservableList<PanelType> observableList) {
+    public EntityMultiSelect(ObservableList<PanelType> observableList) {
         super();
         observableList.forEach(p -> getItems().add(p));
         observableList.addListener(this::updateItems);

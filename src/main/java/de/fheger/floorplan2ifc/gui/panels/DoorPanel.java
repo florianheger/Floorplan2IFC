@@ -1,15 +1,15 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.inputs.ElementMultiSelect;
+import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 
 import java.util.List;
 
-public class DoorPanel extends ElementPanel {
+public class DoorPanel extends EntityPanel {
 
     private final NumberField length = UiFactory.createStandardNumberField();
-    private final ElementMultiSelect<SpacePanel> connectedSpaces = new ElementMultiSelect<>(SpacePanel.getSpaces());
+    private final EntityMultiSelect<SpacePanel> connectedSpaces = new EntityMultiSelect<>(SpacePanel.getSpaces());
 
     public int getDoorWidth() {
         return length.getLength();

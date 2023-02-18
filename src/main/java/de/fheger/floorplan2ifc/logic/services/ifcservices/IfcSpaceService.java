@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.SpaceNode;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.AddAttributes;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.AddRelationships;

@@ -2,7 +2,7 @@ package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.Floorplan2IfcApplication;
 import de.fheger.floorplan2ifc.gui.menubar.MenuBar;
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.*;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -44,12 +44,12 @@ public class Floorplan2IfcGUI extends Application {
     }
 
     private Pane createMainPane() {
-        Pane elementPane = new Pane();
+        Pane entityPane = new Pane();
         ProjectNode projectNode = createTestCase();
-        ElementTree tree = new ElementTree(projectNode, elementPane);
+        EntityTree tree = new EntityTree(projectNode, entityPane);
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(elementPane);
+        scrollPane.setContent(entityPane);
         scrollPane.setFitToWidth(true);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 

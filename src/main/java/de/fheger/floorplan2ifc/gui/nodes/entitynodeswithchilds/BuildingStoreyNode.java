@@ -1,9 +1,9 @@
-package de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.panels.BuildingStoreyPanel;
 import javafx.scene.control.MenuItem;
 
-public class BuildingStoreyNode extends ElementNodeWithChilds<BuildingStoreyPanel> {
+public class BuildingStoreyNode extends EntityNodeWithChildren<BuildingStoreyPanel> {
 
     public BuildingStoreyNode() {
         super(new BuildingStoreyPanel());

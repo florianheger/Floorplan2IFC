@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.relationships;
 
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.SpaceNode;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
 import de.fheger.floorplan2ifc.gui.panels.WallPanel;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
@@ -24,7 +24,7 @@ public class AddSpaceRelationshipsService implements AddRelationships<IfcSpace, 
 
     @Override
     public void addRelationships(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
-        List<WallPanel> boundedWalls = entityNode.getElementPanel().getBoundedWalls();
+        List<WallPanel> boundedWalls = entityNode.getEntityPanel().getBoundedWalls();
         for (WallPanel boundedWall : boundedWalls) {
             IfcWall boundedIfcWall = findIfcEntityService.findIfcEntity(ifcEntity, boundedWall.getGlobalId(), IfcWall.class);
             IfcRelSpaceBoundary relSpaceBoundary = new IfcRelSpaceBoundary(ifcEntity, boundedIfcWall);

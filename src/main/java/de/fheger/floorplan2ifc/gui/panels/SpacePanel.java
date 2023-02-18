@@ -1,20 +1,20 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.inputs.ElementMultiSelect;
+import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class SpacePanel extends ElementPanel {
+public class SpacePanel extends EntityPanel {
 
     private static final ObservableList<SpacePanel> spaces = FXCollections.observableArrayList();
     public static ObservableList<SpacePanel> getSpaces() { return spaces; }
 
     private final NumberField floorArea = UiFactory.createStandardNumberField();
-    private final ElementMultiSelect<WallPanel> boundedWalls = new ElementMultiSelect<>(WallPanel.getWalls());
+    private final EntityMultiSelect<WallPanel> boundedWalls = new EntityMultiSelect<>(WallPanel.getWalls());
 
     public int getFloorArea() {
         return floorArea.getInt();

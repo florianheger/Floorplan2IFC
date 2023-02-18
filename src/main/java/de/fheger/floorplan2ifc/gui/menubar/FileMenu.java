@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.gui.menubar;
 
 import de.fheger.floorplan2ifc.MainTest;
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.commands.LogicCommands;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;

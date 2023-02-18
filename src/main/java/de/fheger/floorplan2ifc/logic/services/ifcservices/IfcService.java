@@ -1,8 +1,8 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.ElementNode;
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ElementNodeWithChilds;
-import de.fheger.floorplan2ifc.gui.nodes.elementnodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.AddAttributes;
@@ -13,7 +13,7 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.Ifc
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType extends ElementNode<?>> {
+public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType extends EntityNode<?>> {
 
     private final Class<NodeType> clazzNode;
     private final Class<IfcType> clazzIfc;
@@ -53,7 +53,7 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
             throws ParseToIfcException {
         List<NodeType> nodes = getNodesOfNodeType(projectNode);
         for (NodeType node : nodes) {
-            IfcType ifcEntity = findIfcEntityService.findIfcEntity(ifcProject, node.getElementPanel().getGlobalId(), clazzIfc);
+            IfcType ifcEntity = findIfcEntityService.findIfcEntity(ifcProject, node.getEntityPanel().getGlobalId(), clazzIfc);
             if (addAttributes != null) {
                 addAttributes.addAttributes(ifcEntity, node);
             }
@@ -63,16 +63,16 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
         }
     }
 
-    protected List<NodeType> getNodesOfNodeType(ElementNode<?> elementNode) {
+    protected List<NodeType> getNodesOfNodeType(EntityNode<?> entityNode) {
         List<NodeType> nodes = new ArrayList<>();
-        if (clazzNode.isInstance(elementNode)) {
-            nodes.add(clazzNode.cast(elementNode));
+        if (clazzNode.isInstance(entityNode)) {
+            nodes.add(clazzNode.cast(entityNode));
         }
-        if (!(elementNode instanceof ElementNodeWithChilds<?> elementNodeWithChilds)) {
+        if (!(entityNode instanceof EntityNodeWithChildren<?> entityNodeWithChilds)) {
             return nodes;
         }
-        for (ElementNode<?> elementNodeChild : elementNodeWithChilds.getElementNodeChildren()) {
-            nodes.addAll(getNodesOfNodeType(elementNodeChild)); // stimmt das?
+        for (EntityNode<?> entityNodeChild : entityNodeWithChilds.getEntityNodeChildren()) {
+            nodes.addAll(getNodesOfNodeType(entityNodeChild)); // stimmt das?
         }
         return nodes;
     }

@@ -3,7 +3,7 @@ package de.fheger.floorplan2ifc.gui.panels;
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 
-public class WindowPanel extends ElementPanel {
+public class WindowPanel extends EntityPanel {
 
     private final NumberField length = UiFactory.createStandardNumberField();
 
