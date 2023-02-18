@@ -1,7 +1,8 @@
 package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.panels.ProjectPanel;
-import javafx.scene.control.MenuItem;
+
+import java.util.Collections;
 
 public class ProjectNode extends EntityNodeWithChildren<ProjectPanel> {
 
@@ -12,14 +13,7 @@ public class ProjectNode extends EntityNodeWithChildren<ProjectPanel> {
     }
 
     public ProjectNode() {
-        super(new ProjectPanel());
+        super(new ProjectPanel(), Collections.singletonList(SiteNode.class));
         currentProject = this;
-    }
-
-    @Override
-    public void addItemsToMenu() {
-        MenuItem item = new MenuItem("Add Site");
-        item.setOnAction(e -> getChildren().add(new SiteNode()));
-        menu.getItems().add(item);
     }
 }
