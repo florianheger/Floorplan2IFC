@@ -78,4 +78,12 @@ public abstract class EntityPanel extends BorderPane {
     public String toString() {
         return getNameOrDefault();
     }
+
+    public void onNameChanged(OnNameChanged onNameChanged) {
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> onNameChanged.changeName(newValue));
+    }
+
+    public interface OnNameChanged {
+        void changeName(String s);
+    }
 }
