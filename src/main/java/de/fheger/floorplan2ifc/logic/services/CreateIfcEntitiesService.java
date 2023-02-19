@@ -43,7 +43,7 @@ public class CreateIfcEntitiesService {
     private void addIfcEntitiesRecursive(IfcObjectDefinition parent, EntityNode<?> child)
             throws ParseToIfcException {
         IfcObjectDefinition ifcChild = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributes(child.getEntityPanel());
-        addRelAggregates(parent, ifcChild);
+        addRelAggregatesOrOpeningElement(parent, ifcChild);
         if (!(child instanceof EntityNodeWithChildren<?> childWithChildren)) {
             return;
         }
@@ -53,7 +53,7 @@ public class CreateIfcEntitiesService {
         }
     }
 
-    private void addRelAggregates(IfcObjectDefinition parent, IfcObjectDefinition child)
+    private void addRelAggregatesOrOpeningElement(IfcObjectDefinition parent, IfcObjectDefinition child)
             throws ParseToIfcException {
         if (needsOpeningElement(child)) {
             addOpeningElement(parent, child);
