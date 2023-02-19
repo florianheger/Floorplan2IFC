@@ -1,10 +1,8 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.inputs.TwoNumberField;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,29 +16,24 @@ public abstract class EntityPanel extends BorderPane {
     private final int id;
 
     private final String defaultName;
-    private final GridPane gridPane;
+    protected final GridPane gridPane;
 
-    private final int rowsInEntityPanel;
+    protected int rowsInEntityPanel = 0;
 
     private final TextField nameField = UiFactory.createStandardTextField();
     private final TextField globalIdField = UiFactory.createStandardTextField();
     private final TextArea descriptionField = UiFactory.createStandardTextArea();
-    private final TwoNumberField positionField = UiFactory.createStandardTwoNumberField();
 
     public String getName() {
         return nameField.getText();
     }
+
     public String getGlobalId() {
         return globalIdField.getText();
     }
+
     public String getDescription() {
         return descriptionField.getText();
-    }
-    public double getPositionX() {
-        return positionField.getValue1();
-    }
-    public double getPositionY() {
-        return positionField.getValue2();
     }
 
     public EntityPanel(String defaultName) {
@@ -63,31 +56,18 @@ public abstract class EntityPanel extends BorderPane {
         nameField.setText(defaultName);
         globalIdField.setText(GuidHandler.getNewIfcGloballyUniqueId());
 
-        int rowIndex = 0;
-        gridPane.add(UiFactory.createH2Headline("Standard Values"), 0, rowIndex, 2, 1);
+        gridPane.add(UiFactory.createH2Headline("Standard Values"), 0, rowsInEntityPanel, 2, 1);
 
-        gridPane.add(UiFactory.createStandardLabel("Name:"), 0, ++rowIndex);
-        gridPane.add(nameField, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Name:"), 0, ++rowsInEntityPanel);
+        gridPane.add(nameField, 1, rowsInEntityPanel);
 
-        gridPane.add(UiFactory.createStandardLabel("ID:"), 0, ++rowIndex);
-        gridPane.add(globalIdField, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("ID:"), 0, ++rowsInEntityPanel);
+        gridPane.add(globalIdField, 1, rowsInEntityPanel);
 
-        gridPane.add(UiFactory.createStandardLabel("Description:"), 0, ++rowIndex);
-        gridPane.add(descriptionField, 0, ++rowIndex, 2, 1);
+        gridPane.add(UiFactory.createStandardLabel("Description:"), 0, ++rowsInEntityPanel);
+        gridPane.add(descriptionField, 0, ++rowsInEntityPanel, 2, 1);
 
-        gridPane.add(UiFactory.createStandardLabel("Position:"), 0, ++rowIndex);
-        gridPane.add(positionField, 1, rowIndex);
-
-        gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowIndex, 2, 1);
-
-        rowsInEntityPanel = gridPane.getRowCount();
-    }
-
-    protected void addNode(Node node, int columnIndex, int rowIndex) {
-        gridPane.add(
-                node,
-                columnIndex,
-                rowIndex + rowsInEntityPanel);
+        gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowsInEntityPanel, 2, 1);
     }
 
     public String getNameOrDefault() {

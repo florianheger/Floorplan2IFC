@@ -37,7 +37,9 @@ public class CreateIfcEntityWithRootAttributesService {
         if (ifcEntity instanceof IfcProject) {
             return ifcEntity;
         }
-        addPlacementService.addPlacement((IfcProduct) ifcEntity, entityPanel);
+        if (entityPanel instanceof EntityPanelWithPlacement entityPanelWithPlacement) {
+            addPlacementService.addPlacement((IfcProduct) ifcEntity, entityPanelWithPlacement);
+        }
         return ifcEntity;
     }
 

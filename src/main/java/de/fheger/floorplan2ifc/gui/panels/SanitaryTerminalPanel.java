@@ -3,7 +3,7 @@ package de.fheger.floorplan2ifc.gui.panels;
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
-public class SanitaryTerminalPanel extends EntityPanel {
+public class SanitaryTerminalPanel extends EntityPanelWithPlacement {
 
     private final MultiSelect typeSelect = new MultiSelect();
 
@@ -15,9 +15,8 @@ public class SanitaryTerminalPanel extends EntityPanel {
         super("Sanitary Terminal");
 
         typeSelect.getItems().addAll("BATH", "BIDET", "CISTERN", "SHOWER", "SINK", "SANITARYFOUNTAIN", "TOILETPAN", "URINAL", "WASHHANDBASIN", "WCSEAT", "USERDEFINED", "NOTDEFINED");
-        int rowIndex = 0;
 
-        addNode(UiFactory.createStandardLabel("Type"), 0, rowIndex);
-        addNode(typeSelect, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Type"), 0, ++rowsInEntityPanel);
+        gridPane.add(typeSelect, 1, rowsInEntityPanel);
     }
 }

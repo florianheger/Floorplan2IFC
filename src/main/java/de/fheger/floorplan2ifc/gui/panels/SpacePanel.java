@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class SpacePanel extends EntityPanel {
+public class SpacePanel extends EntityPanelWithPlacement {
 
     private static final ObservableList<SpacePanel> spaces = FXCollections.observableArrayList();
     public static ObservableList<SpacePanel> getSpaces() { return spaces; }
@@ -28,12 +28,10 @@ public class SpacePanel extends EntityPanel {
         super("Space");
         spaces.add(this);
 
-        int rowIndex = 0;
-        addNode(UiFactory.createStandardLabel("Floor Area:"), 0, rowIndex);
-        addNode(floorArea, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Floor Area:"), 0, ++rowsInEntityPanel);
+        gridPane.add(floorArea, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Bounded Walls:"), 0, rowIndex);
-        addNode(boundedWalls, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Bounded Walls:"), 0, ++rowsInEntityPanel);
+        gridPane.add(boundedWalls, 1, rowsInEntityPanel);
     }
 }

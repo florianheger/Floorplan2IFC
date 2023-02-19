@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class WallPanel extends EntityPanel {
+public class WallPanel extends EntityPanelWithPlacement {
 
     private static final ObservableList<WallPanel> walls = FXCollections.observableArrayList();
     public static ObservableList<WallPanel> getWalls() { return walls; }
@@ -40,24 +40,19 @@ public class WallPanel extends EntityPanel {
         super("Wall");
         walls.add(this);
 
-        int rowIndex = 0;
-        addNode(UiFactory.createStandardLabel("Length:"), 0, rowIndex);
-        addNode(length, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Length:"), 0, ++rowsInEntityPanel);
+        gridPane.add(length, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Width:"), 0, rowIndex);
-        addNode(width, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Width:"), 0, ++rowsInEntityPanel);
+        gridPane.add(width, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Is External?"), 0, rowIndex);
-        addNode(isExternal, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Is External?"), 0, ++rowsInEntityPanel);
+        gridPane.add(isExternal, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Is Bearing?"), 0, rowIndex);
-        addNode(isBearing, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Is Bearing?"), 0, ++rowsInEntityPanel);
+        gridPane.add(isBearing, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Interference with:"), 0, rowIndex);
-        addNode(interferences, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Interference with:"), 0, ++rowsInEntityPanel);
+        gridPane.add(interferences, 1, rowsInEntityPanel);
     }
 }

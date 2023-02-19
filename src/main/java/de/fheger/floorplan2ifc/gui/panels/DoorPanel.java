@@ -6,7 +6,7 @@ import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 
 import java.util.List;
 
-public class DoorPanel extends EntityPanel {
+public class DoorPanel extends EntityPanelWithPlacement {
 
     private final NumberField length = UiFactory.createStandardNumberField();
     private final EntityMultiSelect<SpacePanel> connectedSpaces = new EntityMultiSelect<>(SpacePanel.getSpaces());
@@ -21,12 +21,10 @@ public class DoorPanel extends EntityPanel {
     public DoorPanel() {
         super("Door");
 
-        int rowIndex = 0;
-        addNode(UiFactory.createStandardLabel("Length"), 0, rowIndex);
-        addNode(length, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Length"), 0, ++rowsInEntityPanel);
+        gridPane.add(length, 1, rowsInEntityPanel);
 
-        rowIndex++;
-        addNode(UiFactory.createStandardLabel("Connects Spaces"), 0, rowIndex);
-        addNode(connectedSpaces, 1, rowIndex);
+        gridPane.add(UiFactory.createStandardLabel("Connects Spaces"), 0, ++rowsInEntityPanel);
+        gridPane.add(connectedSpaces, 1, rowsInEntityPanel);
     }
 }
