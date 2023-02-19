@@ -45,7 +45,7 @@ public class Floorplan2IfcGUI extends Application {
 
     private Pane createMainPane() {
         Pane entityPane = new Pane();
-        ProjectNode projectNode = createTestCase();
+        ProjectNode projectNode = createStartCase();
         EntityTree tree = new EntityTree(projectNode, entityPane);
 
         ScrollPane scrollPane = new ScrollPane();
@@ -64,7 +64,7 @@ public class Floorplan2IfcGUI extends Application {
         return borderPane;
     }
 
-    private ProjectNode createTestCase() {
+    private ProjectNode createStartCase() {
         ProjectNode projectNode = new ProjectNode();
         SiteNode siteNode = new SiteNode();
         projectNode.getChildren().add(siteNode);

@@ -7,7 +7,7 @@ public abstract class EntityNode<PanelType extends EntityPanel> extends TreeItem
     protected PanelType entityPanel;
 
     public EntityNode(PanelType entityPanel) {
-        super(entityPanel.getNameOrDefault());
+        super(entityPanel.getName());
         this.entityPanel = entityPanel;
 
         entityPanel.onNameChanged(this::setValue);

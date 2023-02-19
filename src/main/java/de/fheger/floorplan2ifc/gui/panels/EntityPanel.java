@@ -11,11 +11,6 @@ import javafx.scene.layout.GridPane;
 import nl.tue.isbe.ifcspftools.GuidHandler;
 
 public abstract class EntityPanel extends BorderPane {
-
-    private static int nextId;
-    private final int id;
-
-    private final String defaultName;
     protected final GridPane gridPane;
 
     protected int rowsInEntityPanel = 0;
@@ -38,9 +33,6 @@ public abstract class EntityPanel extends BorderPane {
 
     public EntityPanel(String defaultName) {
         super(new ScrollPane());
-        id = nextId++;
-
-        this.defaultName = defaultName;
 
         setPadding(new Insets(25, 25, 25, 25));
         setTop(UiFactory.createH1Headline(defaultName));
@@ -70,13 +62,9 @@ public abstract class EntityPanel extends BorderPane {
         gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowsInEntityPanel, 2, 1);
     }
 
-    public String getNameOrDefault() {
-        return defaultName + " " + id; // noch aktuellen Namen anpassen
-    }
-
     @Override
     public String toString() {
-        return getNameOrDefault();
+        return getName();
     }
 
     public void onNameChanged(OnNameChanged onNameChanged) {
