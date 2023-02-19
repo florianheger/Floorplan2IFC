@@ -8,10 +8,14 @@ import javafx.scene.layout.Pane;
 public class EntityTree extends TreeView<String> {
     public EntityTree(EntityNode<?> root, Pane entityPane) {
         super(root);
-        TreeView<String> tree = this;
+        addTreeListener(entityPane);
+    }
+
+    private void addTreeListener(Pane entityPane) {
+        TreeView<String> thisTree = this;
         setOnContextMenuRequested(event -> {
             if (getSelectionModel().getSelectedItem() instanceof EntityNodeWithChildren<?> selectedNode) {
-                selectedNode.getMenu().show(tree, event.getScreenX(), event.getScreenY());
+                selectedNode.getMenu().show(thisTree, event.getScreenX(), event.getScreenY());
             }
         });
         setOnMouseClicked(event -> {
