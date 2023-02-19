@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.relationships;
 
 import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
-import de.fheger.floorplan2ifc.gui.panels.SpacePanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.SpacePanel;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;

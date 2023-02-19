@@ -2,6 +2,10 @@ package de.fheger.floorplan2ifc.logic.services;
 
 import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
 import de.fheger.floorplan2ifc.gui.panels.*;
+import de.fheger.floorplan2ifc.gui.panels.placement.*;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.DoorPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.WindowPanel;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;

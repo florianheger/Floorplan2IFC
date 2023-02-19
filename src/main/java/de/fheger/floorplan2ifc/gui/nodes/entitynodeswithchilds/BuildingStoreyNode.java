@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
-import de.fheger.floorplan2ifc.gui.panels.BuildingStoreyPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.BuildingStoreyPanel;
 
 import java.util.Arrays;
 

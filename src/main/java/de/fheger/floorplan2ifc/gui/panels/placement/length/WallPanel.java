@@ -1,4 +1,4 @@
-package de.fheger.floorplan2ifc.gui.panels;
+package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
@@ -9,39 +9,38 @@ import javafx.collections.ObservableList;
 
 import java.util.List;
 
-public class WallPanel extends EntityPanelWithPlacement {
+public class WallPanel extends EntityPanelWithLength {
 
     private static final ObservableList<WallPanel> walls = FXCollections.observableArrayList();
-    public static ObservableList<WallPanel> getWalls() { return walls; }
 
-    private final NumberField length = UiFactory.createStandardNumberField();
+    public static ObservableList<WallPanel> getWalls() {
+        return walls;
+    }
+
     private final NumberField width = UiFactory.createStandardNumberField();
     private final BoolSelect isExternal = UiFactory.createStandardBoolSelect();
     private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
     private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(walls);
 
-    public int getWallLength() {
-        return length.getInt();
-    }
     public int getWallWidth() {
         return width.getInt();
     }
+
     public boolean isExternal() {
         return isExternal.isTrue();
     }
+
     public boolean isBearing() {
         return isBearing.isTrue();
     }
-    public List<WallPanel> getInterfernceWalls() {
+
+    public List<WallPanel> getInterferenceWalls() {
         return interferences.getSelectedPanels();
     }
 
     public WallPanel() {
         super("Wall");
         walls.add(this);
-
-        gridPane.add(UiFactory.createStandardLabel("Length:"), 0, ++rowsInEntityPanel);
-        gridPane.add(length, 1, rowsInEntityPanel);
 
         gridPane.add(UiFactory.createStandardLabel("Width:"), 0, ++rowsInEntityPanel);
         gridPane.add(width, 1, rowsInEntityPanel);

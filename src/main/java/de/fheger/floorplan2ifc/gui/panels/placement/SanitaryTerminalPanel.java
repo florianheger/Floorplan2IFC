@@ -1,4 +1,4 @@
-package de.fheger.floorplan2ifc.gui.panels;
+package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;

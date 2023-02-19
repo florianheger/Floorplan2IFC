@@ -1,8 +1,9 @@
-package de.fheger.floorplan2ifc.gui.panels;
+package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

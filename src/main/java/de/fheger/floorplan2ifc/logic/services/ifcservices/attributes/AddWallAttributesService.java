@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.attributes;
 
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.WallNode;
-import de.fheger.floorplan2ifc.gui.panels.WallPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.IfcPropertySet;
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
@@ -37,7 +37,7 @@ public class AddWallAttributesService implements AddAttributes<IfcWall, WallNode
     }
 
     private void addQuantities(IfcWall ifcWall, WallPanel wallPanel) {
-        double length = wallPanel.getWallLength();
+        double length = wallPanel.getEntityWidth();
         double width = wallPanel.getWallWidth();
         IfcQuantityLength qLength = new IfcQuantityLength("Length", length, "mm");
         IfcQuantityLength qWidth = new IfcQuantityLength("Width", width, "mm");

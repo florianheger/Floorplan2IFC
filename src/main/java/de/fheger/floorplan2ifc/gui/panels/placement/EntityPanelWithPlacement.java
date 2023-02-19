@@ -1,7 +1,8 @@
-package de.fheger.floorplan2ifc.gui.panels;
+package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.TwoNumberField;
+import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
 
 public abstract class EntityPanelWithPlacement extends EntityPanel {
 

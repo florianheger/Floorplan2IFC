@@ -2,7 +2,7 @@ package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
 import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
-import de.fheger.floorplan2ifc.gui.panels.WallPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
 
 import java.util.Arrays;
 

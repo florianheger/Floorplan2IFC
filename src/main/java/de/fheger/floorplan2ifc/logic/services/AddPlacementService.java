@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.panels.EntityPanelWithPlacement;
+import de.fheger.floorplan2ifc.gui.panels.placement.EntityPanelWithPlacement;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 import de.fheger.floorplan2ifc.models.placements.IfcLengthMeasure;
 import de.fheger.floorplan2ifc.models.placements.IfcObjectPlacement;
