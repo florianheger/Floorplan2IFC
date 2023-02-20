@@ -22,8 +22,8 @@ public class WallPanel extends EntityPanelWithLength {
     private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
     private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(walls);
 
-    public int getWallWidth() {
-        return width.getInt();
+    public double getWallWidth() {
+        return width.getValue();
     }
 
     public boolean isExternal() {

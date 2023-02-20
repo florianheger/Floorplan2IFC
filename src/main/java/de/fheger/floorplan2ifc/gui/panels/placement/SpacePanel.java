@@ -17,8 +17,8 @@ public class SpacePanel extends EntityPanelWithPlacement {
     private final NumberField floorArea = UiFactory.createStandardNumberField();
     private final EntityMultiSelect<WallPanel> boundedWalls = new EntityMultiSelect<>(WallPanel.getWalls());
 
-    public int getFloorArea() {
-        return floorArea.getInt();
+    public double getFloorArea() {
+        return floorArea.getValue();
     }
 
     public List<WallPanel> getBoundedWalls() {
