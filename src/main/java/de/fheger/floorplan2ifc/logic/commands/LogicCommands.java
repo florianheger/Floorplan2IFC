@@ -1,7 +1,6 @@
 package de.fheger.floorplan2ifc.logic.commands;
 
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.ParseToIfcService;
 import de.fheger.floorplan2ifc.logic.services.SaveToGraphDatabaseService;
@@ -20,7 +19,7 @@ public class LogicCommands {
         this.saveToGraphDatabaseService = saveToGraphDatabaseService;
     }
 
-    public IfcProject parseToIfc(ProjectNode projectNode)
+    public IfcProject parseToIfc(de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode projectNode)
             throws ParseToIfcException {
         if (projectNode == null) {
             throw new ParseToIfcException("No current Project.");

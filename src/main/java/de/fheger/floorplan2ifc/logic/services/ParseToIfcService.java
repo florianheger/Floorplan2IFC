@@ -36,13 +36,13 @@ public class ParseToIfcService {
 
     public IfcProject parseProject(ProjectNode projectNode)
             throws ParseToIfcException {
+        ruleViolationsService.checkRuleViolation(projectNode);
+
         IfcProject ifcProject = createIfcEntitiesService.createIfcEntitiesService(projectNode);
 
         for (IfcService<?, ?> ifcService : ifcServices) {
             ifcService.addAttributesAndRelationships(ifcProject, projectNode);
         }
-
-        ruleViolationsService.checkRuleViolation(ifcProject);
 
         return ifcProject;
     }

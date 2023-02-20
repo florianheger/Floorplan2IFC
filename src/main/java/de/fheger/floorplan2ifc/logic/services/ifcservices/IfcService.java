@@ -2,7 +2,6 @@ package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
 import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.AddAttributes;
@@ -49,7 +48,7 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
     }
 
 
-    public void addAttributesAndRelationships(IfcProject ifcProject, ProjectNode projectNode)
+    public void addAttributesAndRelationships(IfcProject ifcProject, de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode projectNode)
             throws ParseToIfcException {
         List<NodeType> nodes = getNodesOfNodeType(projectNode);
         for (NodeType node : nodes) {

@@ -2,7 +2,6 @@ package de.fheger.floorplan2ifc.logic.services;
 
 import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.*;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
@@ -30,7 +29,7 @@ public class CreateIfcEntitiesService {
         this.createIfcEntityWithRootAttributes = createIfcEntityWithRootAttributesService;
     }
 
-    public IfcProject createIfcEntitiesService(ProjectNode projectNode)
+    public IfcProject createIfcEntitiesService(de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode projectNode)
             throws ParseToIfcException {
         IfcProject ifcProject = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributesTypeSave(projectNode.getEntityPanel(), IfcProject.class);
         List<EntityNode<?>> children = projectNode.getEntityNodeChildren();

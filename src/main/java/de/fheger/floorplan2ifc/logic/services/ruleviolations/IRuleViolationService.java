@@ -1,9 +1,9 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 
 public interface IRuleViolationService {
-    void checkRuleViolation(IfcProject ifcProject)
+    void checkRuleViolation(ProjectNode projectNode)
             throws ParseToIfcException;
 }
