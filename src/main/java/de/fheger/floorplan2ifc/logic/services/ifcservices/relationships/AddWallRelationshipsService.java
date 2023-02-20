@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddWallRelationshipsService  implements AddRelationships<IfcWall, WallNode> {
+public class AddWallRelationshipsService  implements IAddRelationshipsService<IfcWall, WallNode> {
 
     private final FindIfcEntityService findIfcEntityService;
 

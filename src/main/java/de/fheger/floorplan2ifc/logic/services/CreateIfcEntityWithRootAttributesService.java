@@ -48,7 +48,7 @@ public class CreateIfcEntityWithRootAttributesService {
             throws ParseToIfcException {
         IfcObjectDefinition ifcObject = createIfcEntityWithRootAttributes(entityPanel);
         if (!clazz.isInstance(ifcObject)) {
-            throw new ParseToIfcException("Internal Error in creation of type" + clazz.getSimpleName() + ".");
+            throw new ParseToIfcException("Internal Error in creation of type " + clazz.getSimpleName() + ".");
         }
         return clazz.cast(ifcObject);
     }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddDoorAttributesService implements AddAttributes<IfcDoor, DoorNode> {
+public class AddDoorAttributesService implements IAddAttributesService<IfcDoor, DoorNode> {
 
     private final AddLengthToOpeningElement addLengthToOpeningElement;
 

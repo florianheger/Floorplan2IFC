@@ -1,6 +1,5 @@
 package de.fheger.floorplan2ifc.gui.menubar;
 
-import de.fheger.floorplan2ifc.MainTest;
 import de.fheger.floorplan2ifc.logic.commands.LogicCommands;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
@@ -15,13 +14,11 @@ import org.springframework.stereotype.Component;
 public class FileMenu extends Menu {
 
     private final LogicCommands logicCommands;
-    private final MainTest mainTest;
 
     @Autowired
-    public FileMenu(LogicCommands logicCommands, MainTest mainTest) {
+    public FileMenu(LogicCommands logicCommands) {
         super("File");
         this.logicCommands = logicCommands;
-        this.mainTest = mainTest;
 
         MenuItem newFile = new MenuItem("New File");
         newFile.setOnAction(e -> onNewFile());
@@ -32,17 +29,9 @@ public class FileMenu extends Menu {
         MenuItem save = new MenuItem("Save to Graph Database");
         save.setOnAction(e -> onSaveToDatabase());
 
-        MenuItem test = new MenuItem("Test");
-        test.setOnAction(e -> onTest());
-
         getItems().add(newFile);
         getItems().add(parse);
         getItems().add(save);
-        getItems().add(test);
-    }
-
-    private void onTest() {
-        mainTest.modelsTest();
     }
 
     private void onSaveToDatabase() {

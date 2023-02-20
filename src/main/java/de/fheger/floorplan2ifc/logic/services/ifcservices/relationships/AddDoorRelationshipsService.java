@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddDoorRelationshipsService implements AddRelationships<IfcDoor, DoorNode> {
+public class AddDoorRelationshipsService implements IAddRelationshipsService<IfcDoor, DoorNode> {
 
     private final FindIfcEntityService findIfcEntityService;
 

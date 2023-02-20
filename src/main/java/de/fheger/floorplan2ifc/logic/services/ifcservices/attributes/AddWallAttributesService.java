@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.HashSet;
 
 @Service
-public class AddWallAttributesService implements AddAttributes<IfcWall, WallNode> {
+public class AddWallAttributesService implements IAddAttributesService<IfcWall, WallNode> {
 
     @Override
     public void addAttributes(IfcWall ifcWall, WallNode wallNode) {

@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.HashSet;
 
 @Service
-public class AddSpaceAttributesService implements AddAttributes<IfcSpace, SpaceNode> {
+public class AddSpaceAttributesService implements IAddAttributesService<IfcSpace, SpaceNode> {
     @Override
     public void addAttributes(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
         double floorArea = entityNode.getEntityPanel().getFloorArea();

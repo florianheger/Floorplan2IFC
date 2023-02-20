@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddSpaceRelationshipsService implements AddRelationships<IfcSpace, SpaceNode> {
+public class AddSpaceRelationshipsService implements IAddRelationshipsService<IfcSpace, SpaceNode> {
 
     private final FindIfcEntityService findIfcEntityService;
 

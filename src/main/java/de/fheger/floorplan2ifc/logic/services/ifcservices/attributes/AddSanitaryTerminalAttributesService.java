@@ -7,7 +7,7 @@ import de.fheger.floorplan2ifc.models.enums.IfcSanitaryTerminalTypeEnum;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddSanitaryTerminalAttributesService implements AddAttributes<IfcSanitaryTerminal, SanitaryTerminalNode> {
+public class AddSanitaryTerminalAttributesService implements IAddAttributesService<IfcSanitaryTerminal, SanitaryTerminalNode> {
     @Override
     public void addAttributes(IfcSanitaryTerminal ifcEntity, SanitaryTerminalNode entityNode) throws ParseToIfcException {
         IfcSanitaryTerminalTypeEnum selectedType = IfcSanitaryTerminalTypeEnum.valueOf(entityNode.getEntityPanel().getSelectedType());
