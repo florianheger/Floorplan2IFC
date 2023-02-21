@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: de.fheger.floorplan2ifc.Floorplan2IfcApplication
-
