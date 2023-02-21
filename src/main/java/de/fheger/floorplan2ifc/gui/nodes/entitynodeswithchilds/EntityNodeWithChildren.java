@@ -2,16 +2,12 @@ package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
 
 import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
 import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EntityNodeWithChildren<PanelType extends EntityPanel> extends EntityNode<PanelType> {
-
-    protected ContextMenu menu = new ContextMenu();
-
     public EntityNodeWithChildren(PanelType entityPanel, List<Class<? extends EntityNode<?>>> possibleChildren, String iconName) {
         super(entityPanel, iconName);
         possibleChildren.forEach(this::addItemToMenu);
@@ -27,10 +23,6 @@ public abstract class EntityNodeWithChildren<PanelType extends EntityPanel> exte
             }
         });
         menu.getItems().add(item);
-    }
-
-    public ContextMenu getMenu() {
-        return menu;
     }
 
     public List<EntityNode<?>> getEntityNodeChildren() {

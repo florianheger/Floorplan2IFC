@@ -54,4 +54,9 @@ public class WallPanel extends EntityPanelWithLength {
         gridPane.add(UiFactory.createStandardLabel("Interference with:"), 0, ++rowsInEntityPanel);
         gridPane.add(interferences, 1, rowsInEntityPanel);
     }
+
+    @Override
+    public void remove() {
+        walls.remove(this);
+    }
 }

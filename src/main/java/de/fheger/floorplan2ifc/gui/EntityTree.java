@@ -1,7 +1,6 @@
 package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.Pane;
 
@@ -14,7 +13,7 @@ public class EntityTree extends TreeView<ImagePanel> {
     private void addTreeListener(Pane entityPane) {
         TreeView<?> thisTree = this;
         setOnContextMenuRequested(event -> {
-            if (getSelectionModel().getSelectedItem() instanceof EntityNodeWithChildren<?> selectedNode) {
+            if (getSelectionModel().getSelectedItem() instanceof EntityNode<?> selectedNode) {
                 selectedNode.getMenu().show(thisTree, event.getScreenX(), event.getScreenY());
             }
         });

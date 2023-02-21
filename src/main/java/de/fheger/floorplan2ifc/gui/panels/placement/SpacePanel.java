@@ -49,4 +49,9 @@ public class SpacePanel extends EntityPanelWithPlacement {
         gridPane.add(UiFactory.createStandardLabel("Floor Area (DIN 277):"), 0, ++rowsInEntityPanel);
         gridPane.add(floorAreaDin, 1, rowsInEntityPanel);
     }
+
+    @Override
+    public void remove() {
+        spaces.remove(this);
+    }
 }
