@@ -77,6 +77,7 @@ public class CreateIfcEntityWithRootAttributesService {
         ifcElements.put(SanitaryTerminalPanel.class, IfcSanitaryTerminal.class);
         ifcElements.put(ChimneyPanel.class, IfcChimney.class);
         ifcElements.put(StairPanel.class, IfcStair.class);
+        ifcElements.put(SlabPanel.class, IfcSlab.class);
         try {
             return ifcElements.get(entityPanel.getClass()).getDeclaredConstructor().newInstance();
         } catch (Exception e) {
