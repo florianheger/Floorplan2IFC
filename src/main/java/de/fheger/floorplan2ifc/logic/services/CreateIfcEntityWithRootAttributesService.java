@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services;
 
 import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
-import de.fheger.floorplan2ifc.gui.panels.*;
+import de.fheger.floorplan2ifc.gui.panels.ProjectPanel;
 import de.fheger.floorplan2ifc.gui.panels.placement.*;
 import de.fheger.floorplan2ifc.gui.panels.placement.length.DoorPanel;
 import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
@@ -11,10 +11,7 @@ import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcChimney;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcDoor;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWindow;
+import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.*;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.distributionelement.distributionflowelement.flowterminal.IfcSanitaryTerminal;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcBuildingStorey;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSite;
@@ -22,6 +19,9 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.facility.IfcBuilding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class CreateIfcEntityWithRootAttributesService {
@@ -65,36 +65,22 @@ public class CreateIfcEntityWithRootAttributesService {
 
     private IfcObjectDefinition createIfcEntity(EntityPanel entityPanel)
             throws ParseToIfcException {
-        if (entityPanel instanceof ProjectPanel) {
-            return new IfcProject();
+        Map<Class<? extends EntityPanel>, Class<? extends IfcObjectDefinition>> ifcElements = new HashMap<>();
+        ifcElements.put(ProjectPanel.class, IfcProject.class);
+        ifcElements.put(SitePanel.class, IfcSite.class);
+        ifcElements.put(BuildingPanel.class, IfcBuilding.class);
+        ifcElements.put(BuildingStoreyPanel.class, IfcBuildingStorey.class);
+        ifcElements.put(WallPanel.class, IfcWall.class);
+        ifcElements.put(WindowPanel.class, IfcWindow.class);
+        ifcElements.put(DoorPanel.class, IfcDoor.class);
+        ifcElements.put(SpacePanel.class, IfcSpace.class);
+        ifcElements.put(SanitaryTerminalPanel.class, IfcSanitaryTerminal.class);
+        ifcElements.put(ChimneyPanel.class, IfcChimney.class);
+        ifcElements.put(StairPanel.class, IfcStair.class);
+        try {
+            return ifcElements.get(entityPanel.getClass()).getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new ParseToIfcException("Node " + entityPanel.getClass().getSimpleName() + " has no matching IFC Type.");
         }
-        if (entityPanel instanceof SitePanel) {
-            return new IfcSite();
-        }
-        if (entityPanel instanceof BuildingPanel) {
-            return new IfcBuilding();
-        }
-        if (entityPanel instanceof BuildingStoreyPanel) {
-            return new IfcBuildingStorey();
-        }
-        if (entityPanel instanceof WallPanel) {
-            return new IfcWall();
-        }
-        if (entityPanel instanceof WindowPanel) {
-            return new IfcWindow();
-        }
-        if (entityPanel instanceof DoorPanel) {
-            return new IfcDoor();
-        }
-        if (entityPanel instanceof SpacePanel) {
-            return new IfcSpace();
-        }
-        if (entityPanel instanceof SanitaryTerminalPanel) {
-            return new IfcSanitaryTerminal();
-        }
-        if (entityPanel instanceof ChimneyPanel) {
-            return new IfcChimney();
-        }
-        throw new ParseToIfcException("Node " + entityPanel.getClass().getSimpleName() + " has no matching IFC Type.");
     }
 }

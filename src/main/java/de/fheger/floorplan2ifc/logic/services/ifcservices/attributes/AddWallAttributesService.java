@@ -7,7 +7,7 @@ import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertys
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
 import de.fheger.floorplan2ifc.models.properties.propertyabstraction.property.simpleproperty.IfcPropertySingleValue;
-import de.fheger.floorplan2ifc.models.quantities.IfcBoolean;
+import de.fheger.floorplan2ifc.models.properties.IfcBoolean;
 import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityLength;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +21,10 @@ public class AddWallAttributesService implements IAddAttributesService<IfcWall, 
     @Override
     public void addAttributes(IfcWall ifcWall, WallNode wallNode) {
         addQuantities(ifcWall, wallNode.getEntityPanel());
-        adPropertySets(ifcWall, wallNode.getEntityPanel());
+        addPropertySets(ifcWall, wallNode.getEntityPanel());
     }
 
-    private void adPropertySets(IfcWall ifcWall, WallPanel wallPanel) {
+    private void addPropertySets(IfcWall ifcWall, WallPanel wallPanel) {
         boolean isExternal = wallPanel.isExternal();
         boolean isBearing = wallPanel.isBearing();
         IfcBoolean isExternalB = new IfcBoolean(isExternal);

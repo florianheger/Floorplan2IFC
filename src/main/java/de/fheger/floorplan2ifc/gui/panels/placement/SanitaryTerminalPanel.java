@@ -8,7 +8,7 @@ public class SanitaryTerminalPanel extends EntityPanelWithPlacement {
     private final MultiSelect typeSelect = new MultiSelect();
 
     public String getSelectedType() {
-        return typeSelect.getSelectedEntities().get(0);
+        return typeSelect.getSelectedItems().get(0);
     }
 
     public SanitaryTerminalPanel() {

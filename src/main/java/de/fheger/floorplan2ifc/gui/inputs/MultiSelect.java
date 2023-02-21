@@ -7,12 +7,12 @@ import java.util.List;
 public class MultiSelect extends CheckComboBox<String> {
 
     public MultiSelect(List<String> selectableEntities) {
-        selectableEntities.forEach(e -> getItems().add(e));
+        getItems().addAll(selectableEntities);
     }
 
     public MultiSelect() {}
 
-    public List<String> getSelectedEntities() {
+    public List<String> getSelectedItems() {
         return getCheckModel().getCheckedItems();
     }
 }
