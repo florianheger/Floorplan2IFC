@@ -9,6 +9,6 @@ import java.util.Arrays;
 
 public class SpaceNode extends EntityNodeWithChildren<SpacePanel> {
     public SpaceNode() {
-        super(new SpacePanel(), Arrays.asList(SanitaryTerminalNode.class, ChimneyNode.class, StairNode.class));
+        super(new SpacePanel(), Arrays.asList(SanitaryTerminalNode.class, ChimneyNode.class, StairNode.class), "Space.png");
     }
 }

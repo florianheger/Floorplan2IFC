@@ -13,7 +13,7 @@ public class ProjectNode extends EntityNodeWithChildren<ProjectPanel> {
     }
 
     public ProjectNode() {
-        super(new ProjectPanel(), Collections.singletonList(SiteNode.class));
+        super(new ProjectPanel(), Collections.singletonList(SiteNode.class), "Project.png");
         currentProject = this;
     }
 }

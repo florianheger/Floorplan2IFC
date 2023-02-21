@@ -8,6 +8,6 @@ public class BuildingNode extends EntityNodeWithChildren<BuildingPanel> {
 
 
     public BuildingNode() {
-        super(new BuildingPanel(), Collections.singletonList(BuildingStoreyNode.class));
+        super(new BuildingPanel(), Collections.singletonList(BuildingStoreyNode.class), "Building.png");
     }
 }

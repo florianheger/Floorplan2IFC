@@ -7,8 +7,8 @@ import javafx.scene.control.TreeItem;
 public abstract class EntityNode<PanelType extends EntityPanel> extends TreeItem<ImagePanel> {
     protected PanelType entityPanel;
 
-    public EntityNode(PanelType entityPanel) {
-        super(new ImagePanel(entityPanel.getName(), "/icon_floorplan.jpg"));
+    public EntityNode(PanelType entityPanel, String iconName) {
+        super(new ImagePanel(entityPanel.getName(), "/icons/" + iconName));
         this.entityPanel = entityPanel;
         entityPanel.onNameChanged(newName -> getValue().updateName(newName));
 

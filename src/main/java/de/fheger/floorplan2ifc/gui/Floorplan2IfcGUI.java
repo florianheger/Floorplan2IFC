@@ -30,7 +30,7 @@ public class Floorplan2IfcGUI extends Application {
         Scene scene = new Scene(mainPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Floorplan2IFC");
-        primaryStage.getIcons().add(new Image("/icon_floorplan.jpg"));
+        primaryStage.getIcons().add(new Image("/icons/Floorplan.png"));
         primaryStage.setMinWidth(800);
         primaryStage.setMaximized(true);
         primaryStage.setOnCloseRequest(e -> stop());

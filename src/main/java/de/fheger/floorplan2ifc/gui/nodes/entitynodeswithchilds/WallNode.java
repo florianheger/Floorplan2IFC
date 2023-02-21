@@ -10,6 +10,6 @@ public class WallNode extends EntityNodeWithChildren<WallPanel> {
 
 
     public WallNode() {
-        super(new WallPanel(), Arrays.asList(DoorNode.class, WindowNode.class));
+        super(new WallPanel(), Arrays.asList(DoorNode.class, WindowNode.class), "Wall.png");
     }
 }

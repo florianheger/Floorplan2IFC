@@ -6,6 +6,6 @@ import java.util.Collections;
 
 public class SiteNode extends EntityNodeWithChildren<SitePanel> {
     public SiteNode() {
-        super(new SitePanel(), Collections.singletonList(BuildingNode.class));
+        super(new SitePanel(), Collections.singletonList(BuildingNode.class), "Site.png");
     }
 }

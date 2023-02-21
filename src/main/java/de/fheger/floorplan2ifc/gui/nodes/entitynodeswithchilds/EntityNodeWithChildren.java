@@ -12,8 +12,8 @@ public abstract class EntityNodeWithChildren<PanelType extends EntityPanel> exte
 
     protected ContextMenu menu = new ContextMenu();
 
-    public EntityNodeWithChildren(PanelType entityPanel, List<Class<? extends EntityNode<?>>> possibleChildren) {
-        super(entityPanel);
+    public EntityNodeWithChildren(PanelType entityPanel, List<Class<? extends EntityNode<?>>> possibleChildren, String iconName) {
+        super(entityPanel, iconName);
         possibleChildren.forEach(this::addItemToMenu);
     }
 

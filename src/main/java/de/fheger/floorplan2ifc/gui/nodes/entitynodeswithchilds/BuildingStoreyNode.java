@@ -7,6 +7,6 @@ import java.util.Arrays;
 public class BuildingStoreyNode extends EntityNodeWithChildren<BuildingStoreyPanel> {
 
     public BuildingStoreyNode() {
-        super(new BuildingStoreyPanel(), Arrays.asList(WallNode.class, SpaceNode.class));
+        super(new BuildingStoreyPanel(), Arrays.asList(WallNode.class, SpaceNode.class), "Floorplan.png");
     }
 }
