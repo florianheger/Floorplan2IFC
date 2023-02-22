@@ -14,7 +14,7 @@ public class DoorPanel extends EntityPanelWithLength {
     }
 
     public DoorPanel() {
-        super("Door");
+        super("Door", 0);
 
         gridPane.add(UiFactory.createStandardLabel("Connects Spaces"), 0, ++rowsInEntityPanel);
         gridPane.add(connectedSpaces, 1, rowsInEntityPanel);

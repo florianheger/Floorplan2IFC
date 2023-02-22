@@ -12,7 +12,7 @@ public class SanitaryTerminalPanel extends EntityPanelWithPlacement {
     }
 
     public SanitaryTerminalPanel() {
-        super("Sanitary Terminal");
+        super("Sanitary Terminal", 0);
 
         typeSelect.getItems().addAll("BATH", "BIDET", "CISTERN", "SHOWER", "SINK", "SANITARYFOUNTAIN", "TOILETPAN", "URINAL", "WASHHANDBASIN", "WCSEAT", "USERDEFINED", "NOTDEFINED");
 

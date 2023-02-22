@@ -37,7 +37,7 @@ public class SpacePanel extends EntityPanelWithPlacement {
     }
 
     public SpacePanel() {
-        super("Space");
+        super("Space", 0);
         spaces.add(this);
 
         gridPane.add(UiFactory.createStandardLabel("Floor Area:"), 0, ++rowsInEntityPanel);

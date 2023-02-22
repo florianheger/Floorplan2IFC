@@ -4,7 +4,7 @@ import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import de.fheger.floorplan2ifc.gui.panels.placement.EntityPanelWithPlacement;
 
-public class EntityPanelWithLength extends EntityPanelWithPlacement {
+public abstract class EntityPanelWithLength extends EntityPanelWithPlacement {
 
     private final NumberField length = UiFactory.createStandardNumberField();
 
@@ -12,8 +12,8 @@ public class EntityPanelWithLength extends EntityPanelWithPlacement {
         return length.getLength();
     }
 
-    public EntityPanelWithLength(String defaultName) {
-        super(defaultName);
+    public EntityPanelWithLength(String defaultName, double defaultPositionY) {
+        super(defaultName, defaultPositionY);
 
         gridPane.add(UiFactory.createStandardLabel("Length"), 0, ++rowsInEntityPanel);
         gridPane.add(length, 1, rowsInEntityPanel);

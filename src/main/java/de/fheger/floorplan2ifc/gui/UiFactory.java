@@ -2,7 +2,7 @@ package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
-import de.fheger.floorplan2ifc.gui.inputs.TwoNumberField;
+import de.fheger.floorplan2ifc.gui.inputs.ThreeNumbersField;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class UiFactory {
 
-    public static final int FONT_SIZE_STANDARD = 12;
+    public static final int FONT_SIZE_STANDARD = 14;
     public static final int FONT_SIZE_H1HEADLINE = 20;
     public static final int FONT_SIZE_H2HEADLINE = 15;
 
@@ -58,13 +58,19 @@ public class UiFactory {
         return numberField;
     }
 
+    public static NumberField createStandardShortNumberField() {
+        NumberField numberField = createStandardNumberField();
+        numberField.setPrefWidth(50);
+        return numberField;
+    }
+
     public static BoolSelect createStandardBoolSelect() {
         BoolSelect boolSelect = new BoolSelect();
         boolSelect.setFont(FONT_STANDARD);
         return boolSelect;
     }
 
-    public static TwoNumberField createStandardTwoNumberField() {
-        return new TwoNumberField(createStandardNumberField(), createStandardNumberField());
+    public static ThreeNumbersField createStandardThreeNumbersField() {
+        return new ThreeNumbersField();
     }
 }
