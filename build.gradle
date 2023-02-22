@@ -10,6 +10,11 @@ application {
     mainClass = 'de.fheger.floorplan2ifc.Floorplan2IfcApplication'
 }
 
+java {
+    targetCompatibility 17
+    sourceCompatibility 17
+}
+
 group = 'de.fheger'
 version = '0.0.1-SNAPSHOT'
 
