@@ -1,6 +1,7 @@
 package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
+import de.fheger.floorplan2ifc.gui.inputs.IntegerNumberField;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import de.fheger.floorplan2ifc.gui.inputs.ThreeNumbersField;
 import javafx.scene.control.Label;
@@ -72,5 +73,11 @@ public class UiFactory {
 
     public static ThreeNumbersField createStandardThreeNumbersField() {
         return new ThreeNumbersField();
+    }
+
+    public static IntegerNumberField createStandardIntegerNumberField() {
+        IntegerNumberField numberField = new IntegerNumberField();
+        numberField.setFont(FONT_STANDARD);
+        return numberField;
     }
 }

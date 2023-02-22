@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class SpacePanel extends EntityPanelWithPlacement {
@@ -20,7 +21,7 @@ public class SpacePanel extends EntityPanelWithPlacement {
     }
 
     private final NumberField floorArea = UiFactory.createStandardNumberField();
-    private final EntityMultiSelect<WallPanel> boundedWalls = new EntityMultiSelect<>(WallPanel.getWalls());
+    private final EntityMultiSelect<WallPanel> boundedWalls = new EntityMultiSelect<>(Collections.singletonList(WallPanel.getWalls()));
     private final MultiSelect floorAreaDin = new MultiSelect(Arrays.asList("NUF 1: Wohnen und Aufenthalt", "NUF 2: Büroarbeit", "NUF 3: Produktion, Hand- und Maschinenarbeit, Forschung und Entwicklung (vormals „Experimente“)", "NUF 4: Lagern, Verteilen und Verkaufen", "NUF 5: Bildung, Unterricht und Kultur", "NUF 6: Heilen und Pflegen", "NUF 7: Sonstige Nutzungen (vormals „Sonstige Nutzflächen“)"));
 
     public double getFloorArea() {

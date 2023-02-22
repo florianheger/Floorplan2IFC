@@ -7,6 +7,7 @@ import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WallPanel extends EntityPanelWithLength {
@@ -20,7 +21,7 @@ public class WallPanel extends EntityPanelWithLength {
     private final NumberField width = UiFactory.createStandardNumberField();
     private final BoolSelect isExternal = UiFactory.createStandardBoolSelect();
     private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
-    private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(walls);
+    private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(Collections.singletonList(walls));
 
     public double getWallWidth() {
         return width.getValue();

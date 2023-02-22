@@ -9,10 +9,12 @@ import java.util.List;
 
 public class EntityMultiSelect<PanelType extends EntityPanel> extends CheckComboBox<PanelType> {
 
-    public EntityMultiSelect(ObservableList<PanelType> observableList) {
+    public EntityMultiSelect(List<ObservableList<? extends PanelType>> observableLists) {
         super();
-        observableList.forEach(p -> getItems().add(p));
-        observableList.addListener(this::updateItems);
+        observableLists.forEach(observableList -> {
+            observableList.forEach(p -> getItems().add(p));
+            observableList.addListener(this::updateItems);
+        });
     }
 
     private void updateItems(ListChangeListener.Change<? extends PanelType> change) {
