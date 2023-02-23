@@ -10,7 +10,11 @@ import org.springframework.stereotype.Service;
 public class AddSanitaryTerminalAttributesService implements IAddAttributesService<IfcSanitaryTerminal, SanitaryTerminalNode> {
     @Override
     public void addAttributes(IfcSanitaryTerminal ifcEntity, SanitaryTerminalNode entityNode) throws ParseToIfcException {
-        IfcSanitaryTerminalTypeEnum selectedType = IfcSanitaryTerminalTypeEnum.valueOf(entityNode.getEntityPanel().getSelectedType());
-        ifcEntity.setPredefinedType(selectedType);
+        try {
+            IfcSanitaryTerminalTypeEnum selectedType = IfcSanitaryTerminalTypeEnum.valueOf(entityNode.getEntityPanel().getSelectedType());
+            ifcEntity.setPredefinedType(selectedType);
+        } catch (NullPointerException ne) {
+            throw new ParseToIfcException("Type of Sanitary Terminal " + ifcEntity.getName() + " not set.");
+        }
     }
 }

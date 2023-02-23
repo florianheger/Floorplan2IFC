@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.DoorPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.SanitaryTerminalPanel;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.GetAllIEntityPanelsOfType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DoorConnectsOneOrTwoSpaces implements IRuleViolationService {
+public class SanitaryTerminalTypeSelectedService implements IRuleViolationService {
 
     private final GetAllIEntityPanelsOfType getAllIEntityPanelsOfType;
 
     @Autowired
-    public DoorConnectsOneOrTwoSpaces(GetAllIEntityPanelsOfType getAllIEntityPanelsOfType) {
+    public SanitaryTerminalTypeSelectedService(GetAllIEntityPanelsOfType getAllIEntityPanelsOfType) {
         this.getAllIEntityPanelsOfType = getAllIEntityPanelsOfType;
     }
 
-
     @Override
     public void checkRuleViolation(ProjectNode projectNode) throws ParseToIfcException {
-        List<DoorPanel> allDoors = getAllIEntityPanelsOfType.getIfcEntityOfType(DoorPanel.class, projectNode);
+        List<SanitaryTerminalPanel> allSanitaryTerminals = getAllIEntityPanelsOfType.getIfcEntityOfType(SanitaryTerminalPanel.class, projectNode);
 
-        for (DoorPanel door : allDoors) {
-            if (!(door.getConnectedSpaces().size() == 1 || door.getConnectedSpaces().size() == 2)) {
-                throw new ParseToIfcException("Door " + door.getName() + " connects to zero or more than two Spaces.sdsdf");
+        for (SanitaryTerminalPanel sanitaryTerminal : allSanitaryTerminals) {
+            if (sanitaryTerminal.getSelectedType() == null) {
+                throw new ParseToIfcException("Type of Sanitary Terminal " + projectNode.getEntityPanel().getName() + " not set.");
             }
         }
     }
