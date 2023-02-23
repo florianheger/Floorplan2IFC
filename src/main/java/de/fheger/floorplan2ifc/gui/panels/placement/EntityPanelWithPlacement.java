@@ -23,7 +23,7 @@ public abstract class EntityPanelWithPlacement extends EntityPanel {
 
         positionField.setDefaultValue2(defaultPositionY);
 
-        gridPane.add(UiFactory.createStandardLabel("Position:"), 0, ++rowsInEntityPanel);
+        gridPane.add(UiFactory.createStandardLabel("Position (cm):"), 0, ++rowsInEntityPanel);
         gridPane.add(positionField, 1, rowsInEntityPanel);
     }
 }

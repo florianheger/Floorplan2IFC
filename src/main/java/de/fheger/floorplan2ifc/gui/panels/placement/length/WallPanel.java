@@ -43,7 +43,7 @@ public class WallPanel extends EntityPanelWithLength {
         super("Wall", 0);
         walls.add(this);
 
-        gridPane.add(UiFactory.createStandardLabel("Width:"), 0, ++rowsInEntityPanel);
+        gridPane.add(UiFactory.createStandardLabel("Width (cm):"), 0, ++rowsInEntityPanel);
         gridPane.add(width, 1, rowsInEntityPanel);
 
         gridPane.add(UiFactory.createStandardLabel("Is External?"), 0, ++rowsInEntityPanel);

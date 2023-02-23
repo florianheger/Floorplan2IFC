@@ -15,7 +15,7 @@ public abstract class EntityPanelWithLength extends EntityPanelWithPlacement {
     public EntityPanelWithLength(String defaultName, double defaultPositionY) {
         super(defaultName, defaultPositionY);
 
-        gridPane.add(UiFactory.createStandardLabel("Length"), 0, ++rowsInEntityPanel);
+        gridPane.add(UiFactory.createStandardLabel("Length (cm):"), 0, ++rowsInEntityPanel);
         gridPane.add(length, 1, rowsInEntityPanel);
     }
 }

@@ -41,7 +41,7 @@ public class SpacePanel extends EntityPanelWithPlacement {
         super("Space", 0);
         spaces.add(this);
 
-        gridPane.add(UiFactory.createStandardLabel("Floor Area:"), 0, ++rowsInEntityPanel);
+        gridPane.add(UiFactory.createStandardLabel("Floor Area (m²):"), 0, ++rowsInEntityPanel);
         gridPane.add(floorArea, 1, rowsInEntityPanel);
 
         gridPane.add(UiFactory.createStandardLabel("Bounded Walls:"), 0, ++rowsInEntityPanel);
