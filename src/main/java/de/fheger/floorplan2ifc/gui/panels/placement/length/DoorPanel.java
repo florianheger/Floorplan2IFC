@@ -2,34 +2,16 @@ package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
-import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
-import de.fheger.floorplan2ifc.gui.panels.placement.EntityPanelWithPlacement;
-import de.fheger.floorplan2ifc.gui.panels.placement.SlabPanel;
 import de.fheger.floorplan2ifc.gui.panels.placement.SpacePanel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DoorPanel extends EntityPanelWithLength {
-    private final EntityMultiSelect<EntityPanelWithPlacement> connectedPanels = new EntityMultiSelect<>(Arrays.asList(SpacePanel.getSpaces(), SlabPanel.getSlabs()));
+    private final EntityMultiSelect<SpacePanel> connectedPanels = new EntityMultiSelect<>(Collections.singletonList(SpacePanel.getSpaces()));
 
     public List<SpacePanel> getConnectedSpaces() {
-        return getConnectedPanels(SpacePanel.class);
-    }
-
-    public List<SlabPanel> getConnectedSlabs() {
-        return getConnectedPanels(SlabPanel.class);
-    }
-
-    private <PanelType extends EntityPanel> List<PanelType> getConnectedPanels(Class<PanelType> clazz) {
-        List<PanelType> connectedPanels = new ArrayList<>();
-        this.connectedPanels.getSelectedPanels().forEach(panel -> {
-            if (clazz.isInstance(panel)) {
-                connectedPanels.add(clazz.cast(panel));
-            }
-        });
-        return connectedPanels;
+        return connectedPanels.getSelectedPanels();
     }
 
     public DoorPanel() {
