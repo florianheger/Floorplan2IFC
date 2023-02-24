@@ -1,8 +1,10 @@
 package de.fheger.floorplan2ifc.gui.menubar;
 
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.logic.commands.LogicCommands;
+import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
+import de.fheger.floorplan2ifc.logic.exceptions.SaveToDatabaseException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -24,7 +26,7 @@ public class FileMenu extends Menu {
         newFile.setOnAction(e -> onNewFile());
 
         MenuItem parse = new MenuItem("Check Consistency");
-        parse.setOnAction(e -> onParseToIfc());
+        parse.setOnAction(e -> onCheckConsistency());
 
         MenuItem save = new MenuItem("Save to Graph Database");
         save.setOnAction(e -> onSaveToDatabase());
@@ -36,14 +38,18 @@ public class FileMenu extends Menu {
 
     private void onSaveToDatabase() {
         try {
-            IfcProject ifcProject = logicCommands.parseToIfc(de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode.getCurrentProject());
-            logicCommands.saveToGraphDatabase(ifcProject);
-            showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database", "Saving to Database succeeded without errors.");
+            logicCommands.saveToGraphDatabase(ProjectNode.getCurrentProject());
+            showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database",
+                    "Saving to Database succeeded without errors.");
         } catch (ParseToIfcException e) {
             showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());
-        } catch (Exception e) { // TODO: change to specific Exception like SaveToDBException or Neo4j Exc
+            e.printStackTrace();
+        } catch (IfcRuleViolationException e) {
+            showAlert(Alert.AlertType.ERROR, "Rule Violation", e.getMessage());
+            e.printStackTrace();
+        } catch (SaveToDatabaseException e) {
             showAlert(Alert.AlertType.ERROR, "Error during saving to database", e.getMessage());
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -51,12 +57,17 @@ public class FileMenu extends Menu {
         throw new RuntimeException("Not implemented yet.");
     }
 
-    private void onParseToIfc() {
+    private void onCheckConsistency() {
         try {
-            IfcProject ifcProject = logicCommands.parseToIfc(de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode.getCurrentProject());
-            showAlert(Alert.AlertType.INFORMATION, "Parsing succeeded", "Parsing succeeded without errors. IfcProject " + ifcProject.getName() + " can be saved into the graph database.");
+            logicCommands.checkRuleViolations(ProjectNode.getCurrentProject());
+            logicCommands.checkIfProjectIsParsable(ProjectNode.getCurrentProject());
+            showAlert(Alert.AlertType.INFORMATION, "Project is consistent", "No Rule Violations and parsing " +
+                    "succeeded without errors. Project can be saved into the graph database.");
+        } catch (IfcRuleViolationException e) {
+            showAlert(Alert.AlertType.ERROR, "Rule Violation", e.getMessage());
+            e.printStackTrace();
         } catch (ParseToIfcException e) {
-            showAlert(Alert.AlertType.ERROR, "Error during parsing", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error during parsing to IFC", e.getMessage());
             e.printStackTrace();
         }
     }

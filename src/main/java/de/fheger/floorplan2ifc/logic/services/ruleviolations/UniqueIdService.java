@@ -3,7 +3,7 @@ package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
-import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
+import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import java.util.Set;
 @Service
 public class UniqueIdService implements IRuleViolationService {
     @Override
-    public void checkRuleViolation(ProjectNode projectNode) throws ParseToIfcException {
+    public void checkRuleViolation(ProjectNode projectNode) throws IfcRuleViolationException {
         List<String> globalIds = getGlobalIdsRecursive(projectNode);
         Set<String> globalIdsSet = new HashSet<>(globalIds);
         if (globalIds.size() != globalIdsSet.size()) {
-            throw new ParseToIfcException("Not all GlobalIds are distinct.");
+            throw new IfcRuleViolationException("Not all GlobalIds are distinct.");
         }
     }
 

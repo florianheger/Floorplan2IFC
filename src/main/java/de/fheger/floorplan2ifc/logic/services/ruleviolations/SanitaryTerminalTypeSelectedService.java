@@ -2,7 +2,7 @@ package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
 import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
 import de.fheger.floorplan2ifc.gui.panels.placement.SanitaryTerminalPanel;
-import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
+import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import de.fheger.floorplan2ifc.logic.services.GetAllIEntityPanelsOfType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,12 @@ public class SanitaryTerminalTypeSelectedService implements IRuleViolationServic
     }
 
     @Override
-    public void checkRuleViolation(ProjectNode projectNode) throws ParseToIfcException {
+    public void checkRuleViolation(ProjectNode projectNode) throws IfcRuleViolationException {
         List<SanitaryTerminalPanel> allSanitaryTerminals = getAllIEntityPanelsOfType.getIfcEntityOfType(SanitaryTerminalPanel.class, projectNode);
 
         for (SanitaryTerminalPanel sanitaryTerminal : allSanitaryTerminals) {
             if (sanitaryTerminal.getSelectedType() == null) {
-                throw new ParseToIfcException("Type of Sanitary Terminal " + projectNode.getEntityPanel().getName() + " not set.");
+                throw new IfcRuleViolationException("Type of Sanitary Terminal " + projectNode.getEntityPanel().getName() + " not set.");
             }
         }
     }
