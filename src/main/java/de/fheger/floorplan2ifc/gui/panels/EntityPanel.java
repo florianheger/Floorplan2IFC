@@ -62,8 +62,7 @@ public abstract class EntityPanel extends BorderPane {
         gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowsInEntityPanel, 2, 1);
     }
 
-    public void remove() {
-    }
+    public void remove() {}
 
     @Override
     public String toString() {

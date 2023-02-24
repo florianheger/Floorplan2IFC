@@ -8,10 +8,11 @@ import javafx.scene.control.TreeItem;
 import lombok.Getter;
 
 public abstract class EntityNode<PanelType extends EntityPanel> extends TreeItem<ImagePanel> {
-    protected PanelType entityPanel;
+    @Getter
+    private final PanelType entityPanel;
 
     @Getter
-    protected ContextMenu menu = new ContextMenu();
+    private final ContextMenu menu = new ContextMenu();
 
     public EntityNode(PanelType entityPanel, String iconName) {
         super(new ImagePanel(entityPanel.getName(), "/icons/" + iconName));
@@ -32,9 +33,5 @@ public abstract class EntityNode<PanelType extends EntityPanel> extends TreeItem
     private void remove() {
         entityPanel.remove();
         getParent().getChildren().remove(this);
-    }
-
-    public PanelType getEntityPanel() {
-        return entityPanel;
     }
 }

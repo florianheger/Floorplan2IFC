@@ -72,8 +72,6 @@ public class Floorplan2IfcGUI extends Application {
         siteNode.getChildren().add(buildingNode);
         BuildingStoreyNode buildingStoreyNode = new BuildingStoreyNode();
         buildingNode.getChildren().add(buildingStoreyNode);
-        WallNode wallNode = new WallNode();
-        buildingStoreyNode.getChildren().add(wallNode);
 
         return projectNode;
     }

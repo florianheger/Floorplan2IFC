@@ -37,7 +37,7 @@ public class AddWallAttributesService implements IAddAttributesService<IfcWall, 
     }
 
     private void addQuantities(IfcWall ifcWall, WallPanel wallPanel) {
-        double length = wallPanel.getEntityWidth();
+        double length = wallPanel.getEntityLength();
         double width = wallPanel.getWallWidth();
         IfcQuantityLength qLength = new IfcQuantityLength("Length", length, "mm");
         IfcQuantityLength qWidth = new IfcQuantityLength("Width", width, "mm");

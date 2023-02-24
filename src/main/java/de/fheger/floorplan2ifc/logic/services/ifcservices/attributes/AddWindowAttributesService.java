@@ -18,6 +18,6 @@ public class AddWindowAttributesService implements IAddAttributesService<IfcWind
 
     @Override
     public void addAttributes(IfcWindow ifcEntity, WindowNode entityNode) throws ParseToIfcException {
-        addLengthToOpeningElement.addLengthToOpeningElement(entityNode.getEntityPanel().getEntityWidth(), ifcEntity);
+        addLengthToOpeningElement.addLengthToOpeningElement(entityNode.getEntityPanel().getEntityLength(), ifcEntity);
     }
 }

@@ -18,6 +18,6 @@ public class AddDoorAttributesService implements IAddAttributesService<IfcDoor, 
 
     @Override
     public void addAttributes(IfcDoor ifcEntity, DoorNode entityNode) throws ParseToIfcException {
-        addLengthToOpeningElement.addLengthToOpeningElement(entityNode.getEntityPanel().getEntityWidth(), ifcEntity);
+        addLengthToOpeningElement.addLengthToOpeningElement(entityNode.getEntityPanel().getEntityLength(), ifcEntity);
     }
 }

@@ -22,7 +22,7 @@ public abstract class EntityNodeWithChildren<PanelType extends EntityPanel> exte
                 throw new RuntimeException(ex);
             }
         });
-        menu.getItems().add(item);
+        getMenu().getItems().add(item);
     }
 
     public List<EntityNode<?>> getEntityNodeChildren() {

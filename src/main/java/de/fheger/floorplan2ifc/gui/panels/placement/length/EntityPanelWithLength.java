@@ -8,7 +8,7 @@ public abstract class EntityPanelWithLength extends EntityPanelWithPlacement {
 
     private final NumberField length = UiFactory.createStandardNumberField();
 
-    public int getEntityWidth() {
+    public int getEntityLength() {
         return length.getLength();
     }
 
