@@ -1,6 +1,8 @@
 package de.fheger.floorplan2ifc.gui.panels.placement;
 
-public class BuildingPanel extends EntityPanelWithPlacement {
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IBuilding;
+
+public class BuildingPanel extends EntityPanelWithPlacement implements IBuilding {
     public BuildingPanel() {
         super("Building", 0);
     }

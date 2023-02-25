@@ -1,6 +1,7 @@
 package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IWall;
 import de.fheger.floorplan2ifc.gui.inputs.BoolSelect;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
@@ -10,7 +11,7 @@ import javafx.collections.ObservableList;
 import java.util.Collections;
 import java.util.List;
 
-public class WallPanel extends EntityPanelWithLength {
+public class WallPanel extends EntityPanelWithLength implements IWall {
 
     private static final ObservableList<WallPanel> walls = FXCollections.observableArrayList();
 
@@ -22,22 +23,6 @@ public class WallPanel extends EntityPanelWithLength {
     private final BoolSelect isExternal = UiFactory.createStandardBoolSelect();
     private final BoolSelect isBearing = UiFactory.createStandardBoolSelect();
     private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(Collections.singletonList(walls));
-
-    public double getWallWidth() {
-        return width.getValue();
-    }
-
-    public boolean isExternal() {
-        return isExternal.isTrue();
-    }
-
-    public boolean isBearing() {
-        return isBearing.isTrue();
-    }
-
-    public List<WallPanel> getInterferenceWalls() {
-        return interferences.getSelectedPanels();
-    }
 
     public WallPanel() {
         super("Wall", 0);
@@ -59,5 +44,22 @@ public class WallPanel extends EntityPanelWithLength {
     @Override
     public void remove() {
         walls.remove(this);
+    }
+
+    @Override
+    public double getWallWidth() {
+        return width.getValue();
+    }
+    @Override
+    public boolean isExternal() {
+        return isExternal.isTrue();
+    }
+    @Override
+    public boolean isBearing() {
+        return isBearing.isTrue();
+    }
+    @Override
+    public List<WallPanel> getInterferenceWalls() {
+        return interferences.getSelectedPanels();
     }
 }

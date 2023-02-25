@@ -1,6 +1,7 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import nl.tue.isbe.ifcspftools.GuidHandler;
 
-public abstract class EntityPanel extends BorderPane {
+public abstract class EntityPanel extends BorderPane implements IEntity {
     protected final GridPane gridPane;
 
     protected int rowsInEntityPanel = 0;

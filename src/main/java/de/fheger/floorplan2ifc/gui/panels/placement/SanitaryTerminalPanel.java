@@ -1,15 +1,12 @@
 package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.ISanitaryTerminal;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
-public class SanitaryTerminalPanel extends EntityPanelWithPlacement {
+public class SanitaryTerminalPanel extends EntityPanelWithPlacement implements ISanitaryTerminal {
 
     private final MultiSelect typeSelect = new MultiSelect();
-
-    public String getSelectedType() {
-        return typeSelect.getSelectedItems().get(0);
-    }
 
     public SanitaryTerminalPanel() {
         super("Sanitary Terminal", 0);
@@ -18,5 +15,10 @@ public class SanitaryTerminalPanel extends EntityPanelWithPlacement {
 
         gridPane.add(UiFactory.createStandardLabel("Type"), 0, ++rowsInEntityPanel);
         gridPane.add(typeSelect, 1, rowsInEntityPanel);
+    }
+
+    @Override
+    public String getSelectedType() {
+        return typeSelect.getSelectedItems().get(0);
     }
 }

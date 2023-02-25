@@ -1,6 +1,8 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
-public class ProjectPanel extends EntityPanel {
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
+
+public class ProjectPanel extends EntityPanel implements IProject {
     public ProjectPanel() {
         super("Project");
     }
