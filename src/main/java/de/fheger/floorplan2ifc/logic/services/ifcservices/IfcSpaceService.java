@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.IAddAttributesService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.IAddRelationshipsService;
@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IfcSpaceService extends IfcService<IfcSpace, SpaceNode> {
+public class IfcSpaceService extends IfcService<IfcSpace, ISpace> {
     @Autowired
-    protected IfcSpaceService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcSpace, SpaceNode> addAttributes, IAddRelationshipsService<IfcSpace, SpaceNode> addRelationships) {
-        super(IfcSpace.class, SpaceNode.class, findIfcEntityService, addAttributes, addRelationships);
+    protected IfcSpaceService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcSpace, ISpace> addAttributes, IAddRelationshipsService<IfcSpace, ISpace> addRelationships) {
+        super(IfcSpace.class, ISpace.class, findIfcEntityService, addAttributes, addRelationships);
     }
 }

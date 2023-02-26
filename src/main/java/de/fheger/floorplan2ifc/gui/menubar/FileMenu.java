@@ -38,7 +38,7 @@ public class FileMenu extends Menu {
 
     private void onSaveToDatabase() {
         try {
-            logicCommands.saveToGraphDatabase(ProjectNode.getCurrentProject());
+            logicCommands.saveToGraphDatabase(ProjectNode.getCurrentProject().getEntityPanel());
             showAlert(Alert.AlertType.INFORMATION, "Successfully saved to database",
                     "Saving to Database succeeded without errors.");
         } catch (ParseToIfcException e) {
@@ -59,8 +59,8 @@ public class FileMenu extends Menu {
 
     private void onCheckConsistency() {
         try {
-            logicCommands.checkRuleViolations(ProjectNode.getCurrentProject());
-            logicCommands.checkIfProjectIsParsable(ProjectNode.getCurrentProject());
+            logicCommands.checkRuleViolations(ProjectNode.getCurrentProject().getEntityPanel());
+            logicCommands.checkIfProjectIsParsable(ProjectNode.getCurrentProject().getEntityPanel());
             showAlert(Alert.AlertType.INFORMATION, "Project is consistent", "No Rule Violations and parsing " +
                     "succeeded without errors. Project can be saved into the graph database.");
         } catch (IfcRuleViolationException e) {

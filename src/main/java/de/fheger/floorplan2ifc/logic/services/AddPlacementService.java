@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.panels.placement.EntityPanelWithPlacement;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IPlacement;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 import de.fheger.floorplan2ifc.models.interfaces.IfcAxis2Placement;
 import de.fheger.floorplan2ifc.models.placements.IfcLengthMeasure;
@@ -15,10 +15,10 @@ import java.util.HashSet;
 
 @Service
 public class AddPlacementService {
-    public void addPlacement(IfcProduct ifcEntity, EntityPanelWithPlacement entityPanel) {
-        double posX = entityPanel.getPositionX();
-        double posY = entityPanel.getPositionY();
-        double posZ = entityPanel.getPositionZ();
+    public void addPlacement(IfcProduct ifcEntity, IPlacement iPlacement) {
+        double posX = iPlacement.getPositionX();
+        double posY = iPlacement.getPositionY();
+        double posZ = iPlacement.getPositionZ();
         IfcLengthMeasure lengthMeasureX = new IfcLengthMeasure(posX);
         IfcLengthMeasure lengthMeasureY = new IfcLengthMeasure(posY);
         IfcLengthMeasure lengthMeasureZ = new IfcLengthMeasure(posZ);

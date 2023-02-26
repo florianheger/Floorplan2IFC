@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,9 @@ public class RuleViolationsService implements IRuleViolationService {
     }
 
     @Override
-    public void checkRuleViolation(ProjectNode projectNode) throws IfcRuleViolationException {
+    public void checkRuleViolation(IProject project) throws IfcRuleViolationException {
         for (IRuleViolationService ruleViolationService : ruleViolationServices) {
-            ruleViolationService.checkRuleViolation(projectNode);
+            ruleViolationService.checkRuleViolation(project);
         }
     }
 }

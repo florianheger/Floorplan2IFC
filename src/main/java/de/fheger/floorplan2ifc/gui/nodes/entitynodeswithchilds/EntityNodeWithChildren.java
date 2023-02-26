@@ -20,16 +20,18 @@ public abstract class EntityNodeWithChildren<PanelType extends EntityPanel> exte
 
     private void addChildrenListener(PanelType entityPanel) {
         getChildren().addListener((ListChangeListener<TreeItem<ImagePanel>>) c -> {
-            c.getAddedSubList().forEach(child -> {
-                if (child instanceof EntityNodeWithChildren<?> nc) {
-                    entityPanel.getNodeChildren().add(nc);
-                }
-            });
-            c.getRemoved().forEach(child -> {
-                if (child instanceof EntityNodeWithChildren<?> nc) {
-                    entityPanel.getNodeChildren().remove(nc);
-                }
-            });
+            while (c.next()) {
+                c.getAddedSubList().forEach(child -> {
+                    if (child instanceof EntityNodeWithChildren<?> nc) {
+                        entityPanel.getNodeChildren().add(nc);
+                    }
+                });
+                c.getRemoved().forEach(child -> {
+                    if (child instanceof EntityNodeWithChildren<?> nc) {
+                        entityPanel.getNodeChildren().remove(nc);
+                    }
+                });
+            }
         });
     }
 

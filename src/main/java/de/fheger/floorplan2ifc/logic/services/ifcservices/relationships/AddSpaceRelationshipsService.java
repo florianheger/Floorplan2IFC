@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.relationships;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IWall;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWall;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddSpaceRelationshipsService implements IAddRelationshipsService<IfcSpace, SpaceNode> {
+public class AddSpaceRelationshipsService implements IAddRelationshipsService<IfcSpace, ISpace> {
 
     private final FindIfcEntityService findIfcEntityService;
 
@@ -23,9 +23,9 @@ public class AddSpaceRelationshipsService implements IAddRelationshipsService<If
     }
 
     @Override
-    public void addRelationships(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
-        List<WallPanel> boundedWalls = entityNode.getEntityPanel().getBoundedWalls();
-        for (WallPanel boundedWall : boundedWalls) {
+    public void addRelationships(IfcSpace ifcEntity, ISpace iEntity) throws ParseToIfcException {
+        List<IWall> boundedWalls = iEntity.getBoundedWalls();
+        for (IWall boundedWall : boundedWalls) {
             IfcWall boundedIfcWall = findIfcEntityService.findIfcEntity(ifcEntity, boundedWall.getGlobalId(), IfcWall.class);
             IfcRelSpaceBoundary relSpaceBoundary = new IfcRelSpaceBoundary(ifcEntity, boundedIfcWall);
             ifcEntity.getBoundedBy().add(relSpaceBoundary);

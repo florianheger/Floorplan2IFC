@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.DoorNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IDoor;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.IAddAttributesService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.IAddRelationshipsService;
@@ -8,8 +8,8 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import org.springframework.stereotype.Service;
 
 @Service
-public class IfcDoorService extends IfcService<IfcDoor, DoorNode> {
-    protected IfcDoorService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcDoor, DoorNode> addAttributes, IAddRelationshipsService<IfcDoor, DoorNode> addRelationships) {
-        super(IfcDoor.class, DoorNode.class, findIfcEntityService, addAttributes, addRelationships);
+public class IfcDoorService extends IfcService<IfcDoor, IDoor> {
+    protected IfcDoorService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcDoor, IDoor> addAttributes, IAddRelationshipsService<IfcDoor, IDoor> addRelationships) {
+        super(IfcDoor.class, IDoor.class, findIfcEntityService, addAttributes, addRelationships);
     }
 }

@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.IAddAttributesService;
@@ -12,18 +12,17 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.Ifc
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType extends
-        EntityNode<?>> {
+public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityType extends IEntity> {
 
-    private final Class<NodeType> clazzNode;
+    private final Class<IEntityType> clazzNode;
     private final Class<IfcType> clazzIfc;
     private final FindIfcEntityService findIfcEntityService;
 
-    private IAddRelationshipsService<IfcType, NodeType> addRelationshipsService;
-    private IAddAttributesService<IfcType, NodeType> addAttributesService;
+    private IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService;
+    private IAddAttributesService<IfcType, IEntityType> addAttributesService;
 
-    protected IfcService(Class<IfcType> clazzIfc, Class<NodeType> clazzNode, FindIfcEntityService findIfcEntityService,
-                         IAddAttributesService<IfcType, NodeType> addAttributesService, IAddRelationshipsService<IfcType, NodeType> addRelationshipsService) {
+    protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
+                         IAddAttributesService<IfcType, IEntityType> addAttributesService, IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService) {
         this.clazzIfc = clazzIfc;
         this.clazzNode = clazzNode;
         this.findIfcEntityService = findIfcEntityService;
@@ -31,8 +30,8 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
         this.addAttributesService = addAttributesService;
     }
 
-    protected IfcService(Class<IfcType> clazzIfc, Class<NodeType> clazzNode, FindIfcEntityService findIfcEntityService,
-                         IAddAttributesService<IfcType, NodeType> addAttributesService) {
+    protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
+                         IAddAttributesService<IfcType, IEntityType> addAttributesService) {
         this.clazzIfc = clazzIfc;
         this.clazzNode = clazzNode;
         this.findIfcEntityService = findIfcEntityService;
@@ -40,8 +39,8 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
     }
 
     @SuppressWarnings("unused")
-    protected IfcService(Class<IfcType> clazzIfc, Class<NodeType> clazzNode, FindIfcEntityService findIfcEntityService,
-                         IAddRelationshipsService<IfcType, NodeType> addRelationshipsService) {
+    protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
+                         IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService) {
         this.clazzIfc = clazzIfc;
         this.clazzNode = clazzNode;
         this.findIfcEntityService = findIfcEntityService;
@@ -49,11 +48,11 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
     }
 
 
-    public void addAttributesAndRelationships(IfcProject ifcProject, de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode projectNode)
+    public void addAttributesAndRelationships(IfcProject ifcProject, IProject iProject)
             throws ParseToIfcException {
-        List<NodeType> nodes = getNodesOfNodeType(projectNode);
-        for (NodeType node : nodes) {
-            IfcType ifcEntity = findIfcEntityService.findIfcEntity(ifcProject, node.getEntityPanel().getGlobalId(), clazzIfc);
+        List<IEntityType> nodes = getNodesOfNodeType(iProject);
+        for (IEntityType node : nodes) {
+            IfcType ifcEntity = findIfcEntityService.findIfcEntity(ifcProject, node.getGlobalId(), clazzIfc);
             if (addAttributesService != null) {
                 addAttributesService.addAttributes(ifcEntity, node);
             }
@@ -63,16 +62,16 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, NodeType e
         }
     }
 
-    protected List<NodeType> getNodesOfNodeType(EntityNode<?> entityNode) {
-        List<NodeType> nodes = new ArrayList<>();
-        if (clazzNode.isInstance(entityNode)) {
-            nodes.add(clazzNode.cast(entityNode));
+    protected List<IEntityType> getNodesOfNodeType(IEntity entity) {
+        List<IEntityType> nodes = new ArrayList<>();
+        if (clazzNode.isInstance(entity)) {
+            nodes.add(clazzNode.cast(entity));
         }
-        if (!(entityNode instanceof EntityNodeWithChildren<?> entityNodeWithChilds)) {
+        if (!entity.hasChildren()) {
             return nodes;
         }
-        for (EntityNode<?> entityNodeChild : entityNodeWithChilds.getEntityNodeChildren()) {
-            nodes.addAll(getNodesOfNodeType(entityNodeChild)); // stimmt das?
+        for (IEntity child : entity.getIEntityChildren()) {
+            nodes.addAll(getNodesOfNodeType(child));
         }
         return nodes;
     }

@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.WallNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IWall;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.IAddAttributesService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.IAddRelationshipsService;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IfcWallService extends IfcService<IfcWall, WallNode> {
+public class IfcWallService extends IfcService<IfcWall, IWall> {
 
     @Autowired
-    protected IfcWallService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcWall, WallNode> addAttributes, IAddRelationshipsService<IfcWall, WallNode> addRelationships) {
-        super(IfcWall.class, WallNode.class, findIfcEntityService, addAttributes, addRelationships);
+    protected IfcWallService(FindIfcEntityService findIfcEntityService, IAddAttributesService<IfcWall, IWall> addAttributes, IAddRelationshipsService<IfcWall, IWall> addRelationships) {
+        super(IfcWall.class, IWall.class, findIfcEntityService, addAttributes, addRelationships);
     }
 }

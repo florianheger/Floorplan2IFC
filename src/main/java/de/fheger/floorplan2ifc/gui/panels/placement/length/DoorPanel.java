@@ -2,9 +2,11 @@ package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.entityinterfaces.IDoor;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.panels.placement.SpacePanel;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class DoorPanel extends EntityPanelWithLength implements IDoor {
     }
 
     @Override
-    public List<SpacePanel> getConnectedSpaces() {
-        return connectedPanels.getSelectedPanels();
+    public List<ISpace> getConnectedSpaces() {
+        return new ArrayList<>(connectedPanels.getSelectedPanels());
     }
 }

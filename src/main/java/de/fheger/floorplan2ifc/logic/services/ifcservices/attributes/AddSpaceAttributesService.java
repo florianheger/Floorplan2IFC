@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.attributes;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.SpaceNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.IfcPropertySet;
@@ -16,19 +16,19 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class AddSpaceAttributesService implements IAddAttributesService<IfcSpace, SpaceNode> {
+public class AddSpaceAttributesService implements IAddAttributesService<IfcSpace, ISpace> {
     @Override
-    public void addAttributes(IfcSpace ifcEntity, SpaceNode entityNode) throws ParseToIfcException {
+    public void addAttributes(IfcSpace ifcEntity, ISpace entityNode) throws ParseToIfcException {
         addFloorArea(ifcEntity, entityNode);
         addFloorAreaDin(ifcEntity, entityNode);
     }
 
-    private void addFloorAreaDin(IfcSpace ifcEntity, SpaceNode entityNode) {
-        if (entityNode.getEntityPanel().getFloorAreaDin() == null) {
+    private void addFloorAreaDin(IfcSpace ifcEntity, ISpace iEntity) {
+        if (iEntity.getFloorAreaDin() == null) {
             return;
         }
 
-        String nuf = entityNode.getEntityPanel().getFloorAreaDin();
+        String nuf = iEntity.getFloorAreaDin();
         IfcLabel nufLabel = new IfcLabel(nuf);
         IfcPropertySingleValue nufPSV = new IfcPropertySingleValue(nufLabel);
         IfcPropertySet nufSet = new IfcPropertySet(new HashSet<>(List.of(nufPSV)));
@@ -36,8 +36,8 @@ public class AddSpaceAttributesService implements IAddAttributesService<IfcSpace
         ifcEntity.getIsDefinedBy().add(relNufProperty);
     }
 
-    private void addFloorArea(IfcSpace ifcEntity, SpaceNode entityNode) {
-        double floorArea = entityNode.getEntityPanel().getFloorArea();
+    private void addFloorArea(IfcSpace ifcEntity, ISpace iEntity) {
+        double floorArea = iEntity.getFloorArea();
         IfcQuantityArea floorAreaQ = new IfcQuantityArea("NetFloorArea", floorArea, "mm^2");
         IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Collections.singleton(floorAreaQ)));
         IfcRelDefinesByProperties relWallQuantities = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcEntity)), wallBasedQuantities);

@@ -1,8 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
-import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import org.springframework.stereotype.Service;
 
@@ -14,21 +13,21 @@ import java.util.Set;
 @Service
 public class UniqueIdService implements IRuleViolationService {
     @Override
-    public void checkRuleViolation(ProjectNode projectNode) throws IfcRuleViolationException {
-        List<String> globalIds = getGlobalIdsRecursive(projectNode);
+    public void checkRuleViolation(IProject project) throws IfcRuleViolationException {
+        List<String> globalIds = getGlobalIdsRecursive(project);
         Set<String> globalIdsSet = new HashSet<>(globalIds);
         if (globalIds.size() != globalIdsSet.size()) {
             throw new IfcRuleViolationException("Not all GlobalIds are distinct.");
         }
     }
 
-    private List<String> getGlobalIdsRecursive(EntityNode<?> entityNode) {
+    private List<String> getGlobalIdsRecursive(IEntity entity) {
         List<String> globalIds = new ArrayList<>();
-        globalIds.add(entityNode.getEntityPanel().getGlobalId());
-        if (!(entityNode instanceof EntityNodeWithChildren<?> entityNodeWithChildren)) {
+        globalIds.add(entity.getGlobalId());
+        if (!entity.hasChildren()) {
             return globalIds;
         }
-        entityNodeWithChildren.getEntityNodeChildren().forEach(
+        entity.getIEntityChildren().forEach(
                 child -> globalIds.addAll(getGlobalIdsRecursive(child))
         );
         return globalIds;

@@ -1,9 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
-import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,20 +9,20 @@ import java.util.List;
 
 @Service
 public class GetAllIEntityPanelsOfType {
-    public <PanelType extends EntityPanel> List<PanelType> getIfcEntityOfType(Class<PanelType> clazz, ProjectNode projectNode) {
-        return getIfcEntityOfTypeRecursive(clazz, projectNode);
+    public <IEntityType extends IEntity> List<IEntityType> getIfcEntityOfType(Class<IEntityType> clazz, IProject project) {
+        return getIfcEntityOfTypeRecursive(clazz, project);
     }
 
-    private <PanelType extends EntityPanel> List<PanelType> getIfcEntityOfTypeRecursive(Class<PanelType> clazz, EntityNode<?> entityNode) {
-        List<PanelType> panels = new ArrayList<>();
-        if (clazz.isInstance(entityNode.getEntityPanel())) {
-            panels.add(clazz.cast(entityNode.getEntityPanel()));
+    private <IEntityType extends IEntity> List<IEntityType> getIfcEntityOfTypeRecursive(Class<IEntityType> clazz, IEntity entity) {
+        List<IEntityType> iEntities = new ArrayList<>();
+        if (clazz.isInstance(entity)) {
+            iEntities.add(clazz.cast(entity));
         }
-        if (entityNode instanceof EntityNodeWithChildren<?> entityNodeWithChildren) {
-            entityNodeWithChildren.getEntityNodeChildren().forEach(
-                    child -> panels.addAll(getIfcEntityOfTypeRecursive(clazz, child))
+        if (entity.hasChildren()) {
+            entity.getIEntityChildren().forEach(
+                    child -> iEntities.addAll(getIfcEntityOfTypeRecursive(clazz, child))
             );
         }
-        return panels;
+        return iEntities;
     }
 }

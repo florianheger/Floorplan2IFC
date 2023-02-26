@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
@@ -29,25 +29,25 @@ public class CreateIfcEntitiesService {
         this.createIfcEntityWithRootAttributes = createIfcEntityWithRootAttributesService;
     }
 
-    public IfcProject createIfcEntitiesService(de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode projectNode)
+    public IfcProject createIfcEntitiesService(IProject iProject)
             throws ParseToIfcException {
-        IfcProject ifcProject = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributesTypeSave(projectNode.getEntityPanel(), IfcProject.class);
-        List<EntityNode<?>> children = projectNode.getEntityNodeChildren();
-        for (EntityNode<?> child : children) {
+        IfcProject ifcProject = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributesTypeSave(iProject, IfcProject.class);
+        List<IEntity> children = iProject.getIEntityChildren();
+        for (IEntity child : children) {
             addIfcEntitiesRecursive(ifcProject, child);
         }
         return ifcProject;
     }
 
-    private void addIfcEntitiesRecursive(IfcObjectDefinition parent, EntityNode<?> child)
+    private void addIfcEntitiesRecursive(IfcObjectDefinition parent, IEntity child)
             throws ParseToIfcException {
-        IfcObjectDefinition ifcChild = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributes(child.getEntityPanel());
+        IfcObjectDefinition ifcChild = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributes(child);
         addRelAggregatesOrOpeningElement(parent, ifcChild);
-        if (!(child instanceof EntityNodeWithChildren<?> childWithChildren)) {
+        if (!child.hasChildren()) {
             return;
         }
-        List<EntityNode<?>> childrenOfChild = childWithChildren.getEntityNodeChildren();
-        for (EntityNode<?> childOfChild : childrenOfChild) {
+        List<IEntity> childrenOfChild = child.getIEntityChildren();
+        for (IEntity childOfChild : childrenOfChild) {
             addIfcEntitiesRecursive(ifcChild, childOfChild);
         }
     }

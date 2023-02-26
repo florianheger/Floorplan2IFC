@@ -8,6 +8,7 @@ import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,16 +51,19 @@ public class WallPanel extends EntityPanelWithLength implements IWall {
     public double getWallWidth() {
         return width.getValue();
     }
+
     @Override
     public boolean isExternal() {
         return isExternal.isTrue();
     }
+
     @Override
     public boolean isBearing() {
         return isBearing.isTrue();
     }
+
     @Override
-    public List<WallPanel> getInterferenceWalls() {
-        return interferences.getSelectedPanels();
+    public List<IWall> getInterferenceWalls() {
+        return new ArrayList<>(interferences.getSelectedPanels());
     }
 }

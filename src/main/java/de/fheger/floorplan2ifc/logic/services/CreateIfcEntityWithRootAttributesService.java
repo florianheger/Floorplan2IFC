@@ -1,11 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
-import de.fheger.floorplan2ifc.gui.panels.ProjectPanel;
-import de.fheger.floorplan2ifc.gui.panels.placement.*;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.DoorPanel;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.WindowPanel;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.*;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
@@ -20,9 +15,6 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Service
 public class CreateIfcEntityWithRootAttributesService {
 
@@ -33,55 +25,93 @@ public class CreateIfcEntityWithRootAttributesService {
         this.addPlacementService = addPlacementService;
     }
 
-    public IfcObjectDefinition createIfcEntityWithRootAttributes(EntityPanel entityPanel)
+    public IfcObjectDefinition createIfcEntityWithRootAttributes(IEntity iEntity)
             throws ParseToIfcException {
-        IfcObjectDefinition ifcEntity = createIfcEntity(entityPanel);
-        addRootAttributes(ifcEntity, entityPanel);
+        IfcObjectDefinition ifcEntity = createIfcEntity(iEntity);
+        addRootAttributes(ifcEntity, iEntity);
 
-        if (entityPanel instanceof EntityPanelWithPlacement entityPanelWithPlacement) {
-            addPlacementService.addPlacement((IfcProduct) ifcEntity, entityPanelWithPlacement);
+        if (iEntity instanceof IPlacement iPlacement) {
+            addPlacementService.addPlacement((IfcProduct) ifcEntity, iPlacement);
         }
         return ifcEntity;
     }
 
-    public <IfcType extends IfcObjectDefinition> IfcType createIfcEntityWithRootAttributesTypeSave(EntityPanel entityPanel, Class<IfcType> clazz)
+    public <IfcType extends IfcObjectDefinition> IfcType createIfcEntityWithRootAttributesTypeSave(IEntity entity, Class<IfcType> clazz)
             throws ParseToIfcException {
-        IfcObjectDefinition ifcObject = createIfcEntityWithRootAttributes(entityPanel);
+        IfcObjectDefinition ifcObject = createIfcEntityWithRootAttributes(entity);
         if (!clazz.isInstance(ifcObject)) {
             throw new ParseToIfcException("Internal Error in creation of type " + clazz.getSimpleName() + ".");
         }
         return clazz.cast(ifcObject);
     }
 
-    private void addRootAttributes(IfcRoot ifcEntity, EntityPanel entityPanel) {
-        String globalId = entityPanel.getGlobalId();
-        String name = entityPanel.getName();
-        String description = entityPanel.getDescription();
+    private void addRootAttributes(IfcRoot ifcEntity, IEntity iEntity) {
+        String globalId = iEntity.getGlobalId();
+        String name = iEntity.getName();
+        String description = iEntity.getDescription();
 
         ifcEntity.setGlobalId(globalId);
         ifcEntity.setName(name);
         ifcEntity.setDescription(description);
     }
 
-    private IfcObjectDefinition createIfcEntity(EntityPanel entityPanel)
+    private IfcObjectDefinition createIfcEntity(IEntity iEntity)
             throws ParseToIfcException {
-        Map<Class<? extends EntityPanel>, Class<? extends IfcObjectDefinition>> ifcElements = new HashMap<>();
-        ifcElements.put(ProjectPanel.class, IfcProject.class);
-        ifcElements.put(SitePanel.class, IfcSite.class);
-        ifcElements.put(BuildingPanel.class, IfcBuilding.class);
-        ifcElements.put(BuildingStoreyPanel.class, IfcBuildingStorey.class);
-        ifcElements.put(WallPanel.class, IfcWall.class);
-        ifcElements.put(WindowPanel.class, IfcWindow.class);
-        ifcElements.put(DoorPanel.class, IfcDoor.class);
-        ifcElements.put(SpacePanel.class, IfcSpace.class);
-        ifcElements.put(SanitaryTerminalPanel.class, IfcSanitaryTerminal.class);
-        ifcElements.put(ChimneyPanel.class, IfcChimney.class);
-        ifcElements.put(StairPanel.class, IfcStair.class);
-        ifcElements.put(SlabPanel.class, IfcSlab.class);
-        try {
-            return ifcElements.get(entityPanel.getClass()).getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new ParseToIfcException("Node " + entityPanel.getClass().getSimpleName() + " has no matching IFC Type.");
+        if (iEntity instanceof IProject) {
+            return new IfcProject();
         }
+        if (iEntity instanceof ISite) {
+            return new IfcSite();
+        }
+        if (iEntity instanceof IBuilding) {
+            return new IfcBuilding();
+        }
+        if (iEntity instanceof IBuildingStorey) {
+            return new IfcBuildingStorey();
+        }
+        if (iEntity instanceof IWall) {
+            return new IfcWall();
+        }
+        if (iEntity instanceof IDoor) {
+            return new IfcDoor();
+        }
+        if (iEntity instanceof ISpace) {
+            return new IfcSpace();
+        }
+        if (iEntity instanceof ISanitaryTerminal) {
+            return new IfcSanitaryTerminal();
+        }
+        if (iEntity instanceof IChimney) {
+            return new IfcChimney();
+        }
+        if (iEntity instanceof IStair) {
+            return new IfcStair();
+        }
+        if (iEntity instanceof ISlab) {
+            return new IfcSlab();
+        }
+        throw new ParseToIfcException("Node " + iEntity.getClass().getSimpleName() + " has no matching IFC Type.");
     }
+
+//    private IfcObjectDefinition createIfcEntity(IEntity iEntity)
+//            throws ParseToIfcException {
+//        Map<Class<? extends IEntity>, Class<? extends IfcObjectDefinition>> ifcElements = new HashMap<>();
+//        ifcElements.put(IProject.class, IfcProject.class);
+//        ifcElements.put(ISite.class, IfcSite.class);
+//        ifcElements.put(IBuilding.class, IfcBuilding.class);
+//        ifcElements.put(IBuildingStorey.class, IfcBuildingStorey.class);
+//        ifcElements.put(IWall.class, IfcWall.class);
+//        ifcElements.put(IWindow.class, IfcWindow.class);
+//        ifcElements.put(IDoor.class, IfcDoor.class);
+//        ifcElements.put(ISpace.class, IfcSpace.class);
+//        ifcElements.put(ISanitaryTerminal.class, IfcSanitaryTerminal.class);
+//        ifcElements.put(IChimney.class, IfcChimney.class);
+//        ifcElements.put(IStair.class, IfcStair.class);
+//        ifcElements.put(ISlab.class, IfcSlab.class);
+//        try {
+//            return ifcElements.get(iEntity.getClass()).getDeclaredConstructor().newInstance();
+//        } catch (Exception e) {
+//            throw new ParseToIfcException("Node " + iEntity.getClass().getSimpleName() + " has no matching IFC Type.");
+//        }
+//    }
 }

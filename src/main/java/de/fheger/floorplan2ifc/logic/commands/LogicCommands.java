@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.commands;
 
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.exceptions.SaveToDatabaseException;
@@ -25,25 +25,25 @@ public class LogicCommands {
         this.ruleViolationsService = ruleViolationsService;
     }
 
-    private IfcProject parseToIfc(ProjectNode projectNode)
+    private IfcProject parseToIfc(IProject project)
             throws ParseToIfcException {
-        return parseToIfcService.parseProject(projectNode);
+        return parseToIfcService.parseProject(project);
     }
 
-    public void checkIfProjectIsParsable(ProjectNode projectNode)
+    public void checkIfProjectIsParsable(IProject project)
             throws ParseToIfcException {
-        parseToIfc(projectNode);
+        parseToIfc(project);
     }
 
-    public void checkRuleViolations(ProjectNode projectNode)
+    public void checkRuleViolations(IProject project)
             throws IfcRuleViolationException {
-        ruleViolationsService.checkRuleViolation(projectNode);
+        ruleViolationsService.checkRuleViolation(project);
     }
 
-    public void saveToGraphDatabase(ProjectNode projectNode)
+    public void saveToGraphDatabase(IProject project)
             throws IfcRuleViolationException, ParseToIfcException, SaveToDatabaseException {
-        checkRuleViolations(projectNode);
-        IfcProject ifcProject = parseToIfc(projectNode);
+        checkRuleViolations(project);
+        IfcProject ifcProject = parseToIfc(project);
         saveToGraphDatabaseService.save(ifcProject);
     }
 }

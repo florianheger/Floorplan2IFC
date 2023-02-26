@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.ProjectNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.*;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
@@ -31,12 +31,12 @@ public class ParseToIfcService {
         ifcServices.add(ifcWindowService);
     }
 
-    public IfcProject parseProject(ProjectNode projectNode)
+    public IfcProject parseProject(IProject project)
             throws ParseToIfcException {
-        IfcProject ifcProject = createIfcEntitiesService.createIfcEntitiesService(projectNode);
+        IfcProject ifcProject = createIfcEntitiesService.createIfcEntitiesService(project);
 
         for (IfcService<?, ?> ifcService : ifcServices) {
-            ifcService.addAttributesAndRelationships(ifcProject, projectNode);
+            ifcService.addAttributesAndRelationships(ifcProject, project);
         }
 
         return ifcProject;

@@ -1,13 +1,13 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices.attributes;
 
-import de.fheger.floorplan2ifc.gui.nodes.WindowNode;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IWindow;
 import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.IfcWindow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddWindowAttributesService implements IAddAttributesService<IfcWindow, WindowNode> {
+public class AddWindowAttributesService implements IAddAttributesService<IfcWindow, IWindow> {
 
     private final AddLengthToOpeningElement addLengthToOpeningElement;
 
@@ -17,7 +17,7 @@ public class AddWindowAttributesService implements IAddAttributesService<IfcWind
     }
 
     @Override
-    public void addAttributes(IfcWindow ifcEntity, WindowNode entityNode) throws ParseToIfcException {
-        addLengthToOpeningElement.addLengthToOpeningElement(entityNode.getEntityPanel().getEntityLength(), ifcEntity);
+    public void addAttributes(IfcWindow ifcEntity, IWindow iEntity) throws ParseToIfcException {
+        addLengthToOpeningElement.addLengthToOpeningElement(iEntity.getEntityLength(), ifcEntity);
     }
 }

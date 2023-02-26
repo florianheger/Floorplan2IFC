@@ -2,6 +2,7 @@ package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
+import de.fheger.floorplan2ifc.gui.entityinterfaces.IWall;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
@@ -9,6 +10,7 @@ import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -49,8 +51,8 @@ public class SpacePanel extends EntityPanelWithPlacement implements ISpace {
         return floorArea.getValue();
     }
     @Override
-    public List<WallPanel> getBoundedWalls() {
-        return boundedWalls.getSelectedPanels();
+    public List<IWall> getBoundedWalls() {
+        return new ArrayList<>(boundedWalls.getSelectedPanels());
     }
     @Override
     public String getFloorAreaDin() {
