@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.ILength;
+import de.fheger.floorplan2ifc.interfaces.ILength;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
 import de.fheger.floorplan2ifc.gui.panels.placement.EntityPanelWithPlacement;
 

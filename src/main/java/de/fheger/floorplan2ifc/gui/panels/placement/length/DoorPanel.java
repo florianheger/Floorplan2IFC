@@ -1,8 +1,8 @@
 package de.fheger.floorplan2ifc.gui.panels.placement.length;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IDoor;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.ISpace;
+import de.fheger.floorplan2ifc.interfaces.IDoor;
+import de.fheger.floorplan2ifc.interfaces.ISpace;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.panels.placement.SpacePanel;
 

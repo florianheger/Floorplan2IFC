@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IDoor;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
+import de.fheger.floorplan2ifc.interfaces.IDoor;
+import de.fheger.floorplan2ifc.interfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 import de.fheger.floorplan2ifc.logic.services.GetAllIEntityPanelsOfType;
 import org.springframework.beans.factory.annotation.Autowired;

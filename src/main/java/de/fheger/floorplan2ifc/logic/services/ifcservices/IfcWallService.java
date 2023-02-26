@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ifcservices;
 
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IWall;
+import de.fheger.floorplan2ifc.interfaces.IWall;
 import de.fheger.floorplan2ifc.logic.services.FindIfcEntityService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.attributes.IAddAttributesService;
 import de.fheger.floorplan2ifc.logic.services.ifcservices.relationships.IAddRelationshipsService;

@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.gui.panels.placement;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.ISanitaryTerminal;
+import de.fheger.floorplan2ifc.interfaces.ISanitaryTerminal;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
 public class SanitaryTerminalPanel extends EntityPanelWithPlacement implements ISanitaryTerminal {

@@ -1,7 +1,7 @@
 package de.fheger.floorplan2ifc.logic.services;
 
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
+import de.fheger.floorplan2ifc.interfaces.IEntity;
+import de.fheger.floorplan2ifc.interfaces.IProject;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

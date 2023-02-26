@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.logic.services.ruleviolations;
 
-import de.fheger.floorplan2ifc.gui.entityinterfaces.IProject;
+import de.fheger.floorplan2ifc.interfaces.IProject;
 import de.fheger.floorplan2ifc.logic.exceptions.IfcRuleViolationException;
 
 public interface IRuleViolationService {

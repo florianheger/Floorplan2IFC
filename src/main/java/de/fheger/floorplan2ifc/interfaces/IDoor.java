@@ -1,4 +1,4 @@
-package de.fheger.floorplan2ifc.gui.entityinterfaces;
+package de.fheger.floorplan2ifc.interfaces;
 
 import java.util.List;
 
