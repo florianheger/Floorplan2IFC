@@ -2,6 +2,7 @@ package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.gui.entityinterfaces.IEntity;
+import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
@@ -9,28 +10,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import lombok.Getter;
 import nl.tue.isbe.ifcspftools.GuidHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class EntityPanel extends BorderPane implements IEntity {
     protected final GridPane gridPane;
 
     protected int rowsInEntityPanel = 0;
 
+    @Getter
+    private final List<EntityNodeWithChildren<?>> nodeChildren = new ArrayList<>();
+
     private final TextField nameField = UiFactory.createStandardTextField();
     private final TextField globalIdField = UiFactory.createStandardTextField();
     private final TextArea descriptionField = UiFactory.createStandardTextArea();
-
-    public String getName() {
-        return nameField.getText();
-    }
-
-    public String getGlobalId() {
-        return globalIdField.getText();
-    }
-
-    public String getDescription() {
-        return descriptionField.getText();
-    }
 
     public EntityPanel(String defaultName) {
         super(new ScrollPane());
@@ -63,7 +59,8 @@ public abstract class EntityPanel extends BorderPane implements IEntity {
         gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowsInEntityPanel, 2, 1);
     }
 
-    public void remove() {}
+    public void remove() {
+    }
 
     @Override
     public String toString() {
@@ -76,5 +73,32 @@ public abstract class EntityPanel extends BorderPane implements IEntity {
 
     public interface OnNameChanged {
         void changeName(String s);
+    }
+
+    @Override
+    public String getName() {
+        return nameField.getText();
+    }
+
+    @Override
+    public String getGlobalId() {
+        return globalIdField.getText();
+    }
+
+    @Override
+    public String getDescription() {
+        return descriptionField.getText();
+    }
+
+    @Override
+    public boolean hasChildren() {
+        return getIEntityChildren() != null && getIEntityChildren().size() != 0;
+    }
+
+    @Override
+    public List<IEntity> getIEntityChildren() {
+        List<IEntity> iEntityChildren = new ArrayList<>();
+        nodeChildren.forEach(c -> iEntityChildren.add(c.getEntityPanel()));
+        return iEntityChildren;
     }
 }
