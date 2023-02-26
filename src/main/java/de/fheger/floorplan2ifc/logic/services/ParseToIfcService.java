@@ -33,7 +33,7 @@ public class ParseToIfcService {
 
     public IfcProject parseProject(IProject project)
             throws ParseToIfcException {
-        IfcProject ifcProject = createIfcEntitiesService.createIfcEntitiesService(project);
+        IfcProject ifcProject = createIfcEntitiesService.createIfcEntities(project);
 
         for (IfcService<?, ?> ifcService : ifcServices) {
             ifcService.addAttributesAndRelationships(ifcProject, project);

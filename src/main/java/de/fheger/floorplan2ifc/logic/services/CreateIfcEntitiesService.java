@@ -29,7 +29,7 @@ public class CreateIfcEntitiesService {
         this.createIfcEntityWithRootAttributes = createIfcEntityWithRootAttributesService;
     }
 
-    public IfcProject createIfcEntitiesService(IProject iProject)
+    public IfcProject createIfcEntities(IProject iProject)
             throws ParseToIfcException {
         IfcProject ifcProject = createIfcEntityWithRootAttributes.createIfcEntityWithRootAttributesTypeSave(iProject, IfcProject.class);
         List<IEntity> children = iProject.getIEntityChildren();
