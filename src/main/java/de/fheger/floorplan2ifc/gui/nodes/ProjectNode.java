@@ -1,10 +1,10 @@
-package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes;
 
 import de.fheger.floorplan2ifc.gui.panels.ProjectPanel;
 
 import java.util.Collections;
 
-public class ProjectNode extends EntityNodeWithChildren<ProjectPanel> {
+public class ProjectNode extends de.fheger.floorplan2ifc.gui.nodes.EntityNode<ProjectPanel> {
 
     private static ProjectNode currentProject;
 

@@ -1,8 +1,8 @@
 package de.fheger.floorplan2ifc.gui.panels;
 
 import de.fheger.floorplan2ifc.gui.UiFactory;
+import de.fheger.floorplan2ifc.gui.nodes.EntityNode;
 import de.fheger.floorplan2ifc.interfaces.IEntity;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.EntityNodeWithChildren;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ScrollPane;
@@ -22,7 +22,7 @@ public abstract class EntityPanel extends BorderPane implements IEntity {
     protected int rowsInEntityPanel = 0;
 
     @Getter
-    private final List<EntityNodeWithChildren<?>> nodeChildren = new ArrayList<>();
+    private final List<EntityNode<?>> nodeChildren = new ArrayList<>();
 
     private final TextField nameField = UiFactory.createStandardTextField();
     private final TextField globalIdField = UiFactory.createStandardTextField();

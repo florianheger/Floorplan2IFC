@@ -1,10 +1,10 @@
-package de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds;
+package de.fheger.floorplan2ifc.gui.nodes;
 
 import de.fheger.floorplan2ifc.gui.panels.placement.BuildingPanel;
 
 import java.util.Collections;
 
-public class BuildingNode extends EntityNodeWithChildren<BuildingPanel> {
+public class BuildingNode extends EntityNode<BuildingPanel> {
 
 
     public BuildingNode() {

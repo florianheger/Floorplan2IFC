@@ -2,7 +2,10 @@ package de.fheger.floorplan2ifc.gui;
 
 import de.fheger.floorplan2ifc.Floorplan2IfcApplication;
 import de.fheger.floorplan2ifc.gui.menubar.MenuBar;
-import de.fheger.floorplan2ifc.gui.nodes.entitynodeswithchilds.*;
+import de.fheger.floorplan2ifc.gui.nodes.BuildingNode;
+import de.fheger.floorplan2ifc.gui.nodes.BuildingStoreyNode;
+import de.fheger.floorplan2ifc.gui.nodes.ProjectNode;
+import de.fheger.floorplan2ifc.gui.nodes.SiteNode;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
