@@ -14,7 +14,7 @@ public class DoorPanel extends DimensionPanel implements IDoor {
     private final EntityMultiSelect<SpacePanel> connectedPanels = new EntityMultiSelect<>(Collections.singletonList(SpacePanel.getSpaces()));
 
     public DoorPanel() {
-        super("Door", 0, 200);
+        super("Door", 0, 213.5);
 
         gridPane.add(UiFactory.createStandardLabel("Connects Spaces"), 0, ++rowsInEntityPanel);
         gridPane.add(connectedPanels, 1, rowsInEntityPanel);
