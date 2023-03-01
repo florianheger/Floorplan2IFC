@@ -23,7 +23,7 @@ public class WallPanel extends DimensionPanel implements IWall {
     private final EntityMultiSelect<WallPanel> interferences = new EntityMultiSelect<>(Collections.singletonList(walls));
 
     public WallPanel() {
-        super("Wall", 0, 220);
+        super("Wall", 0, 240);
         walls.add(this);
 
         gridPane.add(UiFactory.createStandardLabel("Is External?"), 0, ++rowsInEntityPanel);
