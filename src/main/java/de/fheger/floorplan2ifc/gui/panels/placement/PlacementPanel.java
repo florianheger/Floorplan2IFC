@@ -5,11 +5,11 @@ import de.fheger.floorplan2ifc.interfaces.IPlacement;
 import de.fheger.floorplan2ifc.gui.inputs.ThreeNumbersField;
 import de.fheger.floorplan2ifc.gui.panels.EntityPanel;
 
-public abstract class EntityPanelWithPlacement extends EntityPanel implements IPlacement {
+public abstract class PlacementPanel extends EntityPanel implements IPlacement {
 
     private final ThreeNumbersField positionField = UiFactory.createStandardThreeNumbersField();
 
-    public EntityPanelWithPlacement(String defaultName, double defaultPositionY) {
+    public PlacementPanel(String defaultName, double defaultPositionY) {
         super(defaultName);
 
         positionField.setDefaultValue2(defaultPositionY);

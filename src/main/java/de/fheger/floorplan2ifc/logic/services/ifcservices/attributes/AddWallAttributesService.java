@@ -20,10 +20,10 @@ public class AddWallAttributesService implements IAddAttributesService<IfcWall, 
     @Override
     public void addAttributes(IfcWall ifcWall, IWall iWall) {
         addQuantities(ifcWall, iWall);
-        addPropertySets(ifcWall, iWall);
+        addProperties(ifcWall, iWall);
     }
 
-    private void addPropertySets(IfcWall ifcWall, IWall iWall) {
+    private void addProperties(IfcWall ifcWall, IWall iWall) {
         boolean isExternal = iWall.isExternal();
         boolean isBearing = iWall.isBearing();
         IfcBoolean isExternalB = new IfcBoolean(isExternal);
@@ -36,11 +36,13 @@ public class AddWallAttributesService implements IAddAttributesService<IfcWall, 
     }
 
     private void addQuantities(IfcWall ifcWall, IWall iWall) {
-        double length = iWall.getEntityLength();
-        double width = iWall.getWallWidth();
-        IfcQuantityLength qLength = new IfcQuantityLength("Length", length, "mm");
-        IfcQuantityLength qWidth = new IfcQuantityLength("Width", width, "mm");
-        IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Arrays.asList(qLength, qWidth)));
+        double length = iWall.getDimensionLength();
+        double width = iWall.getDimensionWidth();
+        double height = iWall.getDimensionHeight();
+        IfcQuantityLength qLength = new IfcQuantityLength("Length", length, "cm");
+        IfcQuantityLength qWidth = new IfcQuantityLength("Width", width, "cm");
+        IfcQuantityLength qHeight = new IfcQuantityLength("Height", height, "cm");
+        IfcElementQuantity wallBasedQuantities = new IfcElementQuantity(new HashSet<>(Arrays.asList(qLength, qWidth, qHeight)));
         IfcRelDefinesByProperties relWallQuantities = new IfcRelDefinesByProperties(new HashSet<>(Collections.singleton(ifcWall)), wallBasedQuantities);
         ifcWall.getIsDefinedBy().add(relWallQuantities);
         wallBasedQuantities.setDefinesOccurrence(relWallQuantities);

@@ -6,7 +6,7 @@ import de.fheger.floorplan2ifc.interfaces.IWall;
 import de.fheger.floorplan2ifc.gui.inputs.EntityMultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 import de.fheger.floorplan2ifc.gui.inputs.NumberField;
-import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.dimension.WallPanel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SpacePanel extends EntityPanelWithPlacement implements ISpace {
+public class SpacePanel extends PlacementPanel implements ISpace {
 
     private static final ObservableList<SpacePanel> spaces = FXCollections.observableArrayList();
 

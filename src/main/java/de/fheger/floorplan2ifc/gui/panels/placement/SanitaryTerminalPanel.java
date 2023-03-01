@@ -4,7 +4,7 @@ import de.fheger.floorplan2ifc.gui.UiFactory;
 import de.fheger.floorplan2ifc.interfaces.ISanitaryTerminal;
 import de.fheger.floorplan2ifc.gui.inputs.MultiSelect;
 
-public class SanitaryTerminalPanel extends EntityPanelWithPlacement implements ISanitaryTerminal {
+public class SanitaryTerminalPanel extends PlacementPanel implements ISanitaryTerminal {
 
     private final MultiSelect typeSelect = new MultiSelect();
 

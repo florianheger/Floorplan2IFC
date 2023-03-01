@@ -75,6 +75,9 @@ public class CreateIfcEntityWithRootAttributesService {
         if (iEntity instanceof IDoor) {
             return new IfcDoor();
         }
+        if (iEntity instanceof IWindow) {
+            return new IfcWindow();
+        }
         if (iEntity instanceof ISpace) {
             return new IfcSpace();
         }
