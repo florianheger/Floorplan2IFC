@@ -93,6 +93,9 @@ public class CreateIfcEntityWithRootAttributesService {
         if (iEntity instanceof ISlab) {
             return new IfcSlab();
         }
+        if (iEntity instanceof INewObject) {
+            return new IfcNewObject();
+        }
         throw new ParseToIfcException("Node " + iEntity.getClass().getSimpleName() + " has no matching IFC Type.");
     }
 
