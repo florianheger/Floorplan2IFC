@@ -22,13 +22,15 @@ public class ParseToIfcService {
                              IfcSpaceService ifcSpaceService,
                              IfcSanitaryTerminalService ifcSanitaryTerminalService,
                              IfcDoorService ifcDoorService,
-                             IfcWindowService ifcWindowService) {
+                             IfcWindowService ifcWindowService,
+                             IfcNewObjectService ifcNewObjectService) {
         this.createIfcEntitiesService = createIfcEntitiesService;
         ifcServices.add(ifcWallService);
         ifcServices.add(ifcSpaceService);
         ifcServices.add(ifcSanitaryTerminalService);
         ifcServices.add(ifcDoorService);
         ifcServices.add(ifcWindowService);
+        ifcServices.add(ifcNewObjectService);
     }
 
     public IfcProject parseProject(IProject project)
