@@ -8,6 +8,6 @@ public class WallNode extends de.fheger.floorplan2ifc.gui.nodes.EntityNode<WallP
 
 
     public WallNode() {
-        super(new WallPanel(), Arrays.asList(DoorNode.class, WindowNode.class), "Wall.png");
+        super(new WallPanel(), Arrays.asList(DoorNode.class, WindowNode.class, NewObjectNode.class), "Wall.png");
     }
 }
