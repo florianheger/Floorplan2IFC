@@ -1,4 +1,4 @@
 package de.fheger.floorplan2ifc.interfaces;
 
-public interface INewObject {
+public interface INewObject extends IPlacement {
 }
