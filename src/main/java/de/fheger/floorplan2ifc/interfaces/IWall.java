@@ -8,4 +8,6 @@ public interface IWall extends IDimension {
     boolean isBearing();
 
     List<IWall> getInterferenceWalls();
+
+    double getRotation();
 }
