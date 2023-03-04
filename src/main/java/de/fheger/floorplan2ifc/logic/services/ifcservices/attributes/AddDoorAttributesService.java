@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddDoorAttributesService implements IAddAttributesService<IfcDoor, IDoor> {
 
-    private final AddLengthToOpeningElement addLengthToOpeningElement;
+    private final AddDimensionsToOpeningElement addLengthToOpeningElement;
 
     @Autowired
-    public AddDoorAttributesService(AddLengthToOpeningElement addLengthToOpeningElement) {
+    public AddDoorAttributesService(AddDimensionsToOpeningElement addLengthToOpeningElement) {
         this.addLengthToOpeningElement = addLengthToOpeningElement;
     }
 
     @Override
     public void addAttributes(IfcDoor ifcEntity, IDoor iEntity) throws ParseToIfcException {
-        addLengthToOpeningElement.addLengthToOpeningElement(iEntity.getEntityLength(), ifcEntity);
+        addLengthToOpeningElement.addDimensionsToOpeningElement(iEntity, ifcEntity);
     }
 }

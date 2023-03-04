@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddWindowAttributesService implements IAddAttributesService<IfcWindow, IWindow> {
 
-    private final AddLengthToOpeningElement addLengthToOpeningElement;
+    private final AddDimensionsToOpeningElement addLengthToOpeningElement;
 
     @Autowired
-    public AddWindowAttributesService(AddLengthToOpeningElement addLengthToOpeningElement) {
+    public AddWindowAttributesService(AddDimensionsToOpeningElement addLengthToOpeningElement) {
         this.addLengthToOpeningElement = addLengthToOpeningElement;
     }
 
     @Override
     public void addAttributes(IfcWindow ifcEntity, IWindow iEntity) throws ParseToIfcException {
-        addLengthToOpeningElement.addLengthToOpeningElement(iEntity.getEntityLength(), ifcEntity);
+        addLengthToOpeningElement.addDimensionsToOpeningElement(iEntity, ifcEntity);
     }
 }

@@ -1,6 +1,6 @@
 package de.fheger.floorplan2ifc.gui.nodes;
 
-import de.fheger.floorplan2ifc.gui.panels.placement.length.WallPanel;
+import de.fheger.floorplan2ifc.gui.panels.placement.dimension.WallPanel;
 
 import java.util.Arrays;
 
