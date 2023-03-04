@@ -50,7 +50,7 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
 
     public void addAttributesAndRelationships(IfcProject ifcProject, IProject iProject)
             throws ParseToIfcException {
-        List<IEntityType> nodes = getNodesOfNodeType(iProject);
+        List<IEntityType> nodes = getIEntityTypeObjects(iProject);
         for (IEntityType node : nodes) {
             IfcType ifcEntity = findIfcEntityService.findIfcEntity(ifcProject, node.getGlobalId(), clazzIfc);
             if (addAttributesService != null) {
@@ -62,7 +62,7 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
         }
     }
 
-    protected List<IEntityType> getNodesOfNodeType(IEntity entity) {
+    protected List<IEntityType> getIEntityTypeObjects(IEntity entity) {
         List<IEntityType> nodes = new ArrayList<>();
         if (clazzNode.isInstance(entity)) {
             nodes.add(clazzNode.cast(entity));
@@ -70,9 +70,9 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
         if (!entity.hasChildren()) {
             return nodes;
         }
-        for (IEntity child : entity.getIEntityChildren()) {
-            nodes.addAll(getNodesOfNodeType(child));
-        }
+        entity.getIEntityChildren().forEach(
+                child -> nodes.addAll(getIEntityTypeObjects(child))
+        );
         return nodes;
     }
 }
