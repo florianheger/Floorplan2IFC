@@ -4,11 +4,9 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.featureelement.featureelementsubtraction.IfcOpeningElement;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.IfcRelConnects;
 import lombok.Getter;
-import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 @SuppressWarnings({"unused"})
-@Node
 public class IfcRelFillsElement extends IfcRelConnects {
     @Relationship(type = "RelatingOpeningElement")
     @Getter

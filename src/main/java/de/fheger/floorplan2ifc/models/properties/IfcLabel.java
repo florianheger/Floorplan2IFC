@@ -7,6 +7,7 @@ import org.springframework.data.neo4j.core.schema.Node;
 import java.util.Random;
 
 @SuppressWarnings("ALL")
+
 @Node
 public class IfcLabel implements IfcValue {
     @Id

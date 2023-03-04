@@ -5,14 +5,12 @@ import de.fheger.floorplan2ifc.models.entities.root.relationship.relconnects.Ifc
 import de.fheger.floorplan2ifc.models.enums.IfcOpeningElementTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @SuppressWarnings("unused")
-@Node
 public class IfcOpeningElement extends IfcFeatureElementSubtraction {
     @Setter
     private IfcOpeningElementTypeEnum predefinedType;

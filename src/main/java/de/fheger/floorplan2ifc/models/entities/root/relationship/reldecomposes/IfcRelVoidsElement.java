@@ -4,11 +4,9 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.featureelement.IfcFeatureElementSubtraction;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.IfcRelDecomposes;
 import lombok.Getter;
-import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 @SuppressWarnings({"unused"})
-@Node
 public class IfcRelVoidsElement extends IfcRelDecomposes {
     @Relationship(type = "RelatingBuildingElement")
     @Getter
