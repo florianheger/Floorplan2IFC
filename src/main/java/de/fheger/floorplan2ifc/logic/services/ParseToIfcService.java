@@ -18,12 +18,14 @@ public class ParseToIfcService {
 
     @Autowired
     public ParseToIfcService(CreateIfcEntitiesService createIfcEntitiesService,
+                             PlacementService placementService,
                              IfcWallService ifcWallService,
                              IfcSpaceService ifcSpaceService,
                              IfcSanitaryTerminalService ifcSanitaryTerminalService,
                              IfcDoorService ifcDoorService,
                              IfcWindowService ifcWindowService) {
         this.createIfcEntitiesService = createIfcEntitiesService;
+        ifcServices.add(placementService);
         ifcServices.add(ifcWallService);
         ifcServices.add(ifcSpaceService);
         ifcServices.add(ifcSanitaryTerminalService);

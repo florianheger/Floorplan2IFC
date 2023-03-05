@@ -22,11 +22,11 @@ import java.util.HashSet;
 public class AddWallAttributesService implements IAddAttributesService<IfcWall, IWall> {
 
     @Override
-    public void addAttributes(IfcWall ifcWall, IWall iWall)
+    public void addAttributes(IfcWall ifcWall, IWall iEntity)
             throws ParseToIfcException {
-        addQuantities(ifcWall, iWall);
-        addProperties(ifcWall, iWall);
-        addRotation(ifcWall, iWall);
+        addQuantities(ifcWall, iEntity);
+        addProperties(ifcWall, iEntity);
+        addRotation(ifcWall, iEntity);
     }
 
     private void addRotation(IfcWall ifcWall, IWall iWall) throws ParseToIfcException {

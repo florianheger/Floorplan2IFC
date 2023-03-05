@@ -5,37 +5,40 @@ import de.fheger.floorplan2ifc.logic.exceptions.ParseToIfcException;
 import de.fheger.floorplan2ifc.models.entities.IfcRoot;
 import de.fheger.floorplan2ifc.models.entities.root.IfcObjectDefinition;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.IfcProject;
-import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.IfcProduct;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.builtelement.*;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.element.distributionelement.distributionflowelement.flowterminal.IfcSanitaryTerminal;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcBuildingStorey;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSite;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.IfcSpace;
 import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.product.spatialelement.spatialstructureelement.facility.IfcBuilding;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateIfcEntityWithRootAttributesService {
-
-    private final AddPlacementService addPlacementService;
-
-    @Autowired
-    public CreateIfcEntityWithRootAttributesService(AddPlacementService addPlacementService) {
-        this.addPlacementService = addPlacementService;
-    }
-
+    /**
+     * Creates a new IFC-Object. Returns
+     *
+     * @param iEntity
+     * @return
+     * @throws ParseToIfcException
+     */
     public IfcObjectDefinition createIfcEntityWithRootAttributes(IEntity iEntity)
             throws ParseToIfcException {
         IfcObjectDefinition ifcEntity = createIfcEntity(iEntity);
         addRootAttributes(ifcEntity, iEntity);
 
-        if (iEntity instanceof IPlacement iPlacement) {
-            addPlacementService.addPlacement((IfcProduct) ifcEntity, iPlacement);
-        }
         return ifcEntity;
     }
 
+    /**
+     * Creates a new IFC-Object of type IfcType using createIfcEntityWithRootAttributes.
+     *
+     * @param entity
+     * @param clazz
+     * @param <IfcType>
+     * @return IFC-Object of type IfcType.
+     * @throws ParseToIfcException
+     */
     public <IfcType extends IfcObjectDefinition> IfcType createIfcEntityWithRootAttributesTypeSave(IEntity entity, Class<IfcType> clazz)
             throws ParseToIfcException {
         IfcObjectDefinition ifcObject = createIfcEntityWithRootAttributes(entity);

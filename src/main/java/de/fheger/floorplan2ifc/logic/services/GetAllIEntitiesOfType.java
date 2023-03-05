@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GetAllIEntityPanelsOfType {
-    public <IEntityType extends IEntity> List<IEntityType> getIfcEntityOfType(Class<IEntityType> clazz, IProject project) {
-        return getIfcEntityOfTypeRecursive(clazz, project);
+public class GetAllIEntitiesOfType {
+    public <IEntityType extends IEntity> List<IEntityType> getIEntitiesOfType(Class<IEntityType> clazz, IProject project) {
+        return getIEntitiesOfTypeRecursive(clazz, project);
     }
 
-    private <IEntityType extends IEntity> List<IEntityType> getIfcEntityOfTypeRecursive(Class<IEntityType> clazz, IEntity entity) {
+    private <IEntityType extends IEntity> List<IEntityType> getIEntitiesOfTypeRecursive(Class<IEntityType> clazz, IEntity entity) {
         List<IEntityType> iEntities = new ArrayList<>();
         if (clazz.isInstance(entity)) {
             iEntities.add(clazz.cast(entity));
         }
         if (entity.hasChildren()) {
             entity.getIEntityChildren().forEach(
-                    child -> iEntities.addAll(getIfcEntityOfTypeRecursive(clazz, child))
+                    child -> iEntities.addAll(getIEntitiesOfTypeRecursive(clazz, child))
             );
         }
         return iEntities;

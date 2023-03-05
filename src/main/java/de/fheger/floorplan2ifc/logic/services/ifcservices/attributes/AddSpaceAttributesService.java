@@ -18,9 +18,9 @@ import java.util.List;
 @Service
 public class AddSpaceAttributesService implements IAddAttributesService<IfcSpace, ISpace> {
     @Override
-    public void addAttributes(IfcSpace ifcEntity, ISpace entityNode) throws ParseToIfcException {
-        addFloorArea(ifcEntity, entityNode);
-        addFloorAreaDin(ifcEntity, entityNode);
+    public void addAttributes(IfcSpace ifcEntity, ISpace iEntity) throws ParseToIfcException {
+        addFloorArea(ifcEntity, iEntity);
+        addFloorAreaDin(ifcEntity, iEntity);
     }
 
     private void addFloorAreaDin(IfcSpace ifcEntity, ISpace iEntity) {

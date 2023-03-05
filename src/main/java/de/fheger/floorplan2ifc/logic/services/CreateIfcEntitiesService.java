@@ -52,6 +52,12 @@ public class CreateIfcEntitiesService {
         }
     }
 
+    /**
+     * Adds IfcRelAggregates-Relationship between parent and child.
+     * @param parent
+     * @param child
+     * @throws ParseToIfcException
+     */
     private void addRelAggregatesOrOpeningElement(IfcObjectDefinition parent, IfcObjectDefinition child)
             throws ParseToIfcException {
         if (needsOpeningElement(child)) {
@@ -61,6 +67,24 @@ public class CreateIfcEntitiesService {
         IfcRelAggregates relParentChild = getRelAggregates(parent);
         relParentChild.getRelatedObjects().add(child);
         child.getDecomposes().add(relParentChild);
+    }
+
+    /**
+     *
+     * @param parent
+     * @return IfcRelAggregates of parent. If parent does not have a IfcRelAggregates it will be created.
+     */
+    private IfcRelAggregates getRelAggregates(IfcObjectDefinition parent) {
+        if (parent.getIsDecomposedBy().size() > 0) {
+            return parent.getIsDecomposedBy().stream().toList().get(0);
+        }
+        IfcRelAggregates ifcRelAggregates = new IfcRelAggregates(parent, new HashSet<>());
+        parent.getIsDecomposedBy().add(ifcRelAggregates);
+        return ifcRelAggregates;
+    }
+
+    private boolean needsOpeningElement(IfcObjectDefinition child) {
+        return (child instanceof IfcDoor || child instanceof IfcWindow);
     }
 
     private void addOpeningElement(IfcObjectDefinition parent, IfcObjectDefinition child)
@@ -82,18 +106,5 @@ public class CreateIfcEntitiesService {
         IfcRelFillsElement relOpeningDoorOrWindow = new IfcRelFillsElement(ifcOpeningElement, childE);
         ifcOpeningElement.getHasFillings().add(relOpeningDoorOrWindow);
         childE.getFillsVoids().add(relOpeningDoorOrWindow);
-    }
-
-    private IfcRelAggregates getRelAggregates(IfcObjectDefinition parent) {
-        if (parent.getIsDecomposedBy().size() > 0) {
-            return parent.getIsDecomposedBy().stream().toList().get(0);
-        }
-        IfcRelAggregates ifcRelAggregates = new IfcRelAggregates(parent, new HashSet<>());
-        parent.getIsDecomposedBy().add(ifcRelAggregates);
-        return ifcRelAggregates;
-    }
-
-    private boolean needsOpeningElement(IfcObjectDefinition child) {
-        return (child instanceof IfcDoor || child instanceof IfcWindow);
     }
 }
