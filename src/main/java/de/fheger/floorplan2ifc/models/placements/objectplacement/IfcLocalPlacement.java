@@ -1,17 +1,20 @@
 package de.fheger.floorplan2ifc.models.placements.objectplacement;
 
-import de.fheger.floorplan2ifc.models.interfaces.IfcAxis2Placement;
 import de.fheger.floorplan2ifc.models.placements.IfcObjectPlacement;
 import lombok.Getter;
-import org.springframework.data.neo4j.core.schema.Relationship;
 
 @SuppressWarnings("ALL")
 public class IfcLocalPlacement extends IfcObjectPlacement {
-    @Relationship(type = "RelativePlacement")
     @Getter
-    private final IfcAxis2Placement relativePlacement;
+    private final double posX;
+    @Getter
+    private final double posY;
+    @Getter
+    private final double posZ;
 
-    public IfcLocalPlacement(IfcAxis2Placement relativePlacement) {
-        this.relativePlacement = relativePlacement;
+    public IfcLocalPlacement(double posX, double posY, double posZ) {
+        this.posX = posX;
+        this.posY = posY;
+        this.posZ = posZ;
     }
 }
