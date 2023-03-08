@@ -7,11 +7,7 @@ import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertys
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
 import de.fheger.floorplan2ifc.models.placements.objectplacement.IfcLocalPlacement;
-import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrepresentationitem.IfcDirection;
-import de.fheger.floorplan2ifc.models.placements.representationitem.geometricrepresentationitem.placement.IfcAxis2Placement3D;
 import de.fheger.floorplan2ifc.models.properties.IfcBoolean;
-import de.fheger.floorplan2ifc.models.properties.propertyabstraction.property.simpleproperty.IfcPropertySingleValue;
-import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityLength;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

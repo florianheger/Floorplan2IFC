@@ -7,8 +7,6 @@ import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertys
 import de.fheger.floorplan2ifc.models.entities.root.propertydefinition.propertysetdefinition.quantityset.IfcElementQuantity;
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldefines.IfcRelDefinesByProperties;
 import de.fheger.floorplan2ifc.models.properties.IfcLabel;
-import de.fheger.floorplan2ifc.models.properties.propertyabstraction.property.simpleproperty.IfcPropertySingleValue;
-import de.fheger.floorplan2ifc.models.quantities.physical.simple.IfcQuantityArea;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
