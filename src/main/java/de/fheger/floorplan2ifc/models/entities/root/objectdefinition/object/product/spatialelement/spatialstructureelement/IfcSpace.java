@@ -4,6 +4,7 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.object.prod
 import de.fheger.floorplan2ifc.models.entities.root.relationship.reldecomposes.IfcRelSpaceBoundary;
 import de.fheger.floorplan2ifc.models.interfaces.IfcSpaceBoundarySelect;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.HashSet;
@@ -13,4 +14,12 @@ public class IfcSpace extends IfcSpatialStructureElement implements IfcSpaceBoun
     @Relationship(type = "BoundedBy")
     @Getter
     private final Set<IfcRelSpaceBoundary> boundedBy = new HashSet<>();
+
+    @Setter
+    @Getter
+    private double floorArea;
+
+    @Getter
+    @Setter
+    private String floorAreaDin277;
 }
