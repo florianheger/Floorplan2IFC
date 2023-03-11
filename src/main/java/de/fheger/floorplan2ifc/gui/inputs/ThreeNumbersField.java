@@ -3,6 +3,9 @@ package de.fheger.floorplan2ifc.gui.inputs;
 import de.fheger.floorplan2ifc.gui.UiFactory;
 import javafx.scene.layout.FlowPane;
 
+/**
+ * Input component for three Doubles.
+ */
 public class ThreeNumbersField extends FlowPane {
 
     private final NumberField numberField1 = UiFactory.createStandardShortNumberField();

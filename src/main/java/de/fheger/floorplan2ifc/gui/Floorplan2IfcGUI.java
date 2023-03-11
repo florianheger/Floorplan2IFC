@@ -18,6 +18,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+/**
+ * Main class for gui in Floorplan2IFC.
+ */
 @Component
 public class Floorplan2IfcGUI extends Application {
     private ConfigurableApplicationContext applicationContext;

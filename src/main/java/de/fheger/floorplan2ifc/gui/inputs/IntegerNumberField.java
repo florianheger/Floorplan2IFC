@@ -2,6 +2,9 @@ package de.fheger.floorplan2ifc.gui.inputs;
 
 import javafx.scene.control.TextField;
 
+/**
+ * Input component for Integers.
+ */
 public class IntegerNumberField extends TextField {
     public IntegerNumberField() {
         textProperty().addListener((observable, oldValue, newValue) -> {

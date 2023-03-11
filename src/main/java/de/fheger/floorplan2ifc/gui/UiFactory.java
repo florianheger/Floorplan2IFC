@@ -11,6 +11,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * Static class that creates UI objects with predefined fonts and sizes.
+ */
 public class UiFactory {
 
     public static final int FONT_SIZE_STANDARD = 14;

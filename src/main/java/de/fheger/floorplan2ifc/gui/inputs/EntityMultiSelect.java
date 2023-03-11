@@ -7,6 +7,9 @@ import org.controlsfx.control.CheckComboBox;
 
 import java.util.List;
 
+/**
+ * Select input component for multiple EntityPanels.
+ */
 public class EntityMultiSelect<PanelType extends EntityPanel> extends CheckComboBox<PanelType> {
 
     public EntityMultiSelect(List<ObservableList<? extends PanelType>> observableLists) {

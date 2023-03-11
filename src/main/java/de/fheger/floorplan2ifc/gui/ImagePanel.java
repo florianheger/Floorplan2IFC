@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+/**
+ * Panel for an image and an entity name for the EntityTree.
+ */
 public class ImagePanel extends Pane {
 
     private final int height = 25;

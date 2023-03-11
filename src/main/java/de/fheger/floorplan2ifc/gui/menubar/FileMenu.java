@@ -11,7 +11,9 @@ import javafx.scene.control.MenuItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * Menu for all file commands.
+ */
 @Component
 public class FileMenu extends Menu {
 

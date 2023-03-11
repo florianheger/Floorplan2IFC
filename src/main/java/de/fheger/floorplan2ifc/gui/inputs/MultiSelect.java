@@ -4,6 +4,9 @@ import org.controlsfx.control.CheckComboBox;
 
 import java.util.List;
 
+/**
+ * Select input component for multiple Strings.
+ */
 public class MultiSelect extends CheckComboBox<String> {
 
     public MultiSelect(List<String> selectableEntities) {

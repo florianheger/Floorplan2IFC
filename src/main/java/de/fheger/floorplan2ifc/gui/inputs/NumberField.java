@@ -2,6 +2,9 @@ package de.fheger.floorplan2ifc.gui.inputs;
 
 import javafx.scene.control.TextField;
 
+/**
+ * Input component for Double.
+ */
 public class NumberField extends TextField {
     public NumberField() {
         textProperty().addListener((observable, oldValue, newValue) -> {

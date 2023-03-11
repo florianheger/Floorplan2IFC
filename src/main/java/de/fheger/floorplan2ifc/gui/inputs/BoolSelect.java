@@ -6,6 +6,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
+/**
+ * Input component for boolean expressions.
+ */
 public class BoolSelect extends GridPane {
 
     private final RadioButton rbTrue = new RadioButton("true");
