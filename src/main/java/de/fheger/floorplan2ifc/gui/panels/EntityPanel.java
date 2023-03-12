@@ -16,6 +16,9 @@ import nl.tue.isbe.ifcspftools.GuidHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Panel for input of properties to an entity.
+ */
 public abstract class EntityPanel extends BorderPane implements IEntity {
     protected final GridPane gridPane;
 
@@ -59,6 +62,9 @@ public abstract class EntityPanel extends BorderPane implements IEntity {
         gridPane.add(UiFactory.createH2Headline(defaultName + " Values"), 0, ++rowsInEntityPanel, 2, 1);
     }
 
+    /**
+     * Can be overwritten by subclasses as a destructor.
+     */
     public void remove() {
     }
 
@@ -67,6 +73,10 @@ public abstract class EntityPanel extends BorderPane implements IEntity {
         return getName();
     }
 
+    /**
+     * Adds a listener to the name field to notify all observers by using the changeName method in <i>OnNameChanged</i>.
+     * @param onNameChanged Should implement the changeName method.
+     */
     public void onNameChanged(OnNameChanged onNameChanged) {
         nameField.textProperty().addListener((observable, oldValue, newValue) -> onNameChanged.changeName(newValue));
     }
