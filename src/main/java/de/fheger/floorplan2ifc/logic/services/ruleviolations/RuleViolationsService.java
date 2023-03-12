@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains all implementations of <i>IRuleViolationService</i> and checks it for a given <i>IProject</i>.
+ */
 @Service
 public class RuleViolationsService implements IRuleViolationService {
     private final List<IRuleViolationService> ruleViolationServices = new ArrayList<>();
@@ -20,6 +23,11 @@ public class RuleViolationsService implements IRuleViolationService {
         ruleViolationServices.add(sanitaryTerminalTypeSelectedService);
     }
 
+    /**
+     * Check all rule violations for <i>project</i>.
+     * @param project The project to be tested.
+     * @throws IfcRuleViolationException If any service found a rule violation.
+     */
     @Override
     public void checkRuleViolation(IProject project) throws IfcRuleViolationException {
         for (IRuleViolationService ruleViolationService : ruleViolationServices) {

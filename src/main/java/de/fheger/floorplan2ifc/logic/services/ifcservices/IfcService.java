@@ -12,6 +12,12 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.Ifc
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract superclass for any IFC-Class that has attributes and/or relationships.
+ *
+ * @param <IfcType>     The corresponding subclass of IfcObjectDefinition.
+ * @param <IEntityType> The corresponding subclass of IEntity.
+ */
 public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityType extends IEntity> {
 
     private final Class<IEntityType> clazzNode;
@@ -21,6 +27,15 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
     private IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService;
     private IAddAttributesService<IfcType, IEntityType> addAttributesService;
 
+    /**
+     * If the IFC-class has attributes and relationships.
+     *
+     * @param clazzIfc                Class object of <i>IfcType</i>.
+     * @param clazzNode               Class object of <i>IEntityType</i>.
+     * @param findIfcEntityService    Object of <i>IfcEntityService</i>.
+     * @param addAttributesService    The corresponding implementation of AddAttributesService.
+     * @param addRelationshipsService The corresponding implementation of AddRelationshipsService.
+     */
     protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
                          IAddAttributesService<IfcType, IEntityType> addAttributesService, IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService) {
         this.clazzIfc = clazzIfc;
@@ -30,6 +45,14 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
         this.addAttributesService = addAttributesService;
     }
 
+    /**
+     * If the IFC-class has attributes only.
+     *
+     * @param clazzIfc             Class object of <i>IfcType</i>.
+     * @param clazzNode            Class object of <i>IEntityType</i>.
+     * @param findIfcEntityService Object of <i>IfcEntityService</i>.
+     * @param addAttributesService The corresponding implementation of AddAttributesService.
+     */
     protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
                          IAddAttributesService<IfcType, IEntityType> addAttributesService) {
         this.clazzIfc = clazzIfc;
@@ -38,6 +61,14 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
         this.addAttributesService = addAttributesService;
     }
 
+    /**
+     * If the IFC-class has relationships only.
+     *
+     * @param clazzIfc                Class object of <i>IfcType</i>.
+     * @param clazzNode               Class object of <i>IEntityType</i>.
+     * @param findIfcEntityService    Object of <i>IfcEntityService</i>.
+     * @param addRelationshipsService The corresponding implementation of AddRelationshipsService.
+     */
     @SuppressWarnings("unused")
     protected IfcService(Class<IfcType> clazzIfc, Class<IEntityType> clazzNode, FindIfcEntityService findIfcEntityService,
                          IAddRelationshipsService<IfcType, IEntityType> addRelationshipsService) {
@@ -47,7 +78,13 @@ public abstract class IfcService<IfcType extends IfcObjectDefinition, IEntityTyp
         this.addRelationshipsService = addRelationshipsService;
     }
 
-
+    /**
+     * Runs the implementations of IAddAttributesService and/or IAddRelationshipsService.
+     *
+     * @param ifcProject Corresponding IfcProject.
+     * @param iProject   Corresponding IProject.
+     * @throws ParseToIfcException In case of any error that prevents the creation the attributes/relationships.
+     */
     public void addAttributesAndRelationships(IfcProject ifcProject, IProject iProject)
             throws ParseToIfcException {
         List<IEntityType> nodes = getIEntityTypeObjects(iProject);
