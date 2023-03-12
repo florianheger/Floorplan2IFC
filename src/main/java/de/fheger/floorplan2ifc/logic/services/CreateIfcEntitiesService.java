@@ -19,6 +19,9 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Creates a tree of IFC-Objects.
+ */
 @Service
 public class CreateIfcEntitiesService {
 
@@ -54,9 +57,9 @@ public class CreateIfcEntitiesService {
 
     /**
      * Adds IfcRelAggregates-Relationship between parent and child.
-     * @param parent
-     * @param child
-     * @throws ParseToIfcException
+     * @param parent The parent in the relationship. In case of a IFCRelAggregates relationship it is the IsDecomposedBy part.
+     * @param child The child in the relationship. In case of a IFCRelAggregates relationship it is the Decomposes part.
+     * @throws ParseToIfcException In case of any error that prevents the creation of the tree.
      */
     private void addRelAggregatesOrOpeningElement(IfcObjectDefinition parent, IfcObjectDefinition child)
             throws ParseToIfcException {
@@ -71,8 +74,8 @@ public class CreateIfcEntitiesService {
 
     /**
      *
-     * @param parent
-     * @return IfcRelAggregates of parent. If parent does not have a IfcRelAggregates it will be created.
+     * @param parent The IsDecomposedBy Part of the relationship.
+     * @return Returns the IfcRelAggregates of parent. If parent does not have a IfcRelAggregates it will be created.
      */
     private IfcRelAggregates getRelAggregates(IfcObjectDefinition parent) {
         if (parent.getIsDecomposedBy().size() > 0) {

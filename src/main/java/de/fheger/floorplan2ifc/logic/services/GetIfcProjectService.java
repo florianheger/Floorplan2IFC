@@ -13,8 +13,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Returns the <i>IfcProject</i> of any <i>IfcObjectDefinition</i>.
+ */
 @Service
 public class GetIfcProjectService {
+    /**
+     * Returns the <i>IfcProject</i> of any <i>IfcObjectDefinition</i> resursivly.
+     * @param anyIfcEntity Any object which is in the same Graph as the IfcProject.
+     * @return The searched IfcProject.
+     * @throws ParseToIfcException If no project was found.
+     */
     public IfcProject getIfcProject(IfcObjectDefinition anyIfcEntity)
             throws ParseToIfcException {
         IfcProject result = getIfcProjectRecursive(anyIfcEntity);

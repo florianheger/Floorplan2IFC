@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses an IProject to an IfcProject.
+ */
 @Service
 public class ParseToIfcService {
 
@@ -33,6 +36,12 @@ public class ParseToIfcService {
         ifcServices.add(ifcWindowService);
     }
 
+    /**
+     * Parses an IProject to an IfcProject by running all necessary Services.
+     * @param project The project to be parsed.
+     * @return A parsed IfcProject.
+     * @throws ParseToIfcException In case of any error, entailed by a wrong input.
+     */
     public IfcProject parseProject(IProject project)
             throws ParseToIfcException {
         IfcProject ifcProject = createIfcEntitiesService.createIfcEntities(project);

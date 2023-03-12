@@ -12,6 +12,9 @@ import de.fheger.floorplan2ifc.models.entities.root.objectdefinition.context.Ifc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Interface for the gui package.
+ */
 @Component
 public class LogicCommands {
     private final ParseToIfcService parseToIfcService;

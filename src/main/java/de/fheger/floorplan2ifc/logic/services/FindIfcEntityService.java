@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Find a subclass of IfcObjectDefinition by GlobalID.
+ */
 @Service
 public class FindIfcEntityService {
 
@@ -24,6 +27,15 @@ public class FindIfcEntityService {
         this.getIfcProjectService = getIfcProjectService;
     }
 
+    /**
+     * Find an object of <i>SearchedIfcType</i> by given <i>searchedGlobalId</i>.
+     * @param ifcObjectDefinition Any IFC-Entity. Provides a starting point for the search.
+     * @param searchedGlobalId The GlobalID of the searched IFC-Object.
+     * @param clazz Class of the searched IFC-Object.
+     * @return The searched IFC-Object of tyoe <i>SearchedIfcType</i>.
+     * @param <SearchedIfcType> The type of the searched IFC-Object. Extends <i>IfcObjectDefinition</i>.
+     * @throws ParseToIfcException If no IFC-Object of type <i>IfcObjectDefinition</i> with GlobalID <i>SearchedIfcType</i> was found.
+     */
     public <SearchedIfcType extends IfcObjectDefinition> SearchedIfcType findIfcEntity(
             IfcObjectDefinition ifcObjectDefinition, String searchedGlobalId, Class<SearchedIfcType> clazz)
             throws ParseToIfcException {

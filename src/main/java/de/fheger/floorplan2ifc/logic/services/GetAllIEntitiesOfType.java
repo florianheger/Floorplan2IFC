@@ -7,8 +7,18 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Get all IEntity objects of defined type.
+ */
 @Service
 public class GetAllIEntitiesOfType {
+    /**
+     * Get all IEntity objects of type defined by <i>IEntityType</i>.
+     * @param clazz The searched IEntity type as Class object.
+     * @param project The corresponding IProject. Provides a starting point for the search.
+     * @return A List of all IEntity of type <i>clazz</i>
+     * @param <IEntityType> The searched IEntity type.
+     */
     public <IEntityType extends IEntity> List<IEntityType> getIEntitiesOfType(Class<IEntityType> clazz, IProject project) {
         return getIEntitiesOfTypeRecursive(clazz, project);
     }
