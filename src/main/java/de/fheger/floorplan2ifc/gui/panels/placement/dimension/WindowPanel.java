@@ -5,6 +5,6 @@ import de.fheger.floorplan2ifc.interfaces.IWindow;
 public class WindowPanel extends DimensionPanel implements IWindow {
 
     public WindowPanel() {
-        super("Window", 80, 100);
+        super("Window", 80, 140);
     }
 }
